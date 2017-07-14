@@ -5,11 +5,17 @@
   "repository": "https://github.com/yardwork/Yard.ly.git",
   "author": "Jeremy Odell <jeremy0dell@yahoo.com>",
   "license": "GNU-GPLv3",
+  "scripts": {
+    "start": "nodemon src/server --ignore src/client --ignore src/public",
+    "dev": "webpack -d --watch",
+    "build": "webpack -p"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "eslint": "^4.2.0",
     "eslint-config-airbnb": "^15.0.2",
