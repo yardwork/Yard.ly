@@ -13,6 +13,9 @@ module.exports = {
   WORKERS_DELETE: '/workers/:id',
   WORKERS_LOGIN: '/workers/:id',
 
+  ADDRESS_ADD: '/addressAdd/:id',
+  ADDRESS_DELETE: '/addressDelete/:id',
+
   usersShowRoute: id =>
     `/users/${id || ':id'}`,
 
@@ -29,5 +32,12 @@ module.exports = {
     `/workers/${id || ':id'}`,
 
   workersDeleteRoute: id =>
-    `/workers/${id || ':id'}`
+    `/workers/${id || ':id'}`,
+
+  addressAddRoute: id =>
+    `/addressAdd/${id || ':id'}`,
+
+  addressDeleteRoute: id =>
+    `/addressDelete/${id || ':id'}`,
+
 }

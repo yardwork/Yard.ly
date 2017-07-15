@@ -4,23 +4,22 @@ const AddressChildEntry = props => {
 	return (
 		<div>
 			<div className="addressKey">
-				<h1>Address Entry: {props.number}</h1>
+				<div className="panel panel-default">
+					<div className="panel-heading">
+						<div className="panel-title">
+							<h2>Address Entry: {props.number}</h2>
+						</div>
+					</div>
+			<div className="address">
+				<h3 className="panel-title">{props.address.address} {props.address.city} {props.address.state} {props.address.zipcode}</h3>
 			</div>
-			<div className="addressAddress">
-				<h2>{props.address.address}</h2>
+			<div className="addressDelete">
+				<button onClick={() => props.onClickDelete(props.number)}>
+					Delete
+				</button>
+				</div>
 			</div>
-			<div className="addressCity">
-				<h2>{props.address.city}</h2>
-			</div>
-			<div className="addressState">
-				<h2>{props.address.state}</h2>
-			</div>
-			<div className="addressZipcode">
-				<h2>{props.address.zipcode}</h2>
-			</div>
-			<div className="Delete">
-				<button onClick={()=> props.onClickDelete(props.number)}>Delete</button>
-			</div>
+		</div>
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { usersUpdateRoute } from '../../server/routes.js'
+import { addressAddRoute, addressDeleteRoute, usersShowRoute } from '../../server/routes.js'
 import AddressFormChild from './addressFormChild.jsx'
 import AddressChildList from './addressFormChildList.jsx'
 
@@ -48,7 +48,7 @@ class AddressFormParent extends Component {
 	//   // fetch to the api for the current user data
 	// }
 	postAddress(address, id) {
-		fetch('/api'.concat(usersUpdateRoute(id)), {
+		fetch('/api'.concat(addressAddRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
 			method: 'PUT',
 			body: JSON.stringify(address),
@@ -74,7 +74,7 @@ class AddressFormParent extends Component {
 			})
 	}
   getUser(id) {
-    fetch('/api'.concat(usersUpdateRoute(id)), {
+    fetch('/api'.concat(usersShowRoute(id)), {
       headers: { 'Content-type': 'application/json' },
       method: 'GET'
     })
@@ -103,10 +103,10 @@ class AddressFormParent extends Component {
 		)
 	}
   deleteAddress(addressId, id) {
-    fetch('/api'.concat(usersUpdateRoute(id)), {
+    fetch('/api'.concat(addressDeleteRoute(id)), {
       headers: { 'Content-type': 'application/json' },
       method: 'PUT',
-      body: JSON.stringify(this.state.user.addresses[addressId]),
+      body: JSON.stringify(addressId),
     })
       .then(res => {
         if (!res.ok) throw Error(res.statusText)
@@ -131,54 +131,18 @@ class AddressFormParent extends Component {
 
   onClickDelete(e) {
     // e.preventDefault()
-    this.deleteAddress(e, this.state.user._id)
+		console.log(e)
+		var arrIndex = {index: e}
+    this.deleteAddress(arrIndex, this.state.user._id)
 
   }
 	componentDidMount() {
     this.getUser("596a4b5cb30d635574119ae8")
 	}
-  // router.put(USERS_UPDATE, (req, res, next) => {
-  //   const { id } = req.params
-  //   if (!mongoose.Types.ObjectId.isValid(id)) {
-  //     res.sendStatus(404)
-  //     return
-  //   }
-  //
-  //   User
-  //     .findById(id)
-  //     .then((user) => {
-  //       console.log('user', user)
-  //       user.addresses.push(req.body)
-  //       return user.save().then((updatedUser) => {
-  //         console.log('updatedUser', updatedUser)
-  //         res.json(updatedUser)
-  //       })
-  //     })
-  //     .catch(next)
-  // })
-  //
-  // router.put(USERS_UPDATE, (req, res, next) => {
-  //   const { id } = req.params
-  //   if (!mongoose.Types.ObjectId.isValid(id)) {
-  //     res.sendStatus(404)
-  //     return
-  //   }
-  //
-  //   User
-  //     .findById(id)
-  //     .then((user) => {
-  //       user.addresses.splice(req.body, 1)
-  //       return user.save().then((updatedUser) => {
-  //         // console.log('updatedUser', updatedUser)
-  //         res.json(updatedUser)
-  //       })
-  //     })
-  //     .catch(next)
-  // })
 	render() {
 		return (
 			<div>
-				<h1 onClick={this.submitForm.bind(this)}>Hello World</h1>
+				<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
 				<div>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList onClickDelete={this.onClickDelete} addresses={this.state.user.addresses} />

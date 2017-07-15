@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Home from './home.jsx'
+import AddressFormParent from './addressFormParent.jsx'
 
 const workers = [
   {
@@ -167,7 +168,11 @@ const workers = [
 
 const App = () => {
   return (
-    <Home workers={workers}/>
+    <div>
+      <Home workers={workers}/>
+      <AddressFormParent />
+    </div>
+
   )
 }
 
