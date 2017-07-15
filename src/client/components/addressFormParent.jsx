@@ -142,7 +142,7 @@ class AddressFormParent extends Component {
 	render() {
 		return (
 			<div>
-				<h1 onClick={this.submitForm.bind(this)}>Hello World</h1>
+				<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
 				<div>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList onClickDelete={this.onClickDelete} addresses={this.state.user.addresses} />

@@ -133,7 +133,6 @@ router.put(ADDRESS_DELETE, (req, res, next) => {
       console.log(req.body.index)
       user.addresses.splice(req.body.index, 1)
       return user.save().then((updatedUser) => {
-        // console.log('updatedUser', updatedUser)
         res.json(updatedUser)
       })
     })
