@@ -21,7 +21,7 @@ const HomePage = ( { workers } ) =>
       <BrowserRouter>
         <Switch>
           <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
-          <Route path="/profile" component={WorkerProfile}/>
+          <Route path="/profile" render={()=><WorkerProfile worker={workers[0]}/>}/>
         </Switch>
       </BrowserRouter>
     </div>
