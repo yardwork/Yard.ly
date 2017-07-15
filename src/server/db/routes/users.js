@@ -1,11 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+
 const bcrypt = require('bcrypt-as-promised')
 
 const User = require('../models/user')
-
-const util = require('../util')
 
 const {
   USERS_INDEX,
@@ -13,7 +12,8 @@ const {
   USERS_CREATE,
   USERS_DELETE,
   USERS_UPDATE,
-  USERS_LOGIN,
+  ADDRESS_ADD,
+  ADDRESS_DELETE,
 } = require('../../routes')
 /* export const USERS_INDEX = '/users'
 export const USERS_SHOW = '/users/:id'
@@ -25,7 +25,6 @@ const router = express.Router()
 
 router.get(USERS_SHOW, (req, res, next) => {
   const { id } = req.params
-  console.log(req.session, res.session)
 
   User
     .findById(id)
@@ -59,31 +58,6 @@ router.post(USERS_CREATE, (req, res, next) => {
           res.status(201).json(newUser)
         })
         .catch(next)
-    })
-})
-
-router.post(USERS_LOGIN, (req, res, next) => {
-  const username = req.body.username
-  const password = req.body.password
-
-  const { id } = req.params
-
-  User
-    .findById(id)
-    .then((user) => {
-      if (!user) {
-        console.log(user, 'no matching user was found!')
-      } else {
-        bcrypt.compare(password, user.password)
-          .then((isMatch) => {
-            req.session.user = user
-            req.session.type = 'USER'
-            console.log('this works and session is', isMatch, req.session)
-            res.send(`${user.username} has logged in sucessfully`)
-          })
-          .catch(bcrypt.MISMATCH_ERROR, next)
-          .catch(next)
-      }
     })
 })
 
@@ -122,6 +96,46 @@ router.put(USERS_UPDATE, (req, res, next) => {
         return
       }
       res.sendStatus(404)
+    })
+    .catch(next)
+})
+
+router.put(ADDRESS_ADD, (req, res, next) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.sendStatus(404)
+    return
+  }
+
+  User
+    .findById(id)
+    .then((user) => {
+      console.log('user', user)
+      user.addresses.push(req.body)
+      return user.save().then((updatedUser) => {
+        console.log('updatedUser', updatedUser)
+        res.json(updatedUser)
+      })
+    })
+    .catch(next)
+})
+
+router.put(ADDRESS_DELETE, (req, res, next) => {
+  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.sendStatus(404)
+    return
+  }
+
+  User
+    .findById(id)
+    .then((user) => {
+      console.log(req.body.index)
+      user.addresses.splice(req.body.index, 1)
+      return user.save().then((updatedUser) => {
+        // console.log('updatedUser', updatedUser)
+        res.json(updatedUser)
+      })
     })
     .catch(next)
 })

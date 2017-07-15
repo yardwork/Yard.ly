@@ -18,7 +18,7 @@ const AddressChildEntry = props => {
 			<div className="addressZipcode">
 				<h2>{props.address.zipcode}</h2>
 			</div>
-			<div className="Delete">
+			<div className="addressDelete">
 				<button onClick={()=> props.onClickDelete(props.number)}>Delete</button>
 			</div>
 		</div>
