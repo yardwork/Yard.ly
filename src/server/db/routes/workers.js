@@ -11,6 +11,7 @@ const {
   WORKERS_CREATE,
   WORKERS_DELETE,
   WORKERS_UPDATE,
+  WORKERS_LOGIN,
 } = require('../../routes')
 
 const router = express.Router()
@@ -51,6 +52,30 @@ router.post(WORKERS_CREATE, (req, res, next) => {
           res.status(201).json(newUser)
         })
         .catch(next)
+    })
+})
+
+router.post(WORKERS_LOGIN, (req, res, next) => {
+  const username = req.body.username
+  const password = req.body.password
+
+  const { id } = req.params
+
+  User
+    .findById(id)
+    .then((worker) => {
+      if (!worker) {
+        console.log(user, 'no matching user was found!')
+      } else {
+        bcrypt.compare(password, worker.password)
+          .then((isMatch) => {
+            req.session.user = newUser
+            req.session.type = 'WORKER'
+            console.log('this works and session is', isMatch, req.session)
+          })
+          .catch(bcrypt.MISMATCH_ERROR, next)
+          .catch(next)
+      }
     })
 })
 
