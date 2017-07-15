@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddressTimeChild = props => (
+const AddressFormChild = props => (
   <div>
     <h1>Enter Address Here</h1>
     <form onSubmit={props.click}>
@@ -13,4 +13,4 @@ const AddressTimeChild = props => (
   </div>
 )
 
-export default AddressTimeChild
+export default AddressFormChild

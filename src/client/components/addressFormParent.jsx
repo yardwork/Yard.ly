@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import AddressFormChild from './address-form-child'
-import AddressListParent from './address-list-parent'
+import AddressFormChild from './addressFormChild.jsx'
+import AddressChildList from './addressFormChildList.jsx'
 
-import { usersUpdateRoute } from '../../shared/routes'
-
-class AddressParent extends Component {
+// import { usersUpdateRoute } from '../../shared/routes'
+ class AddressFormParent extends Component {
   Constructor() {
     // super(props)
     this.state = {
@@ -37,8 +36,8 @@ class AddressParent extends Component {
   }
   submitForm(e) {
     e.preventDefault()
-    this.getState()
-    console.log(this.state)
+    // this.state
+    // console.log(this.state)
     this.setState({
       address: {
         address: e.target.address.value,
@@ -46,7 +45,7 @@ class AddressParent extends Component {
         state: e.target.state.value,
         zipcode: e.target.zipcode.value,
       },
-    }, this.postAddress(this.state.address, this.state.user._id))
+    },() => console.log(this.state))
   }
   render() {
     return (
@@ -54,7 +53,7 @@ class AddressParent extends Component {
         <h1 onClick={this.submitForm.bind(this)}>Hello World</h1>
         <div>
           <AddressFormChild click={this.submitForm.bind(this)} />
-          <AddressListParent addresses="[{ address: 'rrr', city: 'rrr', state: 'rr', zipcode: '222222' }, { address: 'asdf', city: 'aedew', state: 'we', zipcode: '123432' }]" />
+          <AddressChildList addresses={[{ address: 'rrr', city: 'rrr', state: 'rr', zipcode: '222222' }, { address: 'asdf', city: 'aedew', state: 'we', zipcode: '123432' }]} />
         </div>
       </div>
     )
@@ -62,4 +61,4 @@ class AddressParent extends Component {
 }
 
 
-export default AddressParent
+export default AddressFormParent
