@@ -4,12 +4,14 @@ module.exports = {
   USERS_CREATE: '/users',
   USERS_UPDATE: '/users/:id',
   USERS_DELETE: '/users/:id',
+  USERS_LOGIN: '/users/:id',
 
   WORKERS_INDEX: '/workers',
   WORKERS_SHOW: '/workers/:id',
   WORKERS_CREATE: '/workers',
   WORKERS_UPDATE: '/workers/:id',
   WORKERS_DELETE: '/workers/:id',
+  WORKERS_LOGIN: '/workers/:id',
 
   usersShowRoute: id =>
     `/users/${id || ':id'}`,
