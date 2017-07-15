@@ -1,9 +1,10 @@
 import React from 'react'
 import WorkerList from './workerList.jsx'
 import WorkerProfile from './workerProfile.jsx'
+import addressFormParent from './addressFormParent.jsx'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
-const HomePage = ( { workers } ) =>
+const HomePage = ( { workers, user } ) =>
   (<div>
     <div id="bg">
       <img src="http://hires.photospublic.com/PP13561214-Beautiful-green-Lawn-viewed-from-human-perspective.jpg" alt="" />
@@ -22,6 +23,7 @@ const HomePage = ( { workers } ) =>
         <Switch>
           <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
           <Route path="/profile" render={()=><WorkerProfile worker={workers[0]}/>}/>
+          <Route path="/address" render={()=><AddressFormParent user={user} />}/>
         </Switch>
       </BrowserRouter>
     </div>

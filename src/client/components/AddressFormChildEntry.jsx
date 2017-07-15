@@ -3,7 +3,7 @@ import React from 'react'
 const AddressChildEntry = props => {
 	return (
 		<div>
-			<div className="addressKey">
+			<div className="addressKey" onClick={() => props.onClickAddress(props.address)}>
 				<div className="panel panel-default">
 					<div className="panel-heading">
 						<div className="panel-title">
@@ -11,7 +11,7 @@ const AddressChildEntry = props => {
 						</div>
 					</div>
 			<div className="address">
-				<h3 className="panel-title">{props.address.address} {props.address.city} {props.address.state} {props.address.zipcode}</h3>
+				<h3 className="panel-title" >{props.address.address} {props.address.city} {props.address.state} {props.address.zipcode}</h3>
 			</div>
 			<div className="addressDelete">
 				<button onClick={() => props.onClickDelete(props.number)}>
