@@ -1,8 +1,14 @@
 const express = require('express')
 const path = require('path')
+const bodyParser = require('body-parser')
+
+const db = require('./db/config.js')
+const usersRoute = require('./db/routes/users')
+const workersRoute = require('./db/routes/workers')
+
 const app = express()
 
-
+app.use('/api', bodyParser.json(), usersRoute, workersRoute)
 
 app.use(express.static(path.join(__dirname, '../public')))
 
