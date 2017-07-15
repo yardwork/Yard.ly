@@ -165,12 +165,20 @@ const workers = [
     lastName: 'Lowrey',
   },
 ]
+const user = {
+				__v: 0,
+				username: 'afylan2',
+				password:
+					'1L4bPr2',
+				_id: '5967cae93f9ebb1cc30f37a3',
+				addresses: [],
+			}
 
 const App = () => {
   return (
     <div>
       <Home workers={workers}/>
-      <AddressFormParent />
+      <AddressFormParent user={user} />
     </div>
 
   )

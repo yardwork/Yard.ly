@@ -7,7 +7,7 @@ const AddressChildList = props => (
     <div>
       {props.addresses.map(function(address, i) {
         return <div className="AddressChildEntry" key={i}>
-          <AddressChildEntry onClickDelete={props.onClickDelete} address={address} number={i} />
+          <AddressChildEntry onClickAddress={props.onClickAddress} onClickDelete={props.onClickDelete} address={address} number={i} />
         </div>
       })}
     </div>
