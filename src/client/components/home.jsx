@@ -1,5 +1,7 @@
 import React from 'react'
 import WorkerList from './workerList.jsx'
+import WorkerProfile from './workerProfile.jsx'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 const HomePage = ( { workers } ) =>
   (<div>
@@ -16,7 +18,12 @@ const HomePage = ( { workers } ) =>
           </span>
         </div>
       </div>
-      <WorkerList workers={workers}/>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
+          <Route path="/profile" component={WorkerProfile}/>
+        </Switch>
+      </BrowserRouter>
     </div>
   </div>)
 
