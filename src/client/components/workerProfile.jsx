@@ -37,6 +37,11 @@ class WorkerProfile extends React.Component {
     this.submitArea = this.submitArea.bind(this)
     this.getWorker = this.getWorker.bind(this)
     this.updateWorker = this.updateWorker.bind(this)
+		this.changeEquipment = this.changeEquipment.bind(this)
+		this.onEquipmentClick = this.onEquipmentClick.bind(this)
+		this.changeService = this.changeService.bind(this)
+		this.onServicesClick = this.onServicesClick.bind(this)
+		this.submitImage = this.submitImage.bind(this)
 
   }
   submitEmail(e){
@@ -64,6 +69,15 @@ class WorkerProfile extends React.Component {
     }, () => this.updateWorker(this.state.worker._id, this.state.worker))
 
   }
+	submitImage(e){
+		e.preventDefault()
+		var worker = this.state.worker
+		console.log(e.target.image.value)
+		worker.image = e.target.image.value !== '' ? e.target.image.value: worker.image
+		this.setState ({
+			worker: worker
+		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
+	}
   getWorker(id){
     fetch('/api'.concat(workersShowRoute(id)), {
       headers: { 'Content-type': 'application/json' },
@@ -102,14 +116,34 @@ class WorkerProfile extends React.Component {
         document.getElementById('email').value = ''
 				document.getElementById('phoneNumber').value = ''
 				document.getElementById('area').value = ''
+				document.getElementById('image').value = ''
 			})
 			.catch(err => {
 				console.log(err)
 			})
 
   }
+	onEquipmentClick(e) {
+		this.changeEquipment(e)
+	}
+	changeEquipment(type) {
+		var worker = this.state.worker
+		worker.equipment[type][0] = !worker.equipment[type][0]
+		this.setState ({
+			worker: worker,
+		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
+	}
+	onServicesClick(e) {
+		this.changeService(e)
+	}
+	changeService(type) {
+		var worker = this.state.worker
+		worker.services[type] = !worker.services[type]
+		this.setState ({
+			worker: worker,
+		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
+	}
   componentDidMount() {
-    console.log('~~~~~~~~Initial State', this.props.worker)
     this.getWorker(this.props.worker._id)
   }
   render() {
@@ -118,7 +152,7 @@ class WorkerProfile extends React.Component {
         <div>profile</div>{console.log('worker',this.props.worker)}
         <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
         <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
-        <EquipmentServicesInfo worker={this.state.worker} />
+        <EquipmentServicesInfo submitImage={this.submitImage} worker={this.state.worker} onEquipmentClick={this.onEquipmentClick} onServicesClick={this.onServicesClick}/>
       </div>
     )
   }

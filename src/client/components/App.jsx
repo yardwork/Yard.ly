@@ -9,7 +9,7 @@ const workers = [
     username: '',
     password: '',
     services: { mowing: true, treetrimming: false, edging: true, weedeating: true, hedgetrimming: false, fertilizing: true, aerating: false, mulching: true, weeding: false, planting: true, grassseeding: true },
-    equipment: { lawnmower: true, weedeater: true, mulchtruck: true, edger: true, hedgetrimmer: true, chainsaw: false, aerator: true, seeder: true},
+    equipment: { lawnmower: [true, ''], weedeater: [false, ''], mulchtruck: [true, ''], edger: [true, ''], hedgetrimmer: [true, ''], chainsaw: [false, ''], aerator: [true, ''], seeder: [false, '']},
     area: '',
     firstName: '',
     lastName: '',
