@@ -187,14 +187,23 @@ const user = {
 				addresses: [],
 			}
 
-const App = () => {
-  return (
-    <div>
-      <Home workers={workers}/>
-      <AddressFormParent user={user} />
-    </div>
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      workers
+    }
+  }
 
-  )
+  render() {
+    return (
+      <div>
+        <Home workers={this.state.workers} />
+        <AddressFormParent user={user} />
+      </div>
+
+    )
+  }
 }
 
 export default App
