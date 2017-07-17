@@ -1,5 +1,6 @@
 import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
+import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import {
 	workersUpdateRoute,
   workersShowRoute,
@@ -9,16 +10,33 @@ class WorkerProfile extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      worker: {},
-      contactInfo: {},
-      phoneNumber: '',
-      image: '',
-      equipment: {},
+      worker: {
+        username: '',
+        password: '',
+        services: { mowing: false, treetrimming: false, edging: false, weedeating: false, hedgetrimming: false, fertilizing: false, aerating: false, mulching: false, weeding: false, planting: false, grassseeding: false },
+        equipment: { lawnmower: false, weedeater: false, mulchtruck: false, edger: false, hedgetrimmer: true, chainsaw: false, aerator: false, seeder: false},
+        area: '',
+        firstName: '',
+        lastName: '',
+        contactInfo:{
+          phoneNumber: '',
+          email: '',
+        },
+        image: '',
+        address: {
+          address: '',
+          city: '',
+          state: '',
+          zipcode: '',
+        }
+      }
     }
     // this.submitContactInfo = this.submitContactInfo.bind(this)
     this.submitEmail = this.submitEmail.bind(this)
     this.submitPhone = this.submitPhone.bind(this)
     this.submitArea = this.submitArea.bind(this)
+    this.getWorker = this.getWorker.bind(this)
+    this.updateWorker = this.updateWorker.bind(this)
 
   }
   submitEmail(e){
@@ -59,6 +77,7 @@ class WorkerProfile extends React.Component {
         console.log('~~~~~~~worker', data)
         this.setState({ worker: data })
       })
+      .then(() => console.log("~~~~~~state", this.state))
   }
   updateWorker(id, worker) {
     fetch('/api'.concat(workersUpdateRoute(id)), {
@@ -73,11 +92,14 @@ class WorkerProfile extends React.Component {
 			.then(data => {
 				console.log('data', data)
 				if (data) {
-					this.setState({ worker: data })
+					this.setState({ worker: data }, () => console.log('this.state after update', this.state.worker))
 				}
 			})
+      .then(() => {
+        this.getWorker(this.props.worker._id)
+      })
 			.then(() => {
-				document.getElementById('email').value = ''
+        document.getElementById('email').value = ''
 				document.getElementById('phoneNumber').value = ''
 				document.getElementById('area').value = ''
 			})
@@ -87,14 +109,16 @@ class WorkerProfile extends React.Component {
 
   }
   componentDidMount() {
+    console.log('~~~~~~~~Initial State', this.props.worker)
     this.getWorker(this.props.worker._id)
   }
   render() {
     return (
       <div>
         <div>profile</div>{console.log('worker',this.props.worker)}
-        <div>{this.props.worker.firstName} {this.props.worker.lastName}</div>
-        <WorkerInfo worker={this.props.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
+        <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
+        <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
+        <EquipmentServicesInfo worker={this.state.worker} />
       </div>
     )
   }

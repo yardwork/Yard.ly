@@ -5,25 +5,25 @@ import AddressFormParent from './addressFormParent.jsx'
 
 const workers = [
   {
-    _id: "596cfa1c6dbacc72e88b9509",
-    username: 'rsherel0',
-    password: 'smBFkq',
+    _id: '596cfa1c6dbacc72e88b9509',
+    username: '',
+    password: '',
     services: { mowing: true, treetrimming: false, edging: true, weedeating: true, hedgetrimming: false, fertilizing: true, aerating: false, mulching: true, weeding: false, planting: true, grassseeding: true },
     equipment: { lawnmower: true, weedeater: true, mulchtruck: true, edger: true, hedgetrimmer: true, chainsaw: false, aerator: true, seeder: true},
-    area: 'Gafanha da Encarnação',
-    firstName: 'Raquel',
-    lastName: 'Sherel',
+    area: '',
+    firstName: '',
+    lastName: '',
     contactInfo:{
-      phoneNumber: '(666)-666-6666',
-      email: 'Raquel@email',
+      phoneNumber: '',
+      email: '',
     },
-    image: 'https://previews.123rf.com/images/kadmy/kadmy1308/kadmy130800026/21769667-lawn-mower-worker-man-cutting-grass-in-garden-yard-Stock-Photo.jpg',
+    image: '',
     address: {
-      address: '123 east 5th St.',
-      city: 'Austin',
-      state: 'TX',
-      zipcode: '22883',
-    },
+      address: '',
+      city: '',
+      state: '',
+      zipcode: '',
+    }
   },
   {
     username: 'jlighten1',
