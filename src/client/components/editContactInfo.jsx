@@ -7,7 +7,7 @@ const EditContactInfo = ({ contactInfo, submitEmail, submitPhone, submitArea, ar
 				id="phoneNumber"
 				type="text"
 				name="phoneNumber"
-				placeholder={contactInfo.phoneNumber}
+				placeholder={"Edit phone number: " + contactInfo.phoneNumber}
 			/>
       <button type="submit">Submit</button>
     </form>
@@ -16,7 +16,7 @@ const EditContactInfo = ({ contactInfo, submitEmail, submitPhone, submitArea, ar
 				id="email"
 				type="text"
 				name="email"
-				placeholder={contactInfo.email}
+				placeholder={"Edit email: " + contactInfo.email}
 			/>
       <button type="submit">Submit</button>
 		</form>
@@ -25,7 +25,7 @@ const EditContactInfo = ({ contactInfo, submitEmail, submitPhone, submitArea, ar
         id="area"
         type="text"
         name="area"
-        placeholder={area}
+        placeholder={"Edit area: " + area}
       />
       <button type="submit">Submit</button>
     </form>
