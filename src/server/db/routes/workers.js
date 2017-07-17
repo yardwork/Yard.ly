@@ -122,6 +122,8 @@ router.put(WORKERS_UPDATE, (req, res, next) => {
 router.get(WORKERS_FILTER, (req, res, next) => {
   let { city } = req.params
 
+  console.log('this triggered', city)
+
   city = city.replace(/\w\S*/g, function(txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   })

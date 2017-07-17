@@ -12,7 +12,7 @@ module.exports = {
   WORKERS_UPDATE: '/workers/:id',
   WORKERS_DELETE: '/workers/:id',
   WORKERS_LOGIN: '/workers/:id',
-  WORKERS_FILTER: '/workers/filter/:city',
+  WORKERS_FILTER: '/filter/:city',
 
   ADDRESS_ADD: '/addressAdd/:id',
   ADDRESS_DELETE: '/addressDelete/:id',
