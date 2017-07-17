@@ -33,24 +33,6 @@ class HomePage extends Component {
         console.log(Json)
         this.setState((state) => ({ workers: Json}))
       })
-      // .then(responseJson) => {
-      //   console.log(responseJson, ' will it work??')
-      // }
-
-    // this.setState((state) => ({ workers: this.state.workers.concat({
-    //   __v: 0,
-    //   username: '',
-    //   password:'',
-    //   _id: '',
-    //   addresses: [
-    //     {
-    //       zipcode: '',
-    //       state: '',
-    //       city: '',
-    //       address: '',
-    //     },
-    //   ],
-    // })}))
   }
 
   render() {
