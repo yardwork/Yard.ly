@@ -4,7 +4,8 @@ import ContactInfo from './contactInfo.jsx'
 import EditContactInfo from './editContactInfo.jsx'
 
 
-const WorkerInfo = ( {worker, submitEmail, submitPhone, submitArea} ) => (
+const WorkerInfo = ( {worker, submitEmail, submitPhone, submitArea} ) =>
+ (
   <div>
     <div>{worker.firstName} {worker.lastName}</div>
     <img src={worker.image} width="128px" height="128px" />
