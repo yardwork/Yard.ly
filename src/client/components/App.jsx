@@ -14,8 +14,8 @@ const workers = [
     firstName: '',
     lastName: '',
     contactInfo:{
-      phoneNumber: '',
-      email: '',
+      phoneNumber: '404-265-6695',
+      email: 'gaf@hotmail.com',
     },
     image: '',
     address: {
