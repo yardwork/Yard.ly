@@ -108,9 +108,9 @@ router.put(WORKERS_UPDATE, (req, res, next) => {
       { $set: req.body },
       { new: true }
     )
-    .then((listing) => {
-      if (listing) {
-        res.json(listing)
+    .then((newWorker) => {
+      if (newWorker) {
+        res.json(newWorker)
         return
       }
       res.sendStatus(404)
