@@ -52,27 +52,8 @@ class HomePage extends React.Component {
 					/>
 				</div>
 				<div className="home-page-container">
-					<h1>things</h1>
-					<BrowserRouter>
-						<Switch>
-							<Route
-								path="/workers"
-								render={() => <WorkerList workers={this.state.workers} />}
-							/>
-							<Route
-								path="/profile"
-								render={() => <WorkerProfile worker={this.props.workers[0]} />}
-							/>
-							<Route
-								path="/address"
-								render={() => <AddressFormParent user={this.props.user} />}
-							/>
-              <Route
-                path="/"
-                render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers} />}
-              />
-						</Switch>
-					</BrowserRouter>
+          <Search workers={this.state.workers} setWorkers={this.setWorkers} />
+          <WorkerList workers={this.state.workers} />
 				</div>
 			</div>
 		)

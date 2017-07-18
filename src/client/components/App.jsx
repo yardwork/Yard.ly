@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { browserHistory } from 'react-router'
+
 import Home from './home.jsx'
+import NavBar from './navBar.jsx'
 import AddressFormParent from './addressFormParent.jsx'
+import WorkerList from './workerList.jsx'
+import WorkerProfile from './workerProfile.jsx'
 
 const workers = [
   {
@@ -11,11 +17,11 @@ const workers = [
     services: { mowing: true, treetrimming: false, edging: true, weedeating: true, hedgetrimming: false, fertilizing: true, aerating: false, mulching: true, weeding: false, planting: true, grassseeding: true },
     equipment: { lawnmower: [true, ''], weedeater: [false, ''], mulchtruck: [true, ''], edger: [true, ''], hedgetrimmer: [true, ''], chainsaw: [false, ''], aerator: [true, ''], seeder: [false, '']},
     area: 'Austin',
-    firstName: '',
-    lastName: '',
+    firstName: 'Nate',
+    lastName: 'Dog',
     contactInfo:{
-      phoneNumber: '',
-      email: '',
+      phoneNumber: '404-265-6695',
+      email: 'gaf@hotmail.com',
     },
     image: '',
     address: {
@@ -198,6 +204,15 @@ class App extends Component {
   render() {
     return (
       <div>
+      <BrowserRouter history={browserHistory}>
+        <div>
+          <NavBar />
+          <Switch>
+            <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
+            <Route path="/profile" render={()=><WorkerProfile worker={workers[0]}/>}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
         <Home workers={this.state.workers} />
         <AddressFormParent user={user} />
       </div>
