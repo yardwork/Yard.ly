@@ -146,8 +146,8 @@ class WorkerProfile extends React.Component {
 		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
 	}
   componentDidMount() {
-		console.log(this.props, 'asdf', this.props.location)
-    this.getWorker(this.props.worker._id)
+		console.log(this.props, 'asdf', this.props.location.pathname.slice(9))
+    this.getWorker(this.props.location.pathname.slice(9))
   }
   render() {
     return (

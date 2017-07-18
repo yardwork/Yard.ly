@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Worker = ({ onClick, clicked, username, firstName, lastName, services, equipment, contactInfo }) => (
+const Worker = ({ onClick, clicked, username, firstName, lastName, services, equipment, contactInfo, _id }) => (
   <div className="panel panel-default"
         onClick={onClick}
         style={{
@@ -9,7 +9,7 @@ const Worker = ({ onClick, clicked, username, firstName, lastName, services, equ
         }}
   >
     <div className="panel-heading">
-      <Link to={`/profile/${username}`}>
+      <Link to={`/profile/${_id}`}>
       <h3 className="panel-title">{`${firstName} ${lastName}`}</h3>
       </Link>
     </div>
