@@ -11,7 +11,7 @@ import WorkerProfile from './workerProfile.jsx'
 
 const workers = [
   {
-    _id: '596795c947e1263d27b749b5',
+    _id: '596cfa1c6dbacc72e88b9509',
     username: '',
     password: '',
     services: { mowing: true, treetrimming: false, edging: true, weedeating: true, hedgetrimming: false, fertilizing: true, aerating: false, mulching: true, weeding: false, planting: true, grassseeding: true },
@@ -210,11 +210,11 @@ class App extends Component {
           <Switch>
             <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
             <Route path="/profile" render={()=><WorkerProfile worker={workers[0]}/>}/>
+            <Route path="/user" render={()=><AddressFormParent user={user} />}/>
+            <Route path="/" render={()=><Home workers={this.state.workers} />}/>
           </Switch>
         </div>
       </BrowserRouter>
-        <Home workers={this.state.workers} />
-        <AddressFormParent user={user} />
       </div>
 
     )
