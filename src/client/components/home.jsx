@@ -1,5 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
 import WorkerList from './workerList.jsx'
 import WorkerProfile from './workerProfile.jsx'
 import addressFormParent from './addressFormParent.jsx'
@@ -53,51 +52,12 @@ class HomePage extends React.Component {
 					/>
 				</div>
 				<div className="home-page-container">
-					<h1>things</h1>
-					<BrowserRouter>
-						<Switch>
-							<Route
-								path="/workers"
-								render={() => <WorkerList workers={this.state.workers} />}
-							/>
-							<Route
-								path="/profile"
-								render={() => <WorkerProfile worker={this.props.workers[0]} />}
-							/>
-							<Route
-								path="/address"
-								render={() => <AddressFormParent user={this.props.user} />}
-							/>
-              <Route
-                path="/"
-                render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers} />}
-              />
-						</Switch>
-					</BrowserRouter>
+          <Search workers={this.state.workers} setWorkers={this.setWorkers} />
+          <WorkerList workers={this.state.workers} />
 				</div>
 			</div>
 		)
 	}
 }
-=======
-
-const HomePage = ( { workers } ) =>
-  (<div>
-    <div id="bg">
-      <img src="http://hires.photospublic.com/PP13561214-Beautiful-green-Lawn-viewed-from-human-perspective.jpg" alt="" />
-    </div>
-    <div className="home-page-container">
-      <h1>things</h1>
-      <div className="col-lg-6">
-        <div className="input-group landing-search">
-          <input type="text" className="form-control" placeholder="Find workers in your area" />
-          <span className="input-group-btn">
-            <button className="btn btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>)
->>>>>>> Adds navbar and front end routes
 
 export default HomePage

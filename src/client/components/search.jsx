@@ -9,7 +9,6 @@ class Search extends React.Component {
 		this.state = {
 			inputValue: '',
 			workers: this.props.workers,
-      redirect: false,
 		}
 
 		this.handleSearch = this.handleSearch.bind(this)
@@ -31,13 +30,8 @@ class Search extends React.Component {
 			.then(Json => {
 			  this.props.setWorkers(Json)
 			})
-      .then(this.setState({'redirect': true}))
 	}
 	render() {
-    const { redirect } = this.state
-    if(redirect) {
-      return <Redirect to='/workers' />
-    }
 
     return (
 			<div>
