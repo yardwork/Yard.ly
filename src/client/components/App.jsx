@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 
 import Home from './home.jsx'
 import NavBar from './navBar.jsx'
@@ -11,7 +11,7 @@ import WorkerProfile from './workerProfile.jsx'
 
 const workers = [
   {
-    _id: '596cfa1c6dbacc72e88b9509',
+    _id: '596795c947e1263d27b749b5',
     username: '',
     password: '',
     services: {
@@ -229,7 +229,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route path="/workers" render={()=><WorkerList workers={workers}/>}/>
-            <Route path="/profile" render={()=><WorkerProfile worker={workers[0]}/>}/>
+            <Route path="/profile/:id" component={WorkerProfile} />
             <Route path="/user" render={()=><AddressFormParent user={user} />}/>
             <Route path="/" render={()=><Home workers={this.state.workers} />}/>
           </Switch>
