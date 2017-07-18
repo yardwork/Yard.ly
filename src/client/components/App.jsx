@@ -235,7 +235,6 @@ class App extends Component {
           </Switch>
         </div>
       </BrowserRouter>
-      </div>
 
         <div
           className="modal fade bs-example-modal-sm"
