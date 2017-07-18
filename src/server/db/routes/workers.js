@@ -131,9 +131,13 @@ router.get(WORKERS_FILTER, (req, res, next) => {
   Worker
     .find({ "area": city })
     .then((array) => {
-      console.log(array)
-      res.json(array)
+      if(array) {
+        console.log(array)
+        res.json(array)
+      }
+      res.sendStatus(404)
     })
+    .catch(next)
 })
 
 module.exports = router
