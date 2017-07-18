@@ -22,7 +22,7 @@ const NavBar = () =>
           <li><a href="#">Link</a></li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#sign-in-modal">Sign In</a></li>
           <li className="dropdown">
             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Route test <span className="caret"></span></a>
             <ul className="dropdown-menu">
