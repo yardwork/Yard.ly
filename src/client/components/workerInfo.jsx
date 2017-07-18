@@ -7,7 +7,7 @@ import EditContactInfo from './editContactInfo.jsx'
 const WorkerInfo = ( {worker, submitEmail, submitPhone, submitArea} ) =>
  (
   <div>
-    <div>{worker.firstName} {worker.lastName}</div>
+    <div>{worker.firstName} AAAAA {worker.lastName}</div>
     <img src={worker.image} width="128px" height="128px" />
     <div>{worker.area}</div>
     <ContactInfo contactInfo={worker.contactInfo} />

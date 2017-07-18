@@ -126,9 +126,9 @@ class AddressFormParent extends Component {
 		this.deleteAddress(arrIndex, this.state.user._id)
 	}
 	componentDidMount() {
-		console.log(this.state)
-		this.getUser(this.props.user._id)
-		console.log(this.state)
+		// console.log(this.state)
+		// this.getUser(this.props.user._id)
+		// console.log(this.state)
 	}
 	render() {
 		return (

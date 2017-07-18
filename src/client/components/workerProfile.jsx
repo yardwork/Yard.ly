@@ -89,9 +89,11 @@ class WorkerProfile extends React.Component {
       })
       .then(data => {
         console.log('~~~~~~~worker', data)
-        this.setState({ worker: data })
+        this.setState({worker: data})
       })
-      .then(() => console.log("~~~~~~state", this.state))
+      .then(() => {
+        console.log("~~~~~~state", this.state)
+      })
   }
   updateWorker(id, worker) {
     fetch('/api'.concat(workersUpdateRoute(id)), {
@@ -149,7 +151,7 @@ class WorkerProfile extends React.Component {
   render() {
     return (
       <div>
-        <div>profile</div>{console.log('worker',this.props.worker)}
+        <div>profile</div>
         <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
         <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
         <EquipmentServicesInfo submitImage={this.submitImage} worker={this.state.worker} onEquipmentClick={this.onEquipmentClick} onServicesClick={this.onServicesClick}/>
