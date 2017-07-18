@@ -14,21 +14,42 @@ const workers = [
     _id: '596cfa1c6dbacc72e88b9509',
     username: '',
     password: '',
-    services: { mowing: true, treetrimming: false, edging: true, weedeating: true, hedgetrimming: false, fertilizing: true, aerating: false, mulching: true, weeding: false, planting: true, grassseeding: true },
-    equipment: { lawnmower: [true, ''], weedeater: [false, ''], mulchtruck: [true, ''], edger: [true, ''], hedgetrimmer: [true, ''], chainsaw: [false, ''], aerator: [true, ''], seeder: [false, '']},
+    services: {
+      mowing: true,
+      treetrimming: false,
+      edging: true,
+      weedeating: true,
+      hedgetrimming: false,
+      fertilizing: true,
+      aerating: false,
+      mulching: true,
+      weeding: false,
+      planting: true,
+      grassseeding: true
+    },
+    equipment: {
+      lawnmower: [true, ''],
+      weedeater: [false, ''],
+      mulchtruck: [true, ''],
+      edger: [true, ''],
+      hedgetrimmer: [true, ''],
+      chainsaw: [false, ''],
+      aerator: [true, ''],
+      seeder: [false, '']
+    },
     area: 'Austin',
     firstName: 'Nate',
     lastName: 'Dog',
-    contactInfo:{
+    contactInfo: {
       phoneNumber: '404-265-6695',
-      email: 'gaf@hotmail.com',
+      email: 'gaf@hotmail.com'
     },
     image: '',
     address: {
       address: '',
       city: '',
       state: '',
-      zipcode: '',
+      zipcode: ''
     }
   },
   {
@@ -37,7 +58,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000015' },
     area: 'Austin',
     firstName: 'Junina',
-    lastName: 'Lighten',
+    lastName: 'Lighten'
   },
   {
     username: 'smelmar2',
@@ -45,7 +66,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000016' },
     area: 'Austin',
     firstName: 'Staffard',
-    lastName: 'Melmar',
+    lastName: 'Melmar'
   },
   {
     username: 'pbadder3',
@@ -53,7 +74,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000017' },
     area: 'Gampang',
     firstName: 'Pearle',
-    lastName: 'Badder',
+    lastName: 'Badder'
   },
   {
     username: 'acorrie4',
@@ -61,7 +82,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000018' },
     area: 'Zākhū',
     firstName: 'Alverta',
-    lastName: 'Corrie',
+    lastName: 'Corrie'
   },
   {
     username: 'lrobinet5',
@@ -69,7 +90,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000019' },
     area: 'Fengcheng',
     firstName: 'Laurie',
-    lastName: 'Robinet',
+    lastName: 'Robinet'
   },
   {
     username: 'btowsie6',
@@ -77,7 +98,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001a' },
     area: 'El Cacao',
     firstName: 'Bertha',
-    lastName: 'Towsie',
+    lastName: 'Towsie'
   },
   {
     username: 'pfiddler7',
@@ -85,7 +106,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001b' },
     area: 'Baozhu',
     firstName: 'Pepillo',
-    lastName: 'Fiddler',
+    lastName: 'Fiddler'
   },
   {
     username: 'tedginton8',
@@ -93,7 +114,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001c' },
     area: 'Pil’na',
     firstName: 'Tammy',
-    lastName: 'Edginton',
+    lastName: 'Edginton'
   },
   {
     username: 'paspling9',
@@ -101,7 +122,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001d' },
     area: 'Luxi',
     firstName: 'Patin',
-    lastName: 'Aspling',
+    lastName: 'Aspling'
   },
   {
     username: 'mcraydena',
@@ -109,7 +130,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001e' },
     area: 'Kyzyl-Kyya',
     firstName: 'Merrilee',
-    lastName: 'Crayden',
+    lastName: 'Crayden'
   },
   {
     username: 'ckiddyb',
@@ -117,7 +138,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df400001f' },
     area: 'Staropyshminsk',
     firstName: 'Cyrill',
-    lastName: 'Kiddy',
+    lastName: 'Kiddy'
   },
   {
     username: 'sgoodluckc',
@@ -125,7 +146,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000020' },
     area: 'Zhangdian',
     firstName: 'Stacy',
-    lastName: 'Goodluck',
+    lastName: 'Goodluck'
   },
   {
     username: 'cfeldkleind',
@@ -133,7 +154,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000021' },
     area: 'Triolet',
     firstName: 'Cornell',
-    lastName: 'Feldklein',
+    lastName: 'Feldklein'
   },
   {
     username: 'astarmoree',
@@ -141,7 +162,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000022' },
     area: 'Zhenchuan',
     firstName: 'Archambault',
-    lastName: 'Starmore',
+    lastName: 'Starmore'
   },
   {
     username: 'btockf',
@@ -149,7 +170,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000023' },
     area: 'Persen',
     firstName: 'Bekki',
-    lastName: 'Tock',
+    lastName: 'Tock'
   },
   {
     username: 'mgantlettg',
@@ -157,7 +178,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000024' },
     area: 'Capellanía',
     firstName: 'Montague',
-    lastName: 'Gantlett',
+    lastName: 'Gantlett'
   },
   {
     username: 'gredsallh',
@@ -165,7 +186,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000025' },
     area: 'Villasis',
     firstName: 'Gradeigh',
-    lastName: 'Redsall',
+    lastName: 'Redsall'
   },
   {
     username: 'owhitrodi',
@@ -173,7 +194,7 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000026' },
     area: 'Sanshandao',
     firstName: 'Orion',
-    lastName: 'Whitrod',
+    lastName: 'Whitrod'
   },
   {
     username: 'plowreyj',
@@ -181,17 +202,16 @@ const workers = [
     services: { thing: '59654f5afc13ae4df4000027' },
     area: 'Utmānzai',
     firstName: 'Page',
-    lastName: 'Lowrey',
-  },
+    lastName: 'Lowrey'
+  }
 ]
 const user = {
-				__v: 0,
-				username: 'afylan2',
-				password:
-					'1L4bPr2',
-				_id: '5967cae93f9ebb1cc30f37a3',
-				addresses: [],
-			}
+  __v: 0,
+  username: 'afylan2',
+  password: '1L4bPr2',
+  _id: '5967cae93f9ebb1cc30f37a3',
+  addresses: []
+}
 
 class App extends Component {
   constructor(props) {
@@ -217,6 +237,58 @@ class App extends Component {
       </BrowserRouter>
       </div>
 
+        <div
+          className="modal fade bs-example-modal-sm"
+          id="sign-in-modal"
+          tabIndex="-1"
+          role="dialog"
+          aria-labelledby="mySmallModalLabel"
+        >
+          <div className="modal-dialog modal-sm" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 className="modal-title" id="myModalLabel">
+                  Sign In
+                </h4>
+              </div>
+              <div className="modal-body">
+
+              <div className="btn-group" data-toggle="buttons">
+                <label className="btn btn-primary active">
+                  <input type="radio" name="options" id="option1" autoComplete="off" checked/> User
+                </label>
+                <label className="btn btn-primary">
+                  <input type="radio" name="options" id="option2" autoComplete="off"/> Worker
+                </label>
+              </div>
+                      <input type="text" className="form-control" placeholder="Username"/>
+                      <input type="text" className="form-control" placeholder="Password"/>
+
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" className="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
