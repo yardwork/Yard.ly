@@ -40,7 +40,7 @@ class HomePage extends React.Component {
     }, ()=> console.log('Home state!!~~~~', this.state.workers))
   }
   ComponentDidMount() {
-    this.getWorkers()
+    // this.getWorkers()
   }
 	render() {
 		return (
