@@ -5,16 +5,18 @@ class Login extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      checked: ''
     }
     this.radioButtonHandler = this.radioButtonHandler.bind(this)
   }
 
   radioButtonHandler(e) {
-    console.log(e)
+    console.log(e.target)
     this.setState({
-      checked: e.target.checked
+      checked: e.target.value
     });
+    setTimeout(() => {console.log(this.state)}, 2000)
   }
 
   render() {
@@ -43,12 +45,12 @@ class Login extends Component {
           </div>
           <div className="modal-body">
 
-          <div className="btn-group" data-toggle="buttons">
+          <div className="btn-group" data-toggle="" onClick={this.radioButtonHandler}>
             <label className="btn btn-primary active">
-              <input type="radio" name="options" id="option1" autoComplete="off" checked={this.props.checked} onChange={this.radioButtonHandler}/> User
+              <input type="radio" name="options" value="user"/> User
             </label>
             <label className="btn btn-primary">
-              <input type="radio" name="options" id="option2" autoComplete="off" checked={this.props.checked} onChange={this.radioButtonHandler}/> Worker
+              <input type="radio" name="options" value="worker"/> Worker
             </label>
           </div>
                   <input type="text" className="form-control" placeholder="Username"/>
