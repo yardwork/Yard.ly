@@ -14,7 +14,7 @@ const WorkerSchema = new Schema({
   availability: Object,
   radius: Number,
   image: String,
-  address: String,
+  address: Object,
   requests: Array,
 })
 

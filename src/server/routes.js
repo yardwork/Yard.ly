@@ -14,6 +14,12 @@ module.exports = {
   WORKERS_LOGIN: '/workers/:id',
   WORKERS_FILTER: '/filter/:city',
 
+  REQUESTS_INDEX: '/requests',
+  REQUESTS_SHOW: '/requests/:id',
+  REQUESTS_CREATE: '/requests',
+  REQUESTS_UPDATE: '/requests/:id',
+  REQUESTS_DELETE: '/requests/:id',
+
   ADDRESS_ADD: '/addressAdd/:id',
   ADDRESS_DELETE: '/addressDelete/:id',
 
@@ -40,5 +46,14 @@ module.exports = {
 
   addressDeleteRoute: id =>
     `/addressDelete/${id || ':id'}`,
+
+  requestsShowRoute: id =>
+    `/requests/${id || ':id'}`,
+
+  requestsUpdateRoute: id =>
+    `/requests/${id || ':id'}`,
+
+  requestsDeleteRoute: id =>
+    `/requests/${id || ':id'}`,
 
 }
