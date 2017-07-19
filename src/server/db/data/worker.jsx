@@ -34,6 +34,7 @@ const worker = [
 		},
 		__v: 0,
 		requests: [],
+		image: 'http://www.bestpickreports.com/blogfiles/assets/images/post/Body%20Pics/02-16-17_images/professional-lawn-mower-worker-cutting-green-grass-full.jpg',
 	},
 	{
 		username: 'Jerry',
@@ -71,6 +72,7 @@ const worker = [
 		},
 		__v: 0,
 		requests: [],
+		image: 'http://media.jrn.com/images/lawn3_17492370_ver1.0_640_480.jpg',
 	},
 	{
 		_id: '596ea288fc13ae500a0092ca',
@@ -106,7 +108,8 @@ const worker = [
 			phoneNumber: '62-(945)590-3118',
 			email: 'jdagon26@examiner.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'http://i.dailymail.co.uk/i/pix/2015/04/28/00/203273D700000578-3058301-image-a-2_1430179027410.jpg',
 		'--v': 79,
 	},
 	{
@@ -143,7 +146,8 @@ const worker = [
 			phoneNumber: '86-(258)725-1807',
 			email: 'enursey27@tripod.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'http://americanlandscapesllc.com/wp-content/uploads/2014/03/lawncare-company-worker-mowing-grass-420x315.jpg',
 		'--v': 80,
 	},
 	{
@@ -180,7 +184,8 @@ const worker = [
 			phoneNumber: '48-(915)508-3913',
 			email: 'nfauguel28@youtu.be',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'https://thumbs.dreamstime.com/t/man-ride-lawn-mower-cable-bay-nov-rides-nov-first-mechanical-grass-cutting-device-appeared-english-textile-worker-35499383.jpg',
 		'--v': 81,
 	},
 	{
@@ -217,7 +222,8 @@ const worker = [
 			phoneNumber: '370-(180)847-3281',
 			email: 'wdunstall29@buzzfeed.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'https://ak5.picdn.net/shutterstock/videos/15627865/thumb/10.jpg',
 		'--v': 82,
 	},
 	{
@@ -254,7 +260,8 @@ const worker = [
 			phoneNumber: '593-(873)302-2561',
 			email: 'slukash2a@deviantart.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'http://media2.wptv.com/photo/2016/05/30/lawn%20mower%202_1464638380577_39253612_ver1.0_640_480.JPG',
 		'--v': 83,
 	},
 	{
@@ -291,7 +298,8 @@ const worker = [
 			phoneNumber: '7-(863)952-5907',
 			email: 'pgrey2b@gravatar.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: '',
 		'--v': 84,
 	},
 	{
@@ -328,7 +336,8 @@ const worker = [
 			phoneNumber: '263-(136)175-3363',
 			email: 'equeen2c@yolasite.com',
 		},
-		requests: [{}, {}],
+		requests: [],
+		image: 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VusrVp28x/videoblocks-novosibirsk-russia-june-21-2017-lawn-mower-worker-cuts-grass-with-cutter_blsw9w_7w_thumbnail-small01.jpg',
 		'--v': 85,
 	},
 ]
