@@ -17,7 +17,7 @@ class AddressFormParent extends Component {
 				username: '',
 				password:
 					'',
-				_id: '59656e856f3e1576ced3e4e5',
+				_id: '',
 				addresses: [
 					{
 						zipcode: '',
@@ -76,7 +76,6 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				console.log('data', data)
 				this.setState({ user: data })
 			})
 	}
@@ -130,7 +129,7 @@ class AddressFormParent extends Component {
 	}
 	componentDidMount() {
 		// console.log(this.state)
-		this.getUser(this.props.user._id)
+		// this.getUser(this.props.user._id)
 		// console.log(this.state)
 	}
 	render() {

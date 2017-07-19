@@ -2,11 +2,11 @@ import React from 'react'
 import Worker from './worker.jsx'
 
 const WorkerList = ({ workers, onWorkerClick }) => (
-  <div className="worker-list-container">
+  <ul>
     {workers.map((worker, i) => (
-      <Worker key={i} {...worker} onClick={() => onWorkerClick(worker.id)} />
+      <Worker key={i} {...worker} onClick={() => console.log(worker)} />
     ))}
-  </div>
+  </ul>
 )
 
 export default WorkerList

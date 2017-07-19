@@ -40,7 +40,7 @@ class HomePage extends React.Component {
     }, ()=> console.log('Home state!!~~~~', this.state.workers))
   }
   ComponentDidMount() {
-    // this.getWorkers()
+    this.getWorkers()
   }
 	render() {
 		return (
@@ -52,8 +52,23 @@ class HomePage extends React.Component {
 					/>
 				</div>
 				<div className="home-page-container">
-          <Search workers={this.state.workers} setWorkers={this.setWorkers} />
-          <WorkerList workers={this.state.workers} />
+					<h1>things</h1>
+					<BrowserRouter>
+						<Switch>
+							<Route
+								path="/workers"
+								render={() => <WorkerList workers={this.state.workers} />}
+							/>
+							<Route
+								path="/address"
+								render={() => <AddressFormParent user={this.props.user} />}
+							/>
+              <Route
+                path="/"
+                render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers} />}
+              />
+						</Switch>
+					</BrowserRouter>
 				</div>
 			</div>
 		)

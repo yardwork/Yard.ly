@@ -55,9 +55,8 @@ class WorkerProfile extends React.Component {
   submitPhone(e){
     e.preventDefault()
     var worker = this.state.worker
-    // worker.contactInfo.phoneNumber = e.target.phoneNumber.value !== '' ? e.target.phoneNumber.value: worker.contactInfo.phoneNumber
-		worker.contactInfo.phoneNumber = e.target.phoneNumber.value
-	  this.setState ({
+    worker.contactInfo.phoneNumber = e.target.phoneNumber.value !== '' ? e.target.phoneNumber.value: worker.contactInfo.phoneNumber
+    this.setState ({
       worker: worker,
     }, () => this.updateWorker(this.state.worker._id, this.state.worker))
   }
@@ -73,7 +72,7 @@ class WorkerProfile extends React.Component {
 	submitImage(e){
 		e.preventDefault()
 		var worker = this.state.worker
-		console.log('this state worker', worker)
+		console.log(e.target.image.value)
 		worker.image = e.target.image.value !== '' ? e.target.image.value: worker.image
 		this.setState ({
 			worker: worker
@@ -81,6 +80,7 @@ class WorkerProfile extends React.Component {
 	}
   getWorker(id){
     fetch('/api'.concat(workersShowRoute(id)), {
+      headers: { 'Content-type': 'application/json' },
       method: 'GET',
     })
       .then(res => {
@@ -112,7 +112,7 @@ class WorkerProfile extends React.Component {
 				}
 			})
       .then(() => {
-        // this.getWorker(this.props.worker._id)
+        this.getWorker(this.props.worker._id)
       })
 			.then(() => {
         document.getElementById('email').value = ''
@@ -130,7 +130,7 @@ class WorkerProfile extends React.Component {
 	}
 	changeEquipment(type) {
 		var worker = this.state.worker
-		worker.equipment[type] = !worker.equipment[type]
+		worker.equipment[type][0] = !worker.equipment[type][0]
 		this.setState ({
 			worker: worker,
 		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
@@ -146,11 +146,14 @@ class WorkerProfile extends React.Component {
 		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
 	}
   componentDidMount() {
-    this.getWorker(this.props.worker._id)
+		console.log(this.props, 'asdf', this.props.location.pathname.slice(9))
+    this.getWorker(this.props.location.pathname.slice(9))
   }
   render() {
     return (
       <div>
+        <div>profile</div>
+        <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
         <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
         <EquipmentServicesInfo submitImage={this.submitImage} worker={this.state.worker} onEquipmentClick={this.onEquipmentClick} onServicesClick={this.onServicesClick}/>
       </div>
