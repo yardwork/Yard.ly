@@ -130,7 +130,7 @@ class WorkerProfile extends React.Component {
 	}
 	changeEquipment(type) {
 		var worker = this.state.worker
-		worker.equipment[type][0] = !worker.equipment[type][0]
+		worker.equipment[type] = !worker.equipment[type]
 		this.setState ({
 			worker: worker,
 		}, () => this.updateWorker(this.state.worker._id, this.state.worker))
@@ -152,7 +152,7 @@ class WorkerProfile extends React.Component {
   render() {
     return (
       <div>
-        <div>profile</div>
+        <div>Worker profile</div>
         <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
         <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
         <EquipmentServicesInfo submitImage={this.submitImage} worker={this.state.worker} onEquipmentClick={this.onEquipmentClick} onServicesClick={this.onServicesClick}/>
