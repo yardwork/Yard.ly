@@ -8,10 +8,10 @@ module.exports = {
 
   WORKERS_INDEX: '/workers',
   WORKERS_SHOW: '/workers/:id',
-  WORKERS_CREATE: '/workers',
+  WORKERS_CREATE: '/workers/signup',
   WORKERS_UPDATE: '/workers/:id',
   WORKERS_DELETE: '/workers/:id',
-  WORKERS_LOGIN: '/workers/:id',
+  WORKERS_LOGIN: '/workers/login',
   WORKERS_FILTER: '/filter/:city',
 
   REQUESTS_INDEX: '/requests',
