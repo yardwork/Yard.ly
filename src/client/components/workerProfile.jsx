@@ -1,6 +1,7 @@
 import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
+import PickaDate from './pickaDate.jsx'
 import {
 	workersUpdateRoute,
   workersShowRoute,
@@ -156,6 +157,7 @@ class WorkerProfile extends React.Component {
         <div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
         <WorkerInfo worker={this.state.worker} submitArea={this.submitArea} submitEmail={this.submitEmail} submitPhone={this.submitPhone}/>
         <EquipmentServicesInfo submitImage={this.submitImage} worker={this.state.worker} onEquipmentClick={this.onEquipmentClick} onServicesClick={this.onServicesClick}/>
+				<PickaDate />
       </div>
     )
   }

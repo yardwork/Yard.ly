@@ -129,7 +129,7 @@ class AddressFormParent extends Component {
 	}
 	componentDidMount() {
 		// console.log(this.state)
-		// this.getUser(this.props.user._id)
+		this.getUser(this.props.user._id)
 		// console.log(this.state)
 	}
 	render() {
