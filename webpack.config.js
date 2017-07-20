@@ -5,6 +5,11 @@ var BUILD_DIR = path.resolve(__dirname, 'src/public');
 var APP_DIR = path.resolve(__dirname, 'src/client');
 
 var config = {
+  resolve: {
+    alias: {
+      'react-addons-shallow-compare': 'react/lib/shallowCompare'
+    }
+  },
   entry: APP_DIR + '/index.jsx',
   output: {
     path: BUILD_DIR,
