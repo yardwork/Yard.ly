@@ -6,12 +6,14 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      checked: ''
+      checked: '',
+      isLogin: true
     }
     this.radioButtonHandler = this.radioButtonHandler.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
+    this.toggleAuthType = this.toggleAuthType.bind(this)
   }
 
   radioButtonHandler(e) {
@@ -33,21 +35,29 @@ class Login extends Component {
   }
 
   handleLogin(e) {
-    if (this.state.checked === 'worker') {
-      console.log('We are going to fetch')
-      fetch('/api/workers/login', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
-        })
-
+    console.log('We are going to fetch',`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`)
+    fetch(`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
       })
-    }
+    }).then( (session) => {
+      console.log(JSON.stringify(session));
+      return JSON.stringify(session)
+    }).then((asdf) => {
+      console.log(asdf)
+    })
+  }
+
+  toggleAuthType() {
+    this.setState({isLogin: !this.state.isLogin})
+    console.log('toggled authtype', this.state.isLogin)
+
   }
 
   render() {
@@ -70,8 +80,10 @@ class Login extends Component {
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 className="modal-title" id="myModalLabel">
-              Sign In
+            <h4 className="modal-title" id="myModalLabel" onClick={this.toggleAuthType}>
+              {this.state.isLogin
+                ? <span>Need an account? Click here</span>
+                : <span>Already have an account? Click here</span>}
             </h4>
           </div>
           <div className="modal-body">
@@ -96,7 +108,7 @@ class Login extends Component {
             >
               Close
             </button>
-            <button type="button" className="btn btn-primary" onClick={this.handleLogin}>
+            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleLogin}>
               Submit
             </button>
           </div>

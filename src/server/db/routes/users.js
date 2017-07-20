@@ -12,6 +12,7 @@ const {
   USERS_CREATE,
   USERS_DELETE,
   USERS_UPDATE,
+  USERS_LOGIN,
   ADDRESS_ADD,
   ADDRESS_DELETE,
 } = require('../../routes')
@@ -58,6 +59,31 @@ router.post(USERS_CREATE, (req, res, next) => {
           res.status(201).json(newUser)
         })
         .catch(next)
+    })
+})
+
+router.post(USERS_LOGIN, (req, res, next) => {
+  const username = req.body.username
+  const password = req.body.password
+
+  User
+    .findOne({username})
+    .then((user) => {
+      if (!user) {
+        console.log(user, 'no matching user was found!')
+      } else {
+        bcrypt.compare(password, user.password)
+          .then((isMatch) => {
+            req.session.user = user
+            req.session.type = 'USER'
+            console.log('this works and session is', isMatch, req.session)
+            var a = req.session.user;
+            res.json(a);
+            // res.send('hello');
+          })
+          .catch(bcrypt.MISMATCH_ERROR, next)
+          .catch(next)
+      }
     })
 })
 

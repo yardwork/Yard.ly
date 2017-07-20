@@ -1,10 +1,10 @@
 module.exports = {
   USERS_INDEX: '/users',
   USERS_SHOW: '/users/:id',
-  USERS_CREATE: '/users',
+  USERS_CREATE: '/users/signup',
   USERS_UPDATE: '/users/:id',
   USERS_DELETE: '/users/:id',
-  USERS_LOGIN: '/users/:id',
+  USERS_LOGIN: '/users/login',
 
   WORKERS_INDEX: '/workers',
   WORKERS_SHOW: '/workers/:id',
