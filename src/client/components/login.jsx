@@ -38,6 +38,7 @@ class Login extends Component {
     console.log('We are going to fetch',`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`)
     fetch(`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`, {
       method: 'POST',
+      credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -46,11 +47,11 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password,
       })
-    }).then( (session) => {
-      console.log(JSON.stringify(session));
-      return JSON.stringify(session)
-    }).then((asdf) => {
-      console.log(asdf)
+    })
+    .then( res => res.json())
+    .then((data) => {
+      console.log('userType', data.type)
+      this.props.setUserType(data.type)
     })
   }
 

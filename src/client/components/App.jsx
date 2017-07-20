@@ -30,8 +30,13 @@ class App extends Component {
         _id: '5970ae7ae2aa44b1b406fdd6',
         addresses: []
       },
+      userType: undefined,
     }
+    this.setUserType = this.setUserType.bind(this);
   }
+
+  setUserType = (type) =>
+    this.setState({userType: type});
 
   componentDidMount() {
     fetch('/api/workers', {
@@ -69,7 +74,7 @@ class App extends Component {
           </Switch>
         </div>
       </BrowserRouter>
-      <Login />
+      <Login setUserType={this.setUserType} userType={this.state.userType}/>
 
       </div>
     )
