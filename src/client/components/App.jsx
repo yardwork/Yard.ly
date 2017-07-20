@@ -32,11 +32,23 @@ class App extends Component {
       },
       userType: undefined,
     }
-    this.setUserType = this.setUserType.bind(this);
+    this.setUserType = this.setUserType.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
-  setUserType = (type) =>
-    this.setState({userType: type});
+  setUserType(type) {
+    this.setState({userType: type})
+  }
+
+  handleLogout() {
+    fetch('api/logout', {
+      method: 'GET',
+    })
+    .then( () => {
+      this.setState({userType: undefined})
+      console.log('LOGOUT',this.state)
+    })
+  }
 
   componentDidMount() {
     fetch('/api/workers', {
@@ -65,7 +77,7 @@ class App extends Component {
       <div>
       <BrowserRouter history={browserHistory}>
         <div>
-          <NavBar />
+          <NavBar userType={this.state.userType} handleLogout={this.handleLogout}/>
           <Switch>
             <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/>
             <Route path="/profile/:id" component={WorkerProfile} />
