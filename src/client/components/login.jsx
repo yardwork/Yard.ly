@@ -9,6 +9,9 @@ class Login extends Component {
       checked: ''
     }
     this.radioButtonHandler = this.radioButtonHandler.bind(this)
+    this.handleUsernameChange = this.handleUsernameChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
   }
 
   radioButtonHandler(e) {
@@ -17,6 +20,34 @@ class Login extends Component {
       checked: e.target.value
     });
     setTimeout(() => {console.log(this.state)}, 2000)
+  }
+
+  handleUsernameChange(e) {
+    this.setState({username: e.target.value})
+    console.log(this.state)
+  }
+
+  handlePasswordChange(e) {
+    this.setState({password: e.target.value})
+    console.log(this.state)
+  }
+
+  handleLogin(e) {
+    if (this.state.checked === 'worker') {
+      console.log('We are going to fetch')
+      fetch('/api/workers/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        })
+
+      })
+    }
   }
 
   render() {
@@ -53,8 +84,8 @@ class Login extends Component {
               <input type="radio" name="options" value="worker"/> Worker
             </label>
           </div>
-                  <input type="text" className="form-control" placeholder="Username"/>
-                  <input type="text" className="form-control" placeholder="Password"/>
+                  <input type="text" className="form-control" placeholder="Username" onChange={this.handleUsernameChange}/>
+                  <input type="text" className="form-control" placeholder="Password" onChange={this.handlePasswordChange}/>
 
           </div>
           <div className="modal-footer">
@@ -65,7 +96,7 @@ class Login extends Component {
             >
               Close
             </button>
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-primary" onClick={this.handleLogin}>
               Submit
             </button>
           </div>

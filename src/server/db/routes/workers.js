@@ -63,15 +63,15 @@ router.post(WORKERS_LOGIN, (req, res, next) => {
 
   const { id } = req.params
 
-  User
-    .findById(id)
+  Worker
+    .findOne({username})
     .then((worker) => {
       if (!worker) {
         console.log(user, 'no matching user was found!')
       } else {
         bcrypt.compare(password, worker.password)
           .then((isMatch) => {
-            req.session.user = newUser
+            req.session.user = worker
             req.session.type = 'WORKER'
             console.log('this works and session is', isMatch, req.session)
           })
