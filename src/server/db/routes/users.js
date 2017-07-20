@@ -77,14 +77,13 @@ router.post(USERS_LOGIN, (req, res, next) => {
             req.session.user = user
             req.session.type = 'USER'
             console.log('this works and session is', isMatch, req.session)
-            var a = req.session.user;
-            res.json(a);
-            // res.send('hello');
+            res.send(req.session);
           })
           .catch(bcrypt.MISMATCH_ERROR, next)
           .catch(next)
       }
     })
+
 })
 
 router.delete(USERS_DELETE, (req, res, next) => {
