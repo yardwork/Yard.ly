@@ -6,7 +6,7 @@ const WorkerSchema = new Schema({
   username: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true },
   services: Object,
-  area: { type: String, required: true },
+  area: String,
   firstName: String,
   lastName: String,
   contactInfo: Object,
