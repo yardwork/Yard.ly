@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const WorkerSchema = new Schema({
   username: { type: String, required: true, index: { unique: true } },
   password: { type: String, required: true },
-  services: { type: Object, required: true },
+  services: Object,
   area: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
