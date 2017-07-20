@@ -13,8 +13,8 @@ class WorkerProfile extends React.Component {
       worker: {
         username: '',
         password: '',
-        services: { mowing: false, treetrimming: false, edging: false, weedeating: false, hedgetrimming: false, fertilizing: false, aerating: false, mulching: false, weeding: false, planting: false, grassseeding: false },
-        equipment: { lawnmower: false, weedeater: false, mulchtruck: false, edger: false, hedgetrimmer: true, chainsaw: false, aerator: false, seeder: false},
+        services: { Mowing: false, TreeTrimming: false, Edging: false, Weedeating: false, HedgeTrimming: false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, GrassSeeding: false },
+        equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: true, Chainsaw: false, LawnAerator: false, Seeder: false},
         area: '',
         firstName: '',
         lastName: '',
