@@ -52,6 +52,8 @@ class Login extends Component {
     .then((data) => {
       console.log('userType', data.type)
       this.props.setUserType(data.type)
+      $('#sign-in-modal').modal('hide')
+
     })
   }
 
@@ -109,7 +111,7 @@ class Login extends Component {
             >
               Close
             </button>
-            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleLogin}>
+            <button type="button" className="btn btn-primary" onClick={this.handleLogin}>
               Submit
             </button>
           </div>
