@@ -38,6 +38,7 @@ router.get(REQUESTS_SHOW, (req, res, next) => {
 		.catch(next)
 })
 
+console.log('hello world')
 router.get(REQUESTS_INDEX, (req, res, next) => {
 	Request.find({})
 		.then(requests => {
