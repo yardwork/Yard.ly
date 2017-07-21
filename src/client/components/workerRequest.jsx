@@ -1,25 +1,53 @@
 import React from 'react'
 
-const Request = ({  }) => (
-  <div className="panel panel-default"
-        onClick={onClick}
-        style={{
-          color: clicked ? 'red' : 'inherit',
-        }}
-  >
-    <div className="panel-heading">
-      <h3 className="panel-title">{`${firstName} ${lastName}`}</h3>
-    </div>
-    <div className="panel-body">
-      <div className="panel-contact-info">
-        <p><span className="glyphicon glyphicon-earphone" aria-hidden="true"></span> {contactInfo ? contactInfo.phoneNumber : 'Contact info not found'}</p>
-        <p><span className="glyphicon glyphicon-envelope" aria-hidden="true"></span> {contactInfo ? contactInfo.email : 'Contact info not found'}</p>
-      </div>
-    </div>
-    <div>
-    {/* photo */}
-    </div>
-  </div>
-)
+const WorkerRequest = ({
+	jobname,
+	date,
+	time,
+	rate,
+	hours,
+	address,
+	equipment,
+	services,
+  id,
+}) => {
+	const equipmentItems = Object.keys(equipment).map(function(key) {
+		var e
+		if (equipment[key] === true) {
+			e = key
+		}
+		return (
+				<p>{e}</p>
+		)
+	})
+	const servicesItems = Object.keys(services).map(function(key) {
+		var e
+		if (services[key] === true) {
+			e = key
+		}
+		return (
+				<p>{e}</p>
+		)
+	})
+	return (
+		<div>
+			<div className="panel-heading">
+				<h3 className="panel-title">{`${jobname}`}</h3>
+			</div>
+			<div className="panel-body">
+				<div className="panel-contact-info">
+					<p>{date} at {time}</p>
+					<p>{rate} $/hr for {hours} hours = ${hours * rate}</p>
+					<p>
+						Address: {address.address} City: {address.city} State:{' '}
+						{address.state} Zip: {address.zipcode}
+					</p>
+					<p>Requested Services: {servicesItems}</p>
+					<p>Requested Equipment: {equipmentItems}</p>
+				</div>
+			</div>
+		</div>
+	)
+}
 
-export default Request
+export default WorkerRequest

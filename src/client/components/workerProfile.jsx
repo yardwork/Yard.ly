@@ -2,12 +2,15 @@ import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import RequestMaker from './requestMaker.jsx'
-import { workersUpdateRoute, workersShowRoute } from '../../server/routes.js'
+import { workersUpdateRoute, workersShowRoute, requestsWorkerRoute, requestsUserRoute, requestsFilterRoute } from '../../server/routes.js'
+import WorkerRequestList from './workerRequestList.jsx'
 
 class WorkerProfile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			workerRequests: [],
+			userWorkerRequests: [],
 			worker: {
 				username: '',
 				password: '',
@@ -96,6 +99,8 @@ class WorkerProfile extends React.Component {
 		this.submitImage = this.submitImage.bind(this)
 		this.updateUser = this.updateUser.bind(this)
 		this.updateRequest = this.updateRequest.bind(this)
+		this.getWorkerRequests = this.getWorkerRequests.bind(this)
+		this.getUserWorkerRequests = this.getUserWorkerRequests.bind(this)
 	}
 	submitEmail(e) {
 		e.preventDefault()
@@ -184,6 +189,43 @@ class WorkerProfile extends React.Component {
 				console.log('~~~~~~state', this.state)
 			})
 	}
+	getWorkerRequests(wid) {
+		fetch('/api'.concat(requestsWorkerRoute(wid)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'GET',
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(requests => {
+				console.log('~~~~~~~worker', requests)
+				this.setState({ workerRequests: requests })
+			})
+			.then(() => {
+				console.log('~~~~~~state', this.state)
+
+			})
+	}
+
+	getUserWorkerRequests(uid, wid) {
+		fetch('/api'.concat(requestsFilterRoute(uid, wid)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'GET',
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(requests => {
+				console.log('~~~~~~~requestsUserWorker', requests)
+				this.setState({ userWorkerRequests: requests })
+			})
+			.then(() => {
+				console.log('~~~~~~state', this.state)
+			})
+	}
+
 	updateWorker(id, worker) {
 		fetch('/api'.concat(workersUpdateRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
@@ -275,6 +317,8 @@ class WorkerProfile extends React.Component {
 	componentDidMount() {
 		console.log(this.props, 'asdf', this.props.location.pathname.slice(9))
 		this.getWorker(this.props.location.pathname.slice(9))
+		this.getWorkerRequests(this.props.location.pathname.slice(9))
+		this.getUserWorkerRequests(this.state.user._id, this.props.location.pathname.slice(9))
 	}
 	render() {
 		return (
@@ -294,6 +338,7 @@ class WorkerProfile extends React.Component {
 					onServicesClick={this.onServicesClick}
 				/>
 				<RequestMaker updateRequest={this.updateRequest} user={this.state.user} worker={this.state.worker} addresses={this.state.user.addresses} />
+				<WorkerRequestList worker={this.state.worker} requests={this.state.userWorkerRequests} />
 			</div>
 		)
 	}

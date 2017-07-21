@@ -12,6 +12,9 @@ const {
 	REQUESTS_CREATE,
 	REQUESTS_DELETE,
 	REQUESTS_UPDATE,
+  REQUESTS_FILTER,
+  REQUESTS_USER,
+  REQUESTS_WORKER,
 } = require('../../routes')
 /* export const REQUESTS_INDEX = '/requests'
 export const REQUESTS_SHOW = '/requests/:id'
@@ -92,6 +95,52 @@ router.put(REQUESTS_UPDATE, (req, res, next) => {
 		.then(newRequest => {
 			if (newRequest) {
 				res.json(newRequest)
+				return
+			}
+			res.sendStatus(404)
+		})
+		.catch(next)
+})
+
+router.get(REQUESTS_FILTER, (req, res, next) => {
+	const { uid, wid } = req.params
+	Request.find({
+    userId: uid,
+    workerId: wid,
+  })
+		.then(requests => {
+			if (requests) {
+				res.json(requests)
+				return
+			}
+			res.sendStatus(404)
+		})
+		.catch(next)
+})
+
+router.get(REQUESTS_USER, (req, res, next) => {
+	const { uid } = req.params
+	Request.find({
+    userId: uid,
+  })
+		.then(requests => {
+			if (requests) {
+				res.json(requests)
+				return
+			}
+			res.sendStatus(404)
+		})
+		.catch(next)
+})
+
+router.get(REQUESTS_WORKER, (req, res, next) => {
+	const { wid } = req.params
+	Request.find({
+    workerId: wid,
+  })
+		.then(requests => {
+			if (requests) {
+				res.json(requests)
 				return
 			}
 			res.sendStatus(404)

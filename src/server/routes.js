@@ -19,6 +19,9 @@ module.exports = {
   REQUESTS_CREATE: '/requests',
   REQUESTS_UPDATE: '/requests/:id',
   REQUESTS_DELETE: '/requests/:id',
+  REQUESTS_FILTER: '/requestsfil/:uid/:wid',
+  REQUESTS_USER: '/requestsuser/:uid',
+  REQUESTS_WORKER: '/requestsworker/:wid',
 
   ADDRESS_ADD: '/addressAdd/:id',
   ADDRESS_DELETE: '/addressDelete/:id',
@@ -55,5 +58,14 @@ module.exports = {
 
   requestsDeleteRoute: id =>
     `/requests/${id || ':id'}`,
+
+  requestsFilterRoute: (uid, wid) =>
+    `/requestsfil/${uid}/${wid}`,
+
+  requestsUserRoute: uid =>
+    `/requestsuser/${uid}`,
+
+  requestsWorkerRoute: wid =>
+    `/requestworker/${wid}`,
 
 }
