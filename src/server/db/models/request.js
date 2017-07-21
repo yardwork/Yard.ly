@@ -13,6 +13,7 @@ const RequestSchema = new Schema({
   time: { type: String, required: false },
   date: { type: String, required: false },
   image: String,
+  hours: Number,
 })
 
 const Request = mongoose.model('Request', RequestSchema)

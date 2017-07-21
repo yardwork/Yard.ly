@@ -48,6 +48,7 @@
     "mongoose": "^4.11.2",
     "mongoose-seed": "^0.3.2",
     "mongoose-seed-db": "^0.0.7",
+    "rc-time-picker": "^2.4.1",
     "react": "^15.6.1",
     "react-addons-shallow-compare": "^15.6.0",
     "react-dates": "^12.3.0",

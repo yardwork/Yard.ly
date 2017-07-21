@@ -11,12 +11,16 @@ class RequestMaker extends Component {
       equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: false, Chainsaw: false, LawnAerator: false, Seeder: false},
 			requests: [],
 			jobname: 'Yardwork',
+			time: '8:00 am',
+			hours: 2,
 		}
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
 		this.setDate = this.setDate.bind(this)
 		this.submitRequest = this.submitRequest.bind(this)
 		this.changeJobName = this.changeJobName.bind(this)
+		this.setTime = this.setTime.bind(this)
+		this.setHours = this.setHours.bind(this)
 	}
   onServicesClick(type){
     var services = this.state.services
@@ -37,11 +41,21 @@ class RequestMaker extends Component {
       date: date,
     })
   }
+	setTime(time) {
+		this.setState({
+			time: time,
+		})
+	}
+	setHours(hours) {
+		this.setState({
+			hours: hours,
+		})
+	}
   submitRequest() {
     fetch('/api'.concat(REQUESTS_CREATE), {
       headers: { 'Content-type': 'application/json' },
       method: 'POST',
-      body: JSON.stringify({jobname: this.state.jobname, userId: this.props.user._id, workerId: this.props.worker._id, accepted: false, services: this.state.services, equipment: this.state.equipment, address: this.props.user.address, time: "2:00pm", image: "http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG", date: this.state.date }),
+      body: JSON.stringify({jobname: this.state.jobname, userId: this.props.user._id, workerId: this.props.worker._id, accepted: false, services: this.state.services, equipment: this.state.equipment, address: this.props.user.address, hours: this.state.hours, time: this.state.time, image: "http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG", date: this.state.date }),
     })
       .then(res => {
         if (!res.ok) throw Error(res.statusText)
@@ -76,7 +90,7 @@ class RequestMaker extends Component {
           onServicesClick={this.onServicesClick}
           onEquipmentClick={this.onEquipmentClick}
 				/>
-        <PickaDate setDate={this.setDate} />
+        <PickaDate setDate={this.setDate} setTime={this.setTime} setHours={this.setHours}/>
         <div>
           <button onClick={() => this.submitRequest()}>
             Submit
