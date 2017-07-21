@@ -9,6 +9,7 @@ const WorkerSchema = new Schema({
   area: String,
   firstName: String,
   lastName: String,
+  rate: Number,
   contactInfo: Object,
   equipment: Object,
   availability: Object,

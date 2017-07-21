@@ -46,7 +46,7 @@ router.get(REQUESTS_INDEX, (req, res, next) => {
 })
 
 router.post(REQUESTS_CREATE, (req, res, next) => {
-  const request = new Request({ jobname: req.body.jobname, userId: req.body.userId, workerId: req.body.workerId, accepted: false, services: req.body.services, equipment: req.body.equipment, date: req.body.date, address: req.body.address, time: req.body.time, image: req.body.image })
+  const request = new Request({ jobname: req.body.jobname, userId: req.body.userId, workerId: req.body.workerId, accepted: false, services: req.body.services, equipment: req.body.equipment, date: req.body.date, address: req.body.address, time: req.body.time, image: req.body.image, hours: req.body.hours })
     request
       .save()
       .then((newRequest) => {
