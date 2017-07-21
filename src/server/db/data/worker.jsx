@@ -34,6 +34,7 @@ const worker = [
 		},
 		__v: 0,
 		requests: [],
+		rate: 20,
 		image: 'http://www.bestpickreports.com/blogfiles/assets/images/post/Body%20Pics/02-16-17_images/professional-lawn-mower-worker-cutting-green-grass-full.jpg',
 	},
 	{
@@ -66,6 +67,7 @@ const worker = [
 		area: 'Austin',
 		firstName: 'Jerry',
 		lastName: 'Roar',
+		rate: 20,
 		contactInfo: {
 			email: 'jerry@email',
 			phoneNumber: '(666)777-6666',
@@ -104,6 +106,7 @@ const worker = [
 		},
 		firstName: 'Jarrad',
 		lastName: 'Dagon',
+		rate: 15,
 		contactInfo: {
 			phoneNumber: '62-(945)590-3118',
 			email: 'jdagon26@examiner.com',
@@ -142,6 +145,7 @@ const worker = [
 		},
 		firstName: 'Em',
 		lastName: 'Nursey',
+		rate: 15,
 		contactInfo: {
 			phoneNumber: '86-(258)725-1807',
 			email: 'enursey27@tripod.com',
@@ -180,6 +184,7 @@ const worker = [
 		},
 		firstName: 'Nikolaus',
 		lastName: 'Fauguel',
+		rate: 25,
 		contactInfo: {
 			phoneNumber: '48-(915)508-3913',
 			email: 'nfauguel28@youtu.be',
@@ -218,6 +223,7 @@ const worker = [
 		},
 		firstName: 'Winnie',
 		lastName: 'Dunstall',
+		rate: 12,
 		contactInfo: {
 			phoneNumber: '370-(180)847-3281',
 			email: 'wdunstall29@buzzfeed.com',
@@ -256,6 +262,7 @@ const worker = [
 		},
 		firstName: 'Shermie',
 		lastName: 'Lukash',
+		rate: 12,
 		contactInfo: {
 			phoneNumber: '593-(873)302-2561',
 			email: 'slukash2a@deviantart.com',
@@ -294,6 +301,7 @@ const worker = [
 		},
 		firstName: 'Paxton',
 		lastName: 'Grey',
+		rate: 12,
 		contactInfo: {
 			phoneNumber: '7-(863)952-5907',
 			email: 'pgrey2b@gravatar.com',
@@ -337,6 +345,7 @@ const worker = [
 			email: 'equeen2c@yolasite.com',
 		},
 		requests: [],
+		rate: 12,
 		image: 'https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VusrVp28x/videoblocks-novosibirsk-russia-june-21-2017-lawn-mower-worker-cuts-grass-with-cutter_blsw9w_7w_thumbnail-small01.jpg',
 		'--v': 85,
 	},

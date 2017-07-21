@@ -6,6 +6,7 @@ const session = require('express-session')
 const db = require('./db/config.js')
 const usersRoute = require('./db/routes/users')
 const workersRoute = require('./db/routes/workers')
+const requestsRoute = require('./db/routes/requests')
 
 const app = express()
 
@@ -21,7 +22,7 @@ app.get('/api/logout', function (req, res) {
   res.send('You have logged out')
 });
 
-app.use('/api', bodyParser.json(), usersRoute, workersRoute)
+app.use('/api', bodyParser.json(), usersRoute, workersRoute, requestsRoute)
 
 app.use(express.static(path.join(__dirname, '../public')))
 

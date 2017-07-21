@@ -14,6 +14,7 @@ const RequestSchema = new Schema({
   date: { type: String, required: false },
   image: String,
   hours: Number,
+  rate: Number,
 })
 
 const Request = mongoose.model('Request', RequestSchema)

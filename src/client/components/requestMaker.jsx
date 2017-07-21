@@ -13,6 +13,7 @@ class RequestMaker extends Component {
 			jobname: 'Yardwork',
 			time: '8:00 am',
 			hours: 2,
+			rate: this.props.worker.rate,
 		}
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
@@ -55,7 +56,7 @@ class RequestMaker extends Component {
     fetch('/api'.concat(REQUESTS_CREATE), {
       headers: { 'Content-type': 'application/json' },
       method: 'POST',
-      body: JSON.stringify({jobname: this.state.jobname, userId: this.props.user._id, workerId: this.props.worker._id, accepted: false, services: this.state.services, equipment: this.state.equipment, address: this.props.user.address, hours: this.state.hours, time: this.state.time, image: "http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG", date: this.state.date }),
+      body: JSON.stringify({jobname: this.state.jobname, userId: this.props.user._id, workerId: this.props.worker._id, accepted: false, services: this.state.services, equipment: this.state.equipment, address: this.props.user.address, hours: this.state.hours, time: this.state.time, image: "http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG", date: this.state.date, rate: this.state.rate }),
     })
       .then(res => {
         if (!res.ok) throw Error(res.statusText)
