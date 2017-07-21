@@ -34,7 +34,9 @@ const request = [
 			city: 'Georgetown',
 			address: '124 Great Frontier dr',
 		},
-		time: '1:21pm',
+		time: '1:21 pm',
+		hours: 4,
+		rate: 20,
 		date: 'August 21 2017',
 		image:
 			'https://www.glcnow.com/v/vspfiles/assets/images/lawn-care%20worker.jpg',
@@ -75,6 +77,8 @@ const request = [
 			address: '202 5th Street',
 		},
 		time: '1:03pm',
+		hours: 6,
+		rate: 15,
 		date: 'August 21 2017',
 		image:
 			'https://www.glcnow.com/v/vspfiles/assets/images/lawn-care%20worker.jpg',
@@ -99,6 +103,8 @@ const request = [
 			'Grass Seeding': false,
 		},
 		time: '4:19 PM',
+		hours: 3,
+		rate: 30,
 		equipment: {
 			'Lawn Mower': true,
 			'Weed Eater': true,
@@ -138,6 +144,8 @@ const request = [
 		},
 		equipment: false,
 		time: '11:00 PM',
+		hours: 3,
+		rate: 12,
 		address: {
 			address: '37588 Bobwhite Terrace',
 			city: 'Wichita',
@@ -182,6 +190,8 @@ const request = [
 			zipcode: '48335',
 		},
 		time: '9:37 PM',
+		hours: 2,
+		rate: 21,
 		image: 'http://dummyimage.com/195x227.png/dddddd/000000',
 	},
 	{
@@ -213,6 +223,9 @@ const request = [
 			'Lawn Aerator': false,
 			Seeder: false,
 		},
+		time: "2:00 pm",
+		hours: 3,
+		rate: 7,
 		address: {
 			address: '4 Sommers Trail',
 			city: 'Orange',
@@ -250,6 +263,8 @@ const request = [
 			Seeder: false,
 		},
 		time: '9:09 AM',
+		hours: 2,
+		rate: 20,
 		image: 'http://dummyimage.com/104x148.bmp/dddddd/000000',
 		address: {
 			address: '62 Hagan Way',

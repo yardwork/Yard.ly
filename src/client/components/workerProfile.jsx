@@ -41,6 +41,8 @@ class WorkerProfile extends React.Component {
 					phoneNumber: '',
 					email: '',
 				},
+				rate: 10,
+				requests: [],
 				image: '',
 				address: {
 					address: '',
@@ -52,6 +54,27 @@ class WorkerProfile extends React.Component {
 			date: null,
 			user: {
 				_id: '5970ae7ae2aa44b1b406fdd6',
+				requests: [],
+				addresses: [
+					{
+						zipcode: '78633',
+						state: 'Texas',
+						city: 'Austin',
+						address: '223 Great Frontier dr',
+					},
+					{
+						zipcode: '78633',
+						state: 'Texas',
+						city: 'Austin',
+						address: '223333 Great Frontier dr',
+					},
+					{
+						zipcode: '78633',
+						state: 'Texas',
+						city: 'Austin',
+						address: '3444433 Great Frontier dr',
+					},
+				],
 				address: {
 					zipcode: '78633',
 					state: 'Texas',
@@ -71,6 +94,8 @@ class WorkerProfile extends React.Component {
 		this.changeService = this.changeService.bind(this)
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.submitImage = this.submitImage.bind(this)
+		this.updateUser = this.updateUser.bind(this)
+		this.updateRequest = this.updateRequest.bind(this)
 	}
 	submitEmail(e) {
 		e.preventDefault()
@@ -123,6 +148,25 @@ class WorkerProfile extends React.Component {
 			() => this.updateWorker(this.state.worker._id, this.state.worker),
 		)
 	}
+	updateRequest(requestId) {
+		var worker = this.state.worker
+		worker.requests = worker.requests.push(requestId)
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+		var user = this.state.user
+		user.requests = user.requests.push(requestId)
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
+
+	}
 	getWorker(id) {
 		fetch('/api'.concat(workersShowRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
@@ -160,6 +204,37 @@ class WorkerProfile extends React.Component {
 			})
 			.then(() => {
 				this.getWorker(this.props.worker._id)
+			})
+			.then(() => {
+				document.getElementById('email').value = ''
+				document.getElementById('phoneNumber').value = ''
+				document.getElementById('area').value = ''
+				document.getElementById('image').value = ''
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+	updateUser(id, user) {
+		fetch('/api'.concat(usersUpdateRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify(user),
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				console.log('data', data)
+				if (data) {
+					this.setState({ user: data }, () =>
+						console.log('this.state after update', this.state.user),
+					)
+				}
+			})
+			.then(() => {
+				this.getWorker(this.props.user._id)
 			})
 			.then(() => {
 				document.getElementById('email').value = ''
@@ -218,7 +293,7 @@ class WorkerProfile extends React.Component {
 					onEquipmentClick={this.onEquipmentClick}
 					onServicesClick={this.onServicesClick}
 				/>
-				<RequestMaker user={this.state.user} worker={this.state.worker} />
+				<RequestMaker updateRequest={this.updateRequest} user={this.state.user} worker={this.state.worker} addresses={this.state.user.addresses} />
 			</div>
 		)
 	}
