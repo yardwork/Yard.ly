@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import { browserHistory, Link } from 'react-router'
@@ -41,7 +42,7 @@ class App extends Component {
   }
 
   handleLogout() {
-    fetch('api/logout', {
+    fetch('/api/logout', {
       method: 'GET',
     })
     .then( () => {

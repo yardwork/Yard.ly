@@ -18,7 +18,7 @@ class PickaDate extends Component {
 			focused: true,
 			hours: 2,
 		}
-		this.format = 'h:ii a'
+		this.format = 'h:mm a'
 		this.now = moment().hour(0).minute(0)
 		this.onChange = this.onChange.bind(this)
 		this.onTimeChange = this.onTimeChange.bind(this)
@@ -40,18 +40,17 @@ class PickaDate extends Component {
 						date={this.state.date} // momentPropTypes.momentObj or null
 						onDateChange={date => this.setState({ date: date })} // PropTypes.func.isRequired
 						focused={this.state.focused} // PropTypes.bool
-						onFocusChange={(moment) => this.setState({ focused: moment.focused }, () => this.props.setDate(this.state.date._d))} // PropTypes.func.isRequired
+						onFocusChange={({ focused }) => this.setState({ focused }, () => this.props.setDate(this.state.date._d))} // PropTypes.func.isRequired
 					/>
 				</div>
 				<div>
 				<TimePicker
 					showSecond={false}
 					defaultValue={moment()}
+					className="xxx"
 					onChange={this.onChange}
 					format={format}
-					formatSubmit="HH:i"
-					hiddenName={true}
-					use12hours={true}
+					use12hours
 				/>
 				</div>
 				<form onChange={this.onTimeChange}>

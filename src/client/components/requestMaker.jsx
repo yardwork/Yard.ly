@@ -8,7 +8,7 @@ class RequestMaker extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			date: {_d: 'August 8th'},
+			date: 'August 8th',
       services: { Mowing: false, TreeTrimming: false, Edging: false, Weedeating: false, HedgeTrimming: false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, GrassSeeding: false },
       equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: false, Chainsaw: false, LawnAerator: false, Seeder: false},
 			request: {},
