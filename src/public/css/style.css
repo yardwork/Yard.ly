@@ -1,16 +1,19 @@
 :root {
   --primary-color: rgb(70, 187, 7);
+  --gray-dark: #444;
+  --gray-medium: #aaa;
+  --gray-light: #ddd;
+  --gray-lightest: #f5f5f5;
 }
 
 body {
-  width: 960px;
   margin: auto;
   font-family: sans-serif;
   /*text-shadow: 2px 2px 2px white*/
 }
 
-h1 {
-  /*color: limegreen;*/
+.navbar {
+  border-radius: 0;
 }
 
 /********** Landing Page **********/
@@ -44,18 +47,30 @@ h1 {
   margin: 0 auto;
 }
 
-.services {
-  background-color: pink;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 20px;
-
-}
-.hidden {
-  display: none;
+.worker-list-container {
+  margin: 0 auto;
+  margin-top: 25px;
+  width: 75%
 }
 
 
 /********** Colors **********/
 btn-primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color)
+}
+
+/********** Worker Profile **********/
+.services {
+}
+
+.service-entry {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  color: var(--gray-medium);
+  background-color: var(--gray-lightest);
+}
+
+.service-entry.checked {
+  color: inherit;
 }
