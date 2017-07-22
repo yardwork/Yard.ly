@@ -78,8 +78,8 @@ class WorkerRequest extends React.Component {
 					<div className="panel-contact-info">
 						<p>{this.state.date} at {this.state.time}</p>
 						<p>{this.state.rate} $/hr for {this.state.hours} hours = ${this.state.hours * this.state.rate}</p>
-            <p>Requested Services: {this.servicesItems}</p>
-						<p>Requested Equipment: {this.equipmentItems}</p>
+            <div><h3>Requested Services: </h3>{this.servicesItems}</div>
+						<div><h3>Requested Equipment: </h3>{this.equipmentItems}</div>
             <p>
               Address: {this.state.address.address} City: {this.state.address.city} State:{this.state.address.state}
                     Zip: {this.state.address.zipcode}
