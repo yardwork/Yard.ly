@@ -15,7 +15,9 @@ const app = express()
 app.use(session({
   secret: 'COOKIE_SECRET'
 }))
+app.use('/api', bodyParser.json(), usersRoute, workersRoute, requestsRoute)
 
+app.use(express.static(path.join(__dirname, '../public')))
 app.get('/api/session', function (req, res) {
   console.log('it is this', req.session)
   res.send(req.session)
@@ -28,9 +30,7 @@ app.get('/api/logout', function (req, res) {
   res.send('You have loggasfded out')
 });
 
-app.use('/api', bodyParser.json(), usersRoute, workersRoute, requestsRoute)
 
-app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'))
