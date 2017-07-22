@@ -6,15 +6,14 @@ const EditEquipmentInfo = ({ onEquipmentClick }) =>
 		  <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add/Remove Equipment
 		  <span className="caret"></span></button>
 		  <ul className="dropdown-menu">
-		    <li><a href="#" onClick={() => onEquipmentClick('lawnmower')}>Lawn mower</a></li>
-		    <li><a href="#" onClick={() => onEquipmentClick('weedeater')}>Weed Eater</a></li>
-		    <li><a href="#" onClick={() => onEquipmentClick('chainsaw')}>Chainsaw</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('chainsaw')}>Chainsaw</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('aerator')}>Aerator</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('edger')}>Edger</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('hedgetrimmer')}>Hedgetrimmer</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('mulchtruck')}>Truck for Mulch</a></li>
-				<li><a href="#" onClick={() => onEquipmentClick('seeder')}>Seeder</a></li>
+		    <li><a onClick={() => onEquipmentClick('Lawn Mower')}>Lawn mower</a></li>
+		    <li><a onClick={() => onEquipmentClick('Weed Eater')}>Weed Eater</a></li>
+				<li><a onClick={() => onEquipmentClick('Mulch Truck')}>Truck for Mulch</a></li>
+				<li><a onClick={() => onEquipmentClick('Edger')}>Edger</a></li>
+				<li><a onClick={() => onEquipmentClick('Hedge Trimmer')}>Hedgetrimmer</a></li>
+		    <li><a onClick={() => onEquipmentClick('Chainsaw')}>Chainsaw</a></li>
+				<li><a onClick={() => onEquipmentClick('Aerator')}>Aerator</a></li>
+				<li><a onClick={() => onEquipmentClick('Seeder')}>Seeder</a></li>
 		  </ul>
 		</div>
 	</div>

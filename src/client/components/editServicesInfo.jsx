@@ -6,17 +6,17 @@ const EditServicesInfo = ({ onServicesClick }) =>
 		  <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add/Remove Services
 		  <span className="caret"></span></button>
 		  <ul className="dropdown-menu">
-		    <li><a href="#" onClick={() => onServicesClick('aerating')}>Aerating</a></li>
-		    <li><a href="#" onClick={() => onServicesClick('edging')}>Edging</a></li>
-		    <li><a href="#" onClick={() => onServicesClick('fertilizing')}>Fertilizing</a></li>
-				<li><a href="#" onClick={() => onServicesClick('grassseeding')}>Grassseeding</a></li>
-				<li><a href="#" onClick={() => onServicesClick('hedgetrimming')}>hedgetrimming</a></li>
-				<li><a href="#" onClick={() => onServicesClick('mowing')}>Mowing</a></li>
-				<li><a href="#" onClick={() => onServicesClick('mulching')}>Mulching</a></li>
-				<li><a href="#" onClick={() => onServicesClick('planting')}>Planting</a></li>
-				<li><a href="#" onClick={() => onServicesClick('treetrimming')}>Tree trimming</a></li>
-				<li><a href="#" onClick={() => onServicesClick('weedeating')}>Weedeating</a></li>
-				<li><a href="#" onClick={() => onServicesClick('weeding')}>Weeding</a></li>
+				<li><a onClick={() => onServicesClick('Mowing')}>Mowing</a></li>
+				<li><a onClick={() => onServicesClick('Tree Trimming')}>Tree Trimming</a></li>
+				<li><a onClick={() => onServicesClick('Edging')}>Edging</a></li>
+				<li><a onClick={() => onServicesClick('Weed Eating')}>Weed Eating</a></li>
+				<li><a onClick={() => onServicesClick('Hedge Trimming')}>Hedge Trimming</a></li>
+		    <li><a onClick={() => onServicesClick('Aerating')}>Aerating</a></li>
+				<li><a onClick={() => onServicesClick('Mulching')}>Mulching</a></li>
+				<li><a onClick={() => onServicesClick('Weeding')}>Weeding</a></li>
+				<li><a onClick={() => onServicesClick('Planting')}>Planting</a></li>
+				<li><a onClick={() => onServicesClick('Grass Seeding')}>Grassseeding</a></li>
+				<li><a onClick={() => onServicesClick('Fertilizing')}>Fertilizing</a></li>
 		  </ul>
 		</div>
 	</div>
