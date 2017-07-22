@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PickaDate from './pickaDate.jsx'
 import PickaServiceEquipment from './pickaServiceEquipment.jsx'
 import RequestPreview from './requestPreview.jsx'
+import PickAddress from './pickAddress.jsx'
 import { REQUESTS_CREATE } from './../../server/routes.js'
 class RequestMaker extends Component {
 	constructor(props) {
@@ -38,6 +39,7 @@ class RequestMaker extends Component {
 			rate: this.props.worker.rate,
 			user: this.props.user,
 			addresses: this.props.addresses,
+			address: this.props.addresses[0] || { address: '', city: '', state: '', zipcode: '', },
 		}
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
@@ -46,6 +48,7 @@ class RequestMaker extends Component {
 		this.changeJobName = this.changeJobName.bind(this)
 		this.setTime = this.setTime.bind(this)
 		this.setHours = this.setHours.bind(this)
+		this.setAddress = this.setAddress.bind(this)
 	}
 	onServicesClick(type) {
 		var services = this.state.services
@@ -115,6 +118,11 @@ class RequestMaker extends Component {
 			hours: hours,
 		})
 	}
+	setAddress(address) {
+		this.setState({
+			address: address,
+		})
+	}
 	submitRequest() {
 		fetch('/api'.concat(REQUESTS_CREATE), {
 			headers: { 'Content-type': 'application/json' },
@@ -126,7 +134,7 @@ class RequestMaker extends Component {
 				accepted: false,
 				services: this.state.services,
 				equipment: this.state.equipment,
-				address: this.props.user.address,
+				address: this.state.address,
 				hours: this.state.hours,
 				time: this.state.time,
 				image:
@@ -164,6 +172,7 @@ class RequestMaker extends Component {
 				<form onChange={this.changeJobName}>
 					<input type="text" placeholder="Jobname" />
 				</form>
+				<PickAddress addresses={this.state.addresses} setAddress={this.setAddress} />
 				<PickaServiceEquipment
 					equipment={this.props.worker.equipment}
 					services={this.props.worker.services}
