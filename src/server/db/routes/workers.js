@@ -73,7 +73,8 @@ router.post(WORKERS_LOGIN, (req, res, next) => {
           .then((isMatch) => {
             req.session.user = worker
             req.session.type = 'WORKER'
-            console.log('this works and session is', isMatch, req.session)
+            res.send(req.session)
+            console.log('this works and 12345 session is', isMatch, req.session)
           })
           .catch(bcrypt.MISMATCH_ERROR, next)
           .catch(next)

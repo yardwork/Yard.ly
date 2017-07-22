@@ -6,7 +6,7 @@ const EquipmentInfo = ( {equipment} ) => {
     // console.log('asfasdf')
     return <ul key={key}>{key} {equipment[key] ? "☑" : "☐" }</ul>
   })
-  console.log(Object.keys(equipment))
+  // console.log(Object.keys(equipment))
   // console.log(listItems)
   return (
     <div className="equipment">

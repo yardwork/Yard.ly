@@ -48,12 +48,16 @@ class Login extends Component {
         password: this.state.password,
       })
     })
-    .then( res => res.json())
+    .then( (res) => {
+      console.log(res)
+      return res.json()})
     .then((data) => {
       console.log('userType', data.type)
       this.props.setUserType(data.type)
       $('#sign-in-modal').modal('hide')
 
+    }).catch((err) => {
+      console.log(err)
     })
   }
 
