@@ -2,6 +2,7 @@ import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import RequestMaker from './requestMaker.jsx'
+
 import {
 	usersShowRoute,
 	usersUpdateRoute,
@@ -52,7 +53,7 @@ class WorkerProfile extends React.Component {
 					phoneNumber: '',
 					email: '',
 				},
-				rate: 10,
+				rate: 0,
 				requests: [],
 				image: '',
 				address: {
@@ -101,6 +102,8 @@ class WorkerProfile extends React.Component {
 		this.getWorkerRequests = this.getWorkerRequests.bind(this)
 		this.getUserWorkerRequests = this.getUserWorkerRequests.bind(this)
 		this.makeRequestClick = this.makeRequestClick.bind(this)
+
+
 	}
 	submitEmail(e) {
 		e.preventDefault()
@@ -153,6 +156,23 @@ class WorkerProfile extends React.Component {
 			() => this.updateWorker(this.state.worker._id, this.state.worker),
 		)
 	}
+	updateRequest(requestId) {
+		var worker = this.state.worker
+		worker.requests = worker.requests.push(requestId)
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+		var user = this.state.user
+		user.requests = user.requests.push(requestId)
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
 
 	updateRequest() {
 		axios({
@@ -216,6 +236,7 @@ class WorkerProfile extends React.Component {
 			})
 			.then(() => {
 				console.log('~~~~~~state', this.state)
+
 			})
 			.catch(err => {
 				console.log(err)
@@ -351,7 +372,6 @@ class WorkerProfile extends React.Component {
 	}
 	componentDidMount() {
 		this.getWorker(this.props.location.pathname.slice(9))
-		// this.updateRequest()
 		axios({
 			method: 'get',
 			url: '/api/session',
