@@ -26,6 +26,8 @@ module.exports = {
   ADDRESS_ADD: '/addressAdd/:id',
   ADDRESS_DELETE: '/addressDelete/:id',
 
+  REQUEST_GET: '/request',
+
   usersShowRoute: id =>
     `/users/${id || ':id'}`,
 
