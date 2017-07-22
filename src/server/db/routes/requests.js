@@ -52,8 +52,6 @@ router.post(REQUESTS_CREATE, (req, res, next) => {
 		jobname: req.body.jobname,
 		userId: req.body.userId,
 		workerId: req.body.workerId,
-		userFirst: req.body.userFirst,
-		workerFirst: req.body.workerFirst,
 		accepted: false,
 		services: req.body.services,
 		equipment: req.body.equipment,
@@ -104,7 +102,6 @@ router.put(REQUESTS_UPDATE, (req, res, next) => {
 		})
 		.catch(next)
 })
-
 
 router.get(REQUESTS_FILTER, (req, res, next) => {
 	const { uid, wid } = req.params
