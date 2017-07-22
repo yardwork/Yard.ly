@@ -55,10 +55,10 @@ body {
 
 
 /********** Colors **********/
-.btn-primary {
+/*.btn-primary {
   background-color: var(--primary-color);
   border-color: darken(var(--primary-color),50%);
-}
+}*/
 
 /********** Worker Profile **********/
 .services {
