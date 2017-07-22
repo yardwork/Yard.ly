@@ -37,6 +37,7 @@ app.get('*', function (req, res) {
 })
 
 app.use('*', function (req, res) {
+  console.log('it will be a 404')
   res.status(404).send('File not found.')
 })
 

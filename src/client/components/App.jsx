@@ -10,6 +10,7 @@ import UserProfile from './userProfile.jsx'
 import WorkerList from './workerList.jsx'
 import WorkerProfile from './workerProfile.jsx'
 import Login from './login.jsx'
+import Search from './search.jsx'
 
 const user = {
   __v: 0,
@@ -35,6 +36,7 @@ class App extends Component {
     }
     this.setUserType = this.setUserType.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
+    this.setWorkers = this.setWorkers.bind(this)
   }
 
   setUserType(type) {
@@ -49,6 +51,13 @@ class App extends Component {
       this.setState({userType: undefined})
       console.log('LOGOUT',this.state)
     })
+  }
+
+  setWorkers(workers) {
+    console.log(workers, 'workers from home')
+    this.setState({
+      workers: workers,
+    }, ()=> console.log('Home state!!~~~~', this.state.workers))
   }
 
   componentDidMount() {
@@ -80,10 +89,13 @@ class App extends Component {
         <div>
           <NavBar userType={this.state.userType} handleLogout={this.handleLogout}/>
           <Switch>
-            <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/>
+            {/* <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/> */}
             <Route path="/profile/:id" component={WorkerProfile} />
             <Route path="/user" render={()=><UserProfile user={this.state.user} />}/>
-            <Route path="/" render={()=><Home workers={this.state.workers} />}/>
+            <Route
+              path="/"
+              render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers}/>}
+            />
           </Switch>
         </div>
       </BrowserRouter>

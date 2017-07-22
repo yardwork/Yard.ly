@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
+import WorkerList from './workerList.jsx'
 
 
 class Search extends React.Component {
@@ -66,6 +67,7 @@ class Search extends React.Component {
 								</button>
 							</span>
 						</div>
+						<WorkerList workers={this.props.workers}/>
 					</div>
 				</div>
 			</div>
