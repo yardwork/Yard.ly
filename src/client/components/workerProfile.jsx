@@ -328,7 +328,6 @@ class WorkerProfile extends React.Component {
 			this.setState({ userId: res.data.user._id })
 		}).catch(console.log)
 		console.log(this.state, 'this is state')
-
 	}
 	render() {
 		return (
