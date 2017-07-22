@@ -40,7 +40,7 @@ class PickaDate extends Component {
 						date={this.state.date} // momentPropTypes.momentObj or null
 						onDateChange={date => this.setState({ date: date })} // PropTypes.func.isRequired
 						focused={this.state.focused} // PropTypes.bool
-						onFocusChange={({ focused }) => this.setState({ focused }, () => this.props.setDate(this.state.date._d))} // PropTypes.func.isRequired
+						onFocusChange={(moment) => this.setState({ focused: moment.focused }, () => this.props.setDate(this.state.date._d))} // PropTypes.func.isRequired
 					/>
 				</div>
 				<div>

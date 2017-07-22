@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import PickaDate from './pickaDate.jsx'
 import PickaServiceEquipment from './pickaServiceEquipment.jsx'
+import RequestPreview from './requestPreview.jsx'
 import {REQUESTS_CREATE} from './../../server/routes.js'
 class RequestMaker extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			date: null,
+			date: {_d: 'August 8th'},
       services: { Mowing: false, TreeTrimming: false, Edging: false, Weedeating: false, HedgeTrimming: false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, GrassSeeding: false },
       equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: false, Chainsaw: false, LawnAerator: false, Seeder: false},
-			requests: [],
+			request: {},
 			jobname: 'Yardwork',
 			time: '8:00 am',
 			hours: 2,
 			rate: this.props.worker.rate,
+			user: this.props.user,
+			addresses: this.props.addresses,
 		}
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
@@ -38,6 +41,7 @@ class RequestMaker extends Component {
     })
   }
   setDate(date) {
+		console.log('Date~~~~~~~',date)
     this.setState({
       date: date,
     })
@@ -93,6 +97,7 @@ class RequestMaker extends Component {
 				/>
         <PickaDate setDate={this.setDate} setTime={this.setTime} setHours={this.setHours}/>
         <div>
+					<RequestPreview user={this.props.user} addresses={this.props.addresses} date={this.state.date._d} services={this.state.services} equipment={this.state.equipment} request={this.state.request} jobname={this.state.jobname} rate={this.state.rate} hours={this.state.hours} time={this.state.time} />
           <button onClick={() => this.submitRequest()}>
             Submit
           </button>
