@@ -23,13 +23,13 @@ class App extends Component {
     super(props)
     this.state = {
       workers: [],
-      user: {
-        __v: 0,
-        username: 'stuart',
-        password: 'stuart',
-        _id: '5970ae7ae2aa44b1b406fdd6',
-        addresses: []
-      },
+      // user: {
+      //   __v: 0,
+      //   username: 'stuart',
+      //   password: 'stuart',
+      //   _id: '5970ae7ae2aa44b1b406fdd6',
+      //   addresses: []
+      // },
       userType: undefined,
     }
     this.setUserType = this.setUserType.bind(this)
@@ -56,19 +56,19 @@ class App extends Component {
     }).then((response) => {
       return response.json()
     }).then((array) => {
-      console.log('state is', this.state)
+      // console.log('state is', this.state)
       this.setState({ workers: array })
-      console.log('state is', this.state)
+      // console.log('state is', this.state)
     })
-    fetch('/api/users/'.concat(this.state.user._id), {
-      method: 'GET'
-    }).then((response) => {
-      return response.json()
-    }).then((user) => {
-      console.log('state is', this.state)
-      this.setState({ user: user })
-      console.log('state is', this.state)
-    })
+    // fetch('/api/users/'.concat(this.state.user._id), {
+    //   method: 'GET'
+    // }).then((response) => {
+    //   return response.json()
+    // }).then((user) => {
+    //   console.log('state is', this.state)
+    //   this.setState({ user: user })
+    //   console.log('state is', this.state)
+    // })
 
   }
 

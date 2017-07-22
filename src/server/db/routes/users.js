@@ -76,6 +76,7 @@ router.post(USERS_LOGIN, (req, res, next) => {
           .then((isMatch) => {
             req.session.user = user
             req.session.type = 'USER'
+            req.session.save()
             console.log('this works and session is', isMatch, req.session)
             res.send(req.session);
           })

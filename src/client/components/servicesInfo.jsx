@@ -6,7 +6,7 @@ const ServicesInfo = ( {servicesInfo} ) => {
     // console.log('asfasdf')
     return <ul key={key}>{key} {servicesInfo[key] ? "☑" : "☐" }</ul>
   })
-  console.log(Object.keys(servicesInfo))
+  // console.log(Object.keys(servicesInfo))
   // console.log(listItems)
   return (
     <div className="services">

@@ -2,8 +2,13 @@ import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import RequestMaker from './requestMaker.jsx'
+<<<<<<< cbe685262ae055c3fb66754db71188a85a7690c8
 import { workersUpdateRoute, workersShowRoute, requestsWorkerRoute, requestsUserRoute, requestsFilterRoute } from '../../server/routes.js'
 import WorkerRequestList from './workerRequestList.jsx'
+=======
+import { workersUpdateRoute, workersShowRoute } from '../../server/routes.js'
+import axios from 'axios'
+>>>>>>> checking
 
 class WorkerProfile extends React.Component {
 	constructor(props) {
@@ -85,6 +90,7 @@ class WorkerProfile extends React.Component {
 					address: '124 Great Frontier dr',
 				},
 			},
+			userId: undefined,
 		}
 		// this.submitContactInfo = this.submitContactInfo.bind(this)
 		this.submitEmail = this.submitEmail.bind(this)
@@ -182,11 +188,7 @@ class WorkerProfile extends React.Component {
 				return res.json()
 			})
 			.then(data => {
-				console.log('~~~~~~~worker', data)
 				this.setState({ worker: data })
-			})
-			.then(() => {
-				console.log('~~~~~~state', this.state)
 			})
 	}
 	getWorkerRequests(wid) {
@@ -315,10 +317,27 @@ class WorkerProfile extends React.Component {
 		)
 	}
 	componentDidMount() {
-		console.log(this.props, 'asdf', this.props.location.pathname.slice(9))
+		console.log('HELLO WORKD')
 		this.getWorker(this.props.location.pathname.slice(9))
+<<<<<<< cbe685262ae055c3fb66754db71188a85a7690c8
 		this.getWorkerRequests(this.props.location.pathname.slice(9))
 		this.getUserWorkerRequests(this.state.user._id, this.props.location.pathname.slice(9))
+=======
+		// fetch('/api/session', { credentails: 'same-origin'})
+		// 	.then((res) => res.json())
+		// 	.then((session) => {
+		// 		console.log(session, 'this is the session')
+		// 		this.setState({userId: session.user ? session.user._id : undefined})
+		// 	})
+		axios({
+			method: 'get',
+			url: '/api/session'
+		}).then((res) => {
+			console.log('kjlkjkljklj;', res)
+			this.setState({ userId: res.data.user._id })
+		}).catch(console.log)
+		console.log(this.state, 'this is state')
+>>>>>>> checking
 	}
 	render() {
 		return (
@@ -330,12 +349,14 @@ class WorkerProfile extends React.Component {
 					submitArea={this.submitArea}
 					submitEmail={this.submitEmail}
 					submitPhone={this.submitPhone}
+					userId={this.state.userId}
 				/>
 				<EquipmentServicesInfo
 					submitImage={this.submitImage}
 					worker={this.state.worker}
 					onEquipmentClick={this.onEquipmentClick}
 					onServicesClick={this.onServicesClick}
+					userId={this.state.userId}
 				/>
 				<RequestMaker updateRequest={this.updateRequest} user={this.state.user} worker={this.state.worker} addresses={this.state.user.addresses} />
 				<WorkerRequestList worker={this.state.worker} requests={this.state.userWorkerRequests} />
