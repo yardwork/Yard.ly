@@ -87,11 +87,11 @@ class Login extends Component {
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 className="modal-title" id="myModalLabel" onClick={this.toggleAuthType}>
+            <h5 className="modal-title" id="myModalLabel" onClick={this.toggleAuthType}>
               {this.state.isLogin
                 ? <span>Need an account? Click here</span>
                 : <span>Already have an account? Click here</span>}
-            </h4>
+            </h5>
           </div>
           <div className="modal-body">
 

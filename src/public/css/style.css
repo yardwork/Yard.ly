@@ -1,14 +1,19 @@
 :root {
-  --primary-color: rgb(70, 187, 7);
+  --primary-color: #46ab07;
+  --primary-color-dark: #3d9206;
+  --primary-color-darker: #275704;
+  /*--primary-color-darkest: ;*/
   --gray-dark: #444;
   --gray-medium: #aaa;
   --gray-light: #ddd;
+  --gray-lighter: #eee;
   --gray-lightest: #f5f5f5;
 }
 
 body {
   margin: auto;
   font-family: sans-serif;
+  background-color: var(--gray-lightest);
   /*text-shadow: 2px 2px 2px white*/
 }
 
@@ -57,11 +62,192 @@ body {
 /********** Colors **********/
 .btn-primary {
   background-color: var(--primary-color);
-  border-color: darken(var(--primary-color),50%);
+  border-color: var(--primary-color-dark);
 }
 
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #ffffff;
+  background-color: var(--primary-color-dark);
+  border-color: #0f2801;
+}
+.btn-primary:hover {
+  color: #ffffff;
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-darker);
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-darker);
+}
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  color: #ffffff;
+  background-color: var(--primary-color-darker);
+  border-color: #0f2801;
+}
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus {
+  background-color: var(--primary-color);
+  border-color: #3da206;
+}
+.btn-primary .badge {
+  color: var(--primary-color);
+  background-color: #ffffff;
+}
+.label-primary {
+  background-color: var(--primary-color);
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: var(--primary-color-dark);
+}
+.panel-primary {
+  border-color: var(--primary-color);
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: var(--primary-color);
+}
+.panel-primary > .panel-heading .badge {
+  color: var(--primary-color);
+  background-color: #ffffff;
+}
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: var(--primary-color);
+}
+.text-primary {
+  color: var(--primary-color);
+}
+a.text-primary:hover,
+a.text-primary:focus {
+  color: var(--primary-color-dark);
+}
+.bg-primary {
+  color: #fff;
+  background-color: var(--primary-color);
+}
+a.bg-primary:hover,
+a.bg-primary:focus {
+  background-color: var(--primary-color-dark);
+}
+.btn-link {
+  color: var(--primary-color);
+  font-weight: normal;
+  border-radius: 0;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: #2a7104;
+  text-decoration: underline;
+  background-color: transparent;
+}
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: #2a7104;
+  text-decoration: underline;
+}
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: var(--primary-color);
+}
+a.text-primary:hover,
+a.text-primary:focus {
+  color: var(--primary-color-dark);
+}
+.text-success {
+  color: #3c763d;
+}
+a.text-success:hover,
+a.text-success:focus {
+  color: #2b542c;
+}
+.text-info {
+  color: #31708f;
+}
+a.text-info:hover,
+a.text-info:focus {
+  color: #245269;
+}
+.text-warning {
+  color: #8a6d3b;
+}
+a.text-warning:hover,
+a.text-warning:focus {
+  color: #66512c;
+}
+.text-danger {
+  color: #a94442;
+}
+a.text-danger:hover,
+a.text-danger:focus {
+  color: #843534;
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  z-index: 2;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+
 /********** Worker Profile **********/
-.services {
+.worker-profile-container {
+  margin: 50px;
+  /*padding: 25px;*/
+  /*border: 1px solid var(--gray-lightest);*/
+  /*border-radius: 4px;*/
+}
+
+.worker-info-container {
+  margin-bottom: 50px;
+}
+
+.circular--square {
+  border-radius: 50%;
+  border: 1px solid var(--gray-medium);
+}
+
+.profile-photo {
+  float: left;
+}
+
+.worker-info {
+  height: 128px;
+  margin-left: 150px;
 }
 
 .service-entry {

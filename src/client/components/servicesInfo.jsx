@@ -7,7 +7,7 @@ const ServicesInfo = ( {servicesInfo} ) => {
     return (
 
       <div
-        className={servicesInfo[key] ? "col-xs-6 col-sm-3 col-md-2 service-entry checked" : "col-xs-6 col-sm-3 col-md-2 service-entry"}
+        className={servicesInfo[key] ? "col-xs-5 col-sm-4 col-md-3 col-lg-2 service-entry checked" : "col-xs-5 col-sm-4 col-md-3 col-lg-2 service-entry"}
         key={key}
       >
         {servicesInfo[key]
@@ -21,9 +21,13 @@ const ServicesInfo = ( {servicesInfo} ) => {
   // console.log(Object.keys(servicesInfo))
   // console.log(listItems)
   return (
-    <div className="container-fluid services">
-      <h4>Available Services</h4>
-      {listItems}
+    <div className="panel panel-primary">
+      <div className="panel-heading">
+        <h4 className="panel-title">Available Services</h4>
+      </div>
+      <div className="panel-body container-fluid">
+        {listItems}
+      </div>
     </div>
   )
 }
