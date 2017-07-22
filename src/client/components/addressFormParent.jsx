@@ -3,15 +3,18 @@ import {
 	addressAddRoute,
 	addressDeleteRoute,
 	usersShowRoute,
+	requestsUserRoute,
 } from '../../server/routes.js'
 import AddressFormChild from './addressFormChild.jsx'
 import AddressChildList from './addressFormChildList.jsx'
+import WorkerRequestList from './workerRequestList.jsx'
 
 // import { usersUpdateRoute } from '../../shared/routes'
 class AddressFormParent extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			requests: [],
 			user: {
 				__v: 0,
 				username: '',
@@ -39,6 +42,24 @@ class AddressFormParent extends Component {
 		this.deleteAddress = this.deleteAddress.bind(this)
 		this.onClickDelete = this.onClickDelete.bind(this)
 		this.onClickAddress = this.onClickAddress.bind(this)
+		this.getUserRequests = this.getUserRequests.bind(this)
+	}
+	getUserRequests(uid) {
+		fetch('/api'.concat(requestsUserRoute(uid)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'GET',
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(requests => {
+				console.log('~~~~~~~worker', requests)
+				this.setState({ workerRequests: requests })
+			})
+			.then(() => {
+				console.log('~~~~~~state', this.state)
+			})
 	}
 	postAddress(address, id) {
 		fetch('/api'.concat(addressAddRoute(id)), {
@@ -76,7 +97,7 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				this.setState({ user: data })
+				this.setState({ user: data }, this.getUserRequests(this.state.user._id))
 			})
 	}
 	submitForm(e) {
@@ -143,6 +164,7 @@ class AddressFormParent extends Component {
 						onClickDelete={this.onClickDelete}
 						addresses={this.state.user.addresses}
 					/>
+					<WorkerRequestList requests={this.state.requests} />
 				</div>
 			</div>
 		)

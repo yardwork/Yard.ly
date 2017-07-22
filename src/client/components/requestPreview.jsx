@@ -23,6 +23,7 @@ const RequestPreview = props => {
 			</div>
 			<div className="panel-body">
 				<div className="panel-contact-info">
+					<p>Worker: {props.user.firstName}  Homeowner: {props.worker.firstName}</p>
 					<p>{props.date} at {props.time}</p>
 					<p>
 						{props.rate} $/hr for {props.hours} hours = ${props.hours * props.rate}

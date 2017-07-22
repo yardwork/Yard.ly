@@ -6,6 +6,8 @@ const RequestSchema = new Schema({
   jobname: { type: String, required: true },
   userId: { type: String, required: true },
   workerId: { type: String, required: true },
+  workerFirst: String,
+  userFirst: String,
   accepted: { type: Boolean, required: true },
   services: { type: Object, required: false },
   equipment: { type: Object, required: false },

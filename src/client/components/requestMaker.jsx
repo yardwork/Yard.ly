@@ -131,6 +131,8 @@ class RequestMaker extends Component {
 				jobname: this.state.jobname,
 				userId: this.props.user._id,
 				workerId: this.props.worker._id,
+				workerFirst: this.props.worker.firstName,
+				userFirst: this.props.user.firstName,
 				accepted: false,
 				services: this.state.services,
 				equipment: this.state.equipment,
@@ -186,6 +188,7 @@ class RequestMaker extends Component {
 				/>
 				<div>
 					<RequestPreview
+						worker={this.props.worker}
 						user={this.props.user}
 						addresses={this.props.addresses}
 						date={this.state.date}

@@ -17,8 +17,9 @@ class WorkerRequest extends React.Component {
       services: props.services,
       accepted: props.accepted,
       id: props.id,
+      wid: props.wid,
+      uid: props.uid,
       request: props.request,
-      onAcceptRequestClick: props.onAcceptRequestClick,
     }
 		this.equipmentItems = Object.keys(props.equipment).map(function(key) {
 			var e
@@ -76,6 +77,7 @@ class WorkerRequest extends React.Component {
 				</div>
 				<div className="panel-body">
 					<div className="panel-contact-info">
+            <p>Worker: {this.props.request.workerFirst} Homeowner: {this.props.request.userFirst}</p>
 						<p>{this.state.date} at {this.state.time}</p>
 						<p>{this.state.rate} $/hr for {this.state.hours} hours = ${this.state.hours * this.state.rate}</p>
             <div><h3>Requested Services: </h3>{this.servicesItems}</div>
