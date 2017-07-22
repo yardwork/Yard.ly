@@ -3,12 +3,14 @@
   --gray-dark: #444;
   --gray-medium: #aaa;
   --gray-light: #ddd;
+  --gray-lighter: #eee;
   --gray-lightest: #f5f5f5;
 }
 
 body {
   margin: auto;
   font-family: sans-serif;
+  background-color: var(--gray-lightest);
   /*text-shadow: 2px 2px 2px white*/
 }
 
@@ -61,7 +63,29 @@ body {
 }*/
 
 /********** Worker Profile **********/
-.services {
+.worker-profile-container {
+  margin: 50px;
+  /*padding: 25px;*/
+  /*border: 1px solid var(--gray-lightest);*/
+  /*border-radius: 4px;*/
+}
+
+.worker-info-container {
+  margin-bottom: 50px;
+}
+
+.circular--square {
+  border-radius: 50%;
+  border: 1px solid var(--gray-medium);
+}
+
+.profile-photo {
+  float: left;
+}
+
+.worker-info {
+  height: 128px;
+  margin-left: 150px;
 }
 
 .service-entry {

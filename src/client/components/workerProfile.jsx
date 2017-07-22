@@ -403,8 +403,8 @@ class WorkerProfile extends React.Component {
 	}
 	render() {
 		return (
-			<div>
-				<div>Worker profile</div>
+			<div className="worker-profile-container">
+
 				<WorkerInfo
 					worker={this.state.worker}
 					submitArea={this.submitArea}
