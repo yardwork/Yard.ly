@@ -2,16 +2,24 @@ import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import RequestMaker from './requestMaker.jsx'
+
+import {
+	usersShowRoute,
+	usersUpdateRoute,
+	workersUpdateRoute,
+	workersShowRoute,
+	requestsWorkerRoute,
+	requestsUserRoute,
+	requestsFilterRoute,
+} from '../../server/routes.js'
 import WorkerRequestList from './workerRequestList.jsx'
-import { workersUpdateRoute, workersShowRoute } from '../../server/routes.js'
 import axios from 'axios'
 
 class WorkerProfile extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			workerRequests: [],
-			userWorkerRequests: [],
+			requests: [],
 			worker: {
 				username: '',
 				password: '',
@@ -74,13 +82,15 @@ class WorkerProfile extends React.Component {
 					address: '',
 				},
 			},
-			userId: undefined,
+			currId: '',
+			type: '',
 		}
 		// this.submitContactInfo = this.submitContactInfo.bind(this)
 		this.submitEmail = this.submitEmail.bind(this)
 		this.submitPhone = this.submitPhone.bind(this)
 		this.submitArea = this.submitArea.bind(this)
 		this.getWorker = this.getWorker.bind(this)
+		this.getUser = this.getUser.bind(this)
 		this.updateWorker = this.updateWorker.bind(this)
 		this.changeEquipment = this.changeEquipment.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
@@ -91,6 +101,9 @@ class WorkerProfile extends React.Component {
 		this.updateRequest = this.updateRequest.bind(this)
 		this.getWorkerRequests = this.getWorkerRequests.bind(this)
 		this.getUserWorkerRequests = this.getUserWorkerRequests.bind(this)
+		this.makeRequestClick = this.makeRequestClick.bind(this)
+
+
 	}
 	submitEmail(e) {
 		e.preventDefault()
@@ -161,7 +174,37 @@ class WorkerProfile extends React.Component {
 			() => this.updateUser(this.state.user._id, this.state.user),
 		)
 
+	updateRequest() {
+		axios({
+			method: 'get',
+			url: '/api/session',
+		})
+			.then(res => {
+				console.log('kjlkjkljklj;', res)
+				this.setState({ currId: res.data.user._id, type: res.data.type }, () =>{ console.log('currId', this.state.currId)})
+			})
+			.then(()=>{
+					if (this.state.type === 'USER') {
+						this.getUser(this.state.currId)
+						this.getUserWorkerRequests(
+							this.state.currId,
+							this.props.location.pathname.slice(9),
+						)
+						console.log(
+							this.state.worker,
+							'this is a WORKER~~~~~~~~~~~~ state',
+						)
+					} else if (
+						this.state.type === 'WORKER' &&
+						this.state.currId === this.props.location.pathname.slice(9)
+					) {
+						this.getWorkerRequests(this.props.location.pathname.slice(9))
+					}
+					console.log(this.state, 'this.state!!!!!!!!!!!!')
+			})
+			.catch(console.log)
 	}
+
 	getWorker(id) {
 		fetch('/api'.concat(workersShowRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
@@ -173,6 +216,9 @@ class WorkerProfile extends React.Component {
 			})
 			.then(data => {
 				this.setState({ worker: data })
+			})
+			.catch(err => {
+				console.log(err)
 			})
 	}
 	getWorkerRequests(wid) {
@@ -186,11 +232,14 @@ class WorkerProfile extends React.Component {
 			})
 			.then(requests => {
 				console.log('~~~~~~~worker', requests)
-				this.setState({ workerRequests: requests })
+				this.setState({ requests: requests })
 			})
 			.then(() => {
 				console.log('~~~~~~state', this.state)
 
+			})
+			.catch(err => {
+				console.log(err)
 			})
 	}
 
@@ -205,10 +254,10 @@ class WorkerProfile extends React.Component {
 			})
 			.then(requests => {
 				console.log('~~~~~~~requestsUserWorker', requests)
-				this.setState({ userWorkerRequests: requests })
+				this.setState({ requests: requests })
 			})
-			.then(() => {
-				console.log('~~~~~~state', this.state)
+			.catch(err => {
+				console.log(err)
 			})
 	}
 
@@ -243,6 +292,21 @@ class WorkerProfile extends React.Component {
 				console.log(err)
 			})
 	}
+
+	getUser(id) {
+		fetch('/api'.concat(usersShowRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'GET',
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				this.setState({ user: data })
+			})
+	}
+
 	updateUser(id, user) {
 		fetch('/api'.concat(usersUpdateRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
@@ -290,6 +354,12 @@ class WorkerProfile extends React.Component {
 	onServicesClick(e) {
 		this.changeService(e)
 	}
+	makeRequestClick() {
+		this.getUserWorkerRequests(
+			this.state.currId,
+			this.props.location.pathname.slice(9),
+		)
+	}
 	changeService(type) {
 		var worker = this.state.worker
 		worker.services[type] = !worker.services[type]
@@ -301,44 +371,68 @@ class WorkerProfile extends React.Component {
 		)
 	}
 	componentDidMount() {
-		console.log('HELLO WORKD')
 		this.getWorker(this.props.location.pathname.slice(9))
-		// fetch('/api/session', { credentails: 'same-origin'})
-		// 	.then((res) => res.json())
-		// 	.then((session) => {
-		// 		console.log(session, 'this is the session')
-		// 		this.setState({userId: session.user ? session.user._id : undefined})
-		// 	})
 		axios({
 			method: 'get',
-			url: '/api/session'
-		}).then((res) => {
-			console.log('kjlkjkljklj;', res)
-			this.setState({ userId: res.data.user._id })
-		}).catch(console.log)
-		console.log(this.state, 'this is state')
+			url: '/api/session',
+		})
+			.then(res => {
+				console.log('kjlkjkljklj;', res)
+				this.setState({ currId: res.data.user._id, type: res.data.type }, () =>{
+					if (this.state.type === 'USER') {
+						this.getUser(this.state.currId)
+						this.getUserWorkerRequests(
+							this.state.currId,
+							this.props.location.pathname.slice(9),
+						)
+						console.log(
+							this.state.worker,
+							'this is a WORKER~~~~~~~~~~~~ state',
+						)
+					} else if (
+						this.state.type === 'WORKER' &&
+						this.state.currId === this.props.location.pathname.slice(9)
+					) {
+						this.getWorkerRequests(this.props.location.pathname.slice(9))
+					}
+					console.log(this.state, 'this.state!!!!!!!!!!!!')
+			})
+		})
+			.catch(console.log)
+		console.log(this.state.worker, 'this is a WORKER~~~~~~~~~~~~ state')
 	}
 	render() {
 		return (
 			<div>
 				<div>Worker profile</div>
-				<div>{this.state.worker.firstName} {this.state.worker.lastName}</div>
 				<WorkerInfo
 					worker={this.state.worker}
 					submitArea={this.submitArea}
 					submitEmail={this.submitEmail}
 					submitPhone={this.submitPhone}
-					userId={this.state.userId}
+					currId={this.state.userId}
 				/>
 				<EquipmentServicesInfo
 					submitImage={this.submitImage}
 					worker={this.state.worker}
 					onEquipmentClick={this.onEquipmentClick}
 					onServicesClick={this.onServicesClick}
-					userId={this.state.userId}
+					currId={this.state.currId}
 				/>
-				<RequestMaker updateRequest={this.updateRequest} user={this.state.user} worker={this.state.worker} addresses={this.state.user.addresses} />
-				<WorkerRequestList worker={this.state.worker} requests={this.state.userWorkerRequests} />
+					 <RequestMaker
+							updateRequest={this.updateRequest}
+							user={this.state.user}
+							worker={this.state.worker}
+							addresses={this.state.user.addresses}
+							makeRequestClick={this.makeRequestClick}
+						/>
+				{(this.state.type === 'USER' ||
+					this.state.currId === this.props.location.pathname.slice(9))
+					? <WorkerRequestList
+							requests={this.state.requests}
+							type={this.state.type}
+						/>
+					: ''}
 			</div>
 		)
 	}

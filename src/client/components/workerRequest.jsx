@@ -45,6 +45,10 @@ const WorkerRequest = ({
 					<p>Requested Services: {servicesItems}</p>
 					<p>Requested Equipment: {equipmentItems}</p>
 				</div>
+        { this.props.type === 'WORKER' ?
+				<button onClick={ () => this.acceptRequest(this.state.accepted)}>
+					{this.state.accepted ? 'Decline Job' : 'Accept Job'}
+				</button> : '' }
 			</div>
 		</div>
 	)

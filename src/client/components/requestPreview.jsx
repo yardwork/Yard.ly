@@ -34,9 +34,9 @@ const RequestPreview = props => {
             {servicesItems}
           </ul>
 					<p>
-						Address: {props.addresses[0].address}
-            City: {props.addresses[0].city} State:{props.addresses[0].state}
-						Zip: {props.addresses[0].zipcode}
+						Address: {props.address.address}
+            City: {props.address.city} State:{props.address.state}
+						Zip: {props.address.zipcode}
 					</p>
 					<p>{props.accepted ? 'Accepted' : 'Being Reviewed'}</p>
 				</div>

@@ -8,14 +8,16 @@ class RequestMaker extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			date: 'August 8th',
+
+			date: 'Placeholder',
       services: { Mowing: false, TreeTrimming: false, Edging: false, Weedeating: false, HedgeTrimming: false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, GrassSeeding: false },
       equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: false, Chainsaw: false, LawnAerator: false, Seeder: false},
 			request: {},
-			jobname: 'Yardwork',
-			time: '8:00 am',
-			hours: 2,
+			jobname: 'Placeholder',
+			time: 'Placeholder',
+			hours: 0,
 			rate: this.props.worker.rate,
+			worker: this.props.worker,
 			user: this.props.user,
 			addresses: this.props.addresses,
 			address: this.props.addresses[0] || { address: '', city: '', state: '', zipcode: '', },
@@ -110,8 +112,8 @@ class RequestMaker extends Component {
 				jobname: this.state.jobname,
 				userId: this.props.user._id,
 				workerId: this.props.worker._id,
-				workerFirst: this.props.worker.firstName,
-				userFirst: this.props.user.firstName,
+				workerFirst: this.state.worker.firstName,
+				userFirst: this.state.user.firstName,
 				accepted: false,
 				services: this.state.services,
 				equipment: this.state.equipment,
@@ -121,7 +123,7 @@ class RequestMaker extends Component {
 				image:
 					'http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG',
 				date: this.state.date,
-				rate: this.state.rate,
+				rate: this.state.worker.rate,
 			}),
 		})
 			.then(res => {
@@ -132,7 +134,7 @@ class RequestMaker extends Component {
 				console.log('request~~~~~', request)
 				if (request) {
 					this.setState({ request: request }, () =>
-						console.log('this.state after update', this.state.request),
+						this.props.makeRequestClick(this.state.request),
 					)
 				}
 			})
@@ -167,9 +169,9 @@ class RequestMaker extends Component {
 				/>
 				<div>
 					<RequestPreview
-						worker={this.props.worker}
-						user={this.props.user}
-						addresses={this.props.addresses}
+						worker={this.state.worker}
+						user={this.state.user}
+						address={this.state.address}
 						date={this.state.date}
 						services={this.state.services}
 						equipment={this.state.equipment}
