@@ -315,6 +315,10 @@ class WorkerProfile extends React.Component {
 		)
 
 		this.getUserWorkerRequests(this.state.user._id, this.props.location.pathname.slice(9))
+		this.getUserWorkerRequests(
+			this.state.user._id,
+			this.props.location.pathname.slice(9),
+		)
 
 		axios({
 			method: 'get',
