@@ -137,7 +137,7 @@ router.get(WORKERS_FILTER, (req, res, next) => {
         console.log(array)
         res.json(array)
       }
-      res.sendStatus(404)
+      else res.sendStatus(404)
     })
     .catch(next)
 })

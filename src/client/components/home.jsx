@@ -39,6 +39,7 @@ class HomePage extends React.Component {
       workers: workers,
     }, ()=> console.log('Home state!!~~~~', this.state.workers))
   }
+
   ComponentDidMount() {
     this.getWorkers()
   }
@@ -52,7 +53,7 @@ class HomePage extends React.Component {
 					/>
 				</div>
 				<div className="home-page-container">
-					<h1>things</h1>
+					<h1>thingsz</h1>
 					<BrowserRouter>
 						<Switch>
 							<Route
