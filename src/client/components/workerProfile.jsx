@@ -9,7 +9,6 @@ import {
 	requestsUserRoute,
 	requestsFilterRoute,
 } from '../../server/routes.js'
-import { workersUpdateRoute, workersShowRoute, requestsWorkerRoute, requestsUserRoute, requestsFilterRoute } from '../../server/routes.js'
 import WorkerRequestList from './workerRequestList.jsx'
 import axios from 'axios'
 
@@ -316,13 +315,11 @@ class WorkerProfile extends React.Component {
 		)
 
 		this.getUserWorkerRequests(this.state.user._id, this.props.location.pathname.slice(9))
+		this.getUserWorkerRequests(
+			this.state.user._id,
+			this.props.location.pathname.slice(9),
+		)
 
-		// fetch('/api/session', { credentails: 'same-origin'})
-		// 	.then((res) => res.json())
-		// 	.then((session) => {
-		// 		console.log(session, 'this is the session')
-		// 		this.setState({userId: session.user ? session.user._id : undefined})
-		// 	})
 		axios({
 			method: 'get',
 			url: '/api/session'
@@ -331,7 +328,6 @@ class WorkerProfile extends React.Component {
 			this.setState({ userId: res.data.user._id })
 		}).catch(console.log)
 		console.log(this.state, 'this is state')
-
 	}
 	render() {
 		return (
