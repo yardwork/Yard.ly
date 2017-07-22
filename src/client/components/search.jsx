@@ -1,6 +1,7 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
+
 
 class Search extends React.Component {
 	constructor(props) {
@@ -16,10 +17,12 @@ class Search extends React.Component {
 
 	}
 	handleChange(event) {
+		console.log(event)
 		this.setState({ inputValue: event.target.value })
 	}
 
 	handleSearch(e) {
+		console.log(e, 'hi')
 		fetch(`http://localhost:3000/api/filter/${this.state.inputValue}`, {
 			method: 'GET',
 		})
