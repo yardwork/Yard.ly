@@ -1,11 +1,11 @@
 import React from 'react'
 import WorkerRequest from './workerRequest.jsx'
 
-const WorkerRequestList = ({ requests, type }) =>
+const WorkerRequestList = (props) =>
 	<div className="worker-list-container">
-		{requests.map((request, i) =>
+		{props.requests.map((request, i) =>
 			<WorkerRequest
-        type={type}
+        type={props.type}
 				key={i}
 				request={request}
 				wid={request.workerId}
@@ -19,6 +19,7 @@ const WorkerRequestList = ({ requests, type }) =>
 				address={request.address}
 				equipment={request.equipment}
 				services={request.services}
+				accepted={request.accepted}
 			/>,
 		)}
 	</div>

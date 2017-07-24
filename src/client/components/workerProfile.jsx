@@ -99,6 +99,7 @@ class WorkerProfile extends React.Component {
 		this.submitImage = this.submitImage.bind(this)
 		this.updateUser = this.updateUser.bind(this)
 		this.updateRequest = this.updateRequest.bind(this)
+		this.updateSession = this.updateSession.bind(this)
 		this.getWorkerRequests = this.getWorkerRequests.bind(this)
 		this.getUserWorkerRequests = this.getUserWorkerRequests.bind(this)
 		this.makeRequestClick = this.makeRequestClick.bind(this)
@@ -173,8 +174,8 @@ class WorkerProfile extends React.Component {
 			},
 			() => this.updateUser(this.state.user._id, this.state.user),
 		)
-
-	updateRequest() {
+}
+	updateSession() {
 		axios({
 			method: 'get',
 			url: '/api/session',
@@ -380,7 +381,8 @@ class WorkerProfile extends React.Component {
 				console.log('kjlkjkljklj;', res)
 				this.setState({ currId: res.data.user._id, type: res.data.type }, () =>{
 					if (this.state.type === 'USER') {
-						this.getUser(this.state.currId)
+						this.getWorker(this.props.location.pathname.slice(9))
+						this.getUser(res.data.user._id)
 						this.getUserWorkerRequests(
 							this.state.currId,
 							this.props.location.pathname.slice(9),
@@ -393,13 +395,14 @@ class WorkerProfile extends React.Component {
 						this.state.type === 'WORKER' &&
 						this.state.currId === this.props.location.pathname.slice(9)
 					) {
+						this.getWorker(this.props.location.pathname.slice(9))
 						this.getWorkerRequests(this.props.location.pathname.slice(9))
 					}
 					console.log(this.state, 'this.state!!!!!!!!!!!!')
 			})
 		})
 			.catch(console.log)
-		console.log(this.state.worker, 'this is a WORKER~~~~~~~~~~~~ state')
+		console.log(this.state.user, 'this is a USER~~~~~~~~~~~~ state')
 	}
 	render() {
 		return (
@@ -419,20 +422,19 @@ class WorkerProfile extends React.Component {
 					onServicesClick={this.onServicesClick}
 					currId={this.state.currId}
 				/>
+				{ this.state.type === 'USER' ?
 					 <RequestMaker
 							updateRequest={this.updateRequest}
 							user={this.state.user}
 							worker={this.state.worker}
 							addresses={this.state.user.addresses}
 							makeRequestClick={this.makeRequestClick}
-						/>
-				{(this.state.type === 'USER' ||
-					this.state.currId === this.props.location.pathname.slice(9))
-					? <WorkerRequestList
+						/> : '' }
+			{(this.state.type === 'WORKER' && this.state.currId === this.props.location.pathname.slice(9)) || this.state.type === 'USER' ?
+					<WorkerRequestList
 							requests={this.state.requests}
 							type={this.state.type}
-						/>
-					: ''}
+						/> : ''}
 			</div>
 		)
 	}

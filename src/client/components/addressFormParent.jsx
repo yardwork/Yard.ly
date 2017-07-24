@@ -85,7 +85,7 @@ class AddressFormParent extends Component {
 			})
 			.then(requests => {
 				console.log('~~~~~~~worker', requests)
-				this.setState({ workerRequests: requests })
+				this.setState({ requests: requests })
 			})
 			.then(() => {
 				console.log('~~~~~~state', this.state)
@@ -207,16 +207,40 @@ class AddressFormParent extends Component {
 	componentDidMount() {
 		// console.log(this.state)
 		// this.getUser(this.props.user._id)
-		this.updateRequest()
+		axios({
+			method: 'get',
+			url: '/api/session',
+		})
+			.then(res => {
+				console.log('Heres the response', res)
+				this.setState(
+					{ currId: res.data.user._id, type: res.data.type },
+					() => {
+						if (this.state.type === 'USER') {
+							this.getUser(this.state.currId)
+							this.getUserRequests(this.state.currId)
+							console.log(
+								this.state,
+								'this is ~~~~~~~~~~~~ state',
+							)
+						} else if (this.state.type === 'WORKER') {
+							this.getWorkerRequests(this.state.currId)
+						}
+						console.log(this.state, 'this.state!!!!!!!!!!!!')
+					},
+				)
+			})
+			.catch(console.log)
 
 	}
 	render() {
 		return (
 			<div>
-				<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
 				<div>
 					{ this.state.type === 'USER' ?
 					<div>
+					<h1>Welcome {this.state.user.firstName}</h1>
+					<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList
 						onClickAddress={this.onClickAddress}
@@ -224,6 +248,8 @@ class AddressFormParent extends Component {
 						addresses={this.state.user.addresses}
 					/>
 				</div> : '' }
+				</div>
+				<div>
 					<WorkerRequestList  requests={this.state.requests} type={this.state.type} />
 				</div>
 			</div>

@@ -1,12 +1,10 @@
 import React from 'react'
 
-const PickAddress = ({
-	addresses, setAddress
-}) => {
-	const addressItems = (addresses).map(function(ele) {
+const PickAddress = (props) => {
+	const addressItems = props.addresses.map(function(ele) {
 		return (
 			<div>
-				<li><a onClick={() => setAddress(ele)}>Address: {ele.address}</a></li>
+				<li><a onClick={() => props.setAddress(ele)}>Address: {ele.address} City: {ele.city} State: {ele.state} Zip: {ele.zipcode}</a></li>
 			</div>
 		)
 	})

@@ -8,19 +8,80 @@ class RequestMaker extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-
 			date: 'Placeholder',
-      services: { Mowing: false, TreeTrimming: false, Edging: false, Weedeating: false, HedgeTrimming: false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, GrassSeeding: false },
-      equipment: { LawnMower: false, Weedeater: false, MulchTruck: false, Edger: false, HedgeTrimmer: false, Chainsaw: false, LawnAerator: false, Seeder: false},
-			request: {},
+			services: {
+				Mowing: false,
+				TreeTrimming: false,
+				Edging: false,
+				Weedeating: false,
+				HedgeTrimming: false,
+				Fertilizing: false,
+				Aerating: false,
+				Mulching: false,
+				Weeding: false,
+				Planting: false,
+				GrassSeeding: false,
+			},
+			equipment: {
+				LawnMower: false,
+				Weedeater: false,
+				MulchTruck: false,
+				Edger: false,
+				HedgeTrimmer: false,
+				Chainsaw: false,
+				LawnAerator: false,
+				Seeder: false,
+			},
+			request: {
+				_id: '',
+				jobname: 'Placeholder',
+				userId: '',
+				workerId: '',
+				accepted: false,
+				services: {
+					Mowing: false,
+					'Tree Trimming': false,
+					Edging: false,
+					'Weed Eating': false,
+					'Hedge Trimming': false,
+					Fertilizing: false,
+					Aerating: false,
+					Mulching: false,
+					Weeding: false,
+					planting: false,
+					'Grass Seeding': false,
+				},
+				equipment: {
+					'Lawn Mower': false,
+					'Weed Eater': false,
+					'Mulch Truck': false,
+					Edger: false,
+					'Hedge Trimmer': false,
+					Chainsaw: false,
+					'Lawn Aerator': false,
+					Seeder: false,
+				},
+				address: {
+					address: '',
+					city: '',
+					state: '',
+					zipcode: '',
+				},
+				time: '',
+				hours: 2,
+				rate: 21,
+				image: 'http://dummyimage.com/195x227.png/dddddd/000000',
+				__v: 0,
+			},
 			jobname: 'Placeholder',
 			time: 'Placeholder',
 			hours: 0,
-			rate: this.props.worker.rate,
-			worker: this.props.worker,
-			user: this.props.user,
-			addresses: this.props.addresses,
-			address: this.props.addresses[0] || { address: '', city: '', state: '', zipcode: '', },
+			address: this.props.user.addresses[0] || {
+				address: '',
+				city: '',
+				state: '',
+				zipcode: '',
+			},
 		}
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
@@ -83,7 +144,7 @@ class RequestMaker extends Component {
 			month = '0' + month
 		}
 
-		var newDate =  day + ' ' + month + ' ' + dt + ', ' + year
+		var newDate = day + ' ' + month + ' ' + dt + ', ' + year
 		console.log('Date~~~~~~~', newDate)
 		this.setState({
 			date: newDate,
@@ -112,8 +173,8 @@ class RequestMaker extends Component {
 				jobname: this.state.jobname,
 				userId: this.props.user._id,
 				workerId: this.props.worker._id,
-				workerFirst: this.state.worker.firstName,
-				userFirst: this.state.user.firstName,
+				workerFirst: this.props.worker.firstName,
+				userFirst: this.props.user.firstName,
 				accepted: false,
 				services: this.state.services,
 				equipment: this.state.equipment,
@@ -123,7 +184,7 @@ class RequestMaker extends Component {
 				image:
 					'http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG',
 				date: this.state.date,
-				rate: this.state.worker.rate,
+				rate: this.props.worker.rate,
 			}),
 		})
 			.then(res => {
@@ -155,7 +216,10 @@ class RequestMaker extends Component {
 				<form onChange={this.changeJobName}>
 					<input type="text" placeholder="Jobname" />
 				</form>
-				<PickAddress addresses={this.state.addresses} setAddress={this.setAddress} />
+				<PickAddress
+					addresses={this.props.user.addresses}
+					setAddress={this.setAddress}
+				/>
 				<PickaServiceEquipment
 					equipment={this.props.worker.equipment}
 					services={this.props.worker.services}
@@ -169,15 +233,15 @@ class RequestMaker extends Component {
 				/>
 				<div>
 					<RequestPreview
-						worker={this.state.worker}
-						user={this.state.user}
+						worker={this.props.worker}
+						user={this.props.user}
 						address={this.state.address}
 						date={this.state.date}
 						services={this.state.services}
 						equipment={this.state.equipment}
 						request={this.state.request}
 						jobname={this.state.jobname}
-						rate={this.state.rate}
+						rate={this.props.worker.rate}
 						hours={this.state.hours}
 						time={this.state.time}
 					/>
