@@ -68,6 +68,6 @@ module.exports = {
     `/requestsuser/${uid}`,
 
   requestsWorkerRoute: wid =>
-    `/requestworker/${wid}`,
+    `/requestsworker/${wid}`,
 
 }
