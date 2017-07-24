@@ -56,6 +56,7 @@ router.post(REQUESTS_CREATE, (req, res, next) => {
 		services: req.body.services,
 		equipment: req.body.equipment,
 		date: req.body.date,
+		dt: req.body.dt,
 		address: req.body.address,
 		time: req.body.time,
 		image: req.body.image,

@@ -3,6 +3,7 @@ import {
 	addressAddRoute,
 	addressDeleteRoute,
 	usersShowRoute,
+	usersUpdateRoute,
 	requestsUserRoute,
 	workersUpdateRoute,
 	workersShowRoute,
@@ -12,6 +13,7 @@ import {
 import AddressFormChild from './addressFormChild.jsx'
 import AddressChildList from './addressFormChildList.jsx'
 import WorkerRequestList from './workerRequestList.jsx'
+import EditContactInfo from './editContactInfo.jsx'
 import axios from 'axios'
 
 // import { usersUpdateRoute } from '../../shared/routes'
@@ -26,6 +28,10 @@ class AddressFormParent extends Component {
 				password:
 					'',
 				_id: '',
+				contactInfo: {
+					phoneNumber: '',
+					email: '',
+				},
 				addresses: [
 					{
 						zipcode: '',
@@ -46,6 +52,8 @@ class AddressFormParent extends Component {
 			type: '',
 		}
 		this.submitForm = this.submitForm.bind(this)
+		this.submitEmail = this.submitEmail.bind(this)
+		this.submitPhone = this.submitPhone.bind(this)
 		this.deleteAddress = this.deleteAddress.bind(this)
 		this.onClickDelete = this.onClickDelete.bind(this)
 		this.onClickAddress = this.onClickAddress.bind(this)
@@ -65,7 +73,7 @@ class AddressFormParent extends Component {
 			})
 			.then(requests => {
 				console.log('~~~~~~~worker', requests)
-				this.setState({ requests: requests })
+				this.setState({ requests: requests, type: 'WORKER' })
 			})
 			.then(() => {
 				console.log('~~~~~~state', this.state)
@@ -85,7 +93,7 @@ class AddressFormParent extends Component {
 			})
 			.then(requests => {
 				console.log('~~~~~~~worker', requests)
-				this.setState({ requests: requests })
+				this.setState({ requests: requests, type: 'USER' })
 			})
 			.then(() => {
 				console.log('~~~~~~state', this.state)
@@ -127,7 +135,7 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				this.setState({ user: data }, this.getUserRequests(this.state.user._id))
+				this.setState({ user: data, type: 'USER' })
 			})
 	}
 	submitForm(e) {
@@ -178,6 +186,57 @@ class AddressFormParent extends Component {
 		var arrIndex = { index: e }
 		this.deleteAddress(arrIndex, this.state.user._id)
 	}
+	updateUser(id, user) {
+		fetch('/api'.concat(usersUpdateRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify(user),
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				console.log('data', data)
+				if (data) {
+					this.setState({ user: data }, () =>
+						console.log('this.state after update', this.state.user),
+					)
+				}
+			})
+			.then(() => {
+				document.getElementById('email').value = ''
+				document.getElementById('phoneNumber').value = ''
+				document.getElementById('area').value = ''
+				document.getElementById('image').value = ''
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+	submitEmail(e) {
+		e.preventDefault()
+		var user = this.state.user
+		user.contactInfo.email = e.target.email.value
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
+	}
+// <EditContactInfo contactInfo={this.state.user} submitEmail={this.submitEmail} submitPhone={this.submitPhone} />
+	submitPhone(e) {
+		e.preventDefault()
+		var user = this.state.user
+		user.contactInfo.phoneNumber = e.target.phoneNumber.value
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
+	}
 	updateRequest() {
 		axios({
 			method: 'get',
@@ -211,26 +270,14 @@ class AddressFormParent extends Component {
 			method: 'get',
 			url: '/api/session',
 		})
-			.then(res => {
-				console.log('Heres the response', res)
-				this.setState(
-					{ currId: res.data.user._id, type: res.data.type },
-					() => {
-						if (this.state.type === 'USER') {
-							this.getUser(this.state.currId)
-							this.getUserRequests(this.state.currId)
-							console.log(
-								this.state,
-								'this is ~~~~~~~~~~~~ state',
-							)
-						} else if (this.state.type === 'WORKER') {
-							this.getWorkerRequests(this.state.currId)
-						}
-						console.log(this.state, 'this.state!!!!!!!!!!!!')
-					},
-				)
-			})
-			.catch(console.log)
+		.then(res=>{
+			if(res.data.type === 'USER') {
+				this.getUser(res.data.user._id)
+				this.getUserRequests(res.data.user._id)
+			} else if (res.data.type === 'WORKER' && res.data.user._id === this.props.location.pathname.slice(9)) {
+				this.getWorkerRequests(this.props.location.pathname.slice(9))
+			}
+		})
 
 	}
 	render() {
@@ -240,6 +287,7 @@ class AddressFormParent extends Component {
 					{ this.state.type === 'USER' ?
 					<div>
 					<h1>Welcome {this.state.user.firstName}</h1>
+
 					<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList
