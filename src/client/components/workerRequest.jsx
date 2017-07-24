@@ -150,9 +150,11 @@ class WorkerRequest extends React.Component {
             <p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
 					</div>
 				</div>
+				{this.props.type === 'WORKER'?
 				<button onClick={ () => this.acceptRequest(this.state.accepted)}>
 					{this.state.accepted ? 'Decline Job' : 'Accept Job'}
 				</button>
+			: ''}
 			</div>
 		)
 	}
