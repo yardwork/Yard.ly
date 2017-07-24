@@ -13,7 +13,7 @@ class PickaDate extends Component {
 		this.state = {
 			date: null,
 			time: now,
-			focused: true,
+			focused: false,
 			hours: 2,
 		}
 		this.format = 'h:mm a'
@@ -47,7 +47,7 @@ class PickaDate extends Component {
 					defaultValue={moment()}
 					className="xxx"
 					onChange={this.onChange}
-					format={format}
+					format="h:mm a"
 					use12hours
 				/>
 				</div>
