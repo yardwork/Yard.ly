@@ -10,6 +10,8 @@ const WorkerRequest = ({
 	equipment,
 	services,
   id,
+	accepted,
+	type,
 }) => {
 	const equipmentItems = Object.keys(equipment).map(function(key) {
 		var e
@@ -45,9 +47,9 @@ const WorkerRequest = ({
 					<p>Requested Services: {servicesItems}</p>
 					<p>Requested Equipment: {equipmentItems}</p>
 				</div>
-        { this.props.type === 'WORKER' ?
-				<button onClick={ () => this.acceptRequest(this.state.accepted)}>
-					{this.state.accepted ? 'Decline Job' : 'Accept Job'}
+        { type === 'WORKER' ?
+				<button onClick={ () => this.acceptRequest(accepted)}>
+					{accepted ? 'Decline Job' : 'Accept Job'}
 				</button> : '' }
 			</div>
 		</div>

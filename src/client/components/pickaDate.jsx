@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import TimePicker from 'rc-time-picker'
 // import './../../../node_modules/rc-time-picker/assets/index.css'
 import {
-	DateRangePicker,
 	SingleDatePicker,
-	DayPickerRangeController,
 } from 'react-dates'
 import moment from 'moment'
 const format = 'h:mm a'

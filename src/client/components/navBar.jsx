@@ -32,6 +32,7 @@ const NavBar = ( {userType, handleLogout} ) =>
               <li><Link to="/">/</Link></li>
               <li><Link to="/workers">Workers</Link></li>
               <li><Link to="/profile">Profile</Link></li>
+              <li><Link to="/user">User</Link></li>
               <li role="separator" className="divider"></li>
               <li><a href="#">Placeholder</a></li>
             </ul>
