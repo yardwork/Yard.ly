@@ -27,7 +27,7 @@ app.get('/api/logout', function (req, res) {
   console.log(req.session)
   req.session.destroy();
   console.log('logged out, session: ', req.session);
-  res.send('You have loggasfded out')
+  res.send('You have logged out')
 });
 
 
