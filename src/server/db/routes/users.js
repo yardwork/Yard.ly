@@ -52,7 +52,8 @@ router.post(USERS_CREATE, (req, res, next) => {
   const password = req.body.password
   bcrypt.hash(password)
     .then((hashedPassword) => {
-      const user = new User({ username: req.body.username, password: hashedPassword })
+      const user = new User({ username: req.body.username, password: hashedPassword,
+      firstName: req.body.firstName, lastName: req.body.lastName, contactInfo: req.body.contactInfo})
       user
         .save()
         .then((newUser) => {

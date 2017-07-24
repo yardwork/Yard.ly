@@ -6,12 +6,18 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      firstName: '',
+      lastName: '',
+      email: '',
       checked: '',
       isLogin: true
     }
     this.radioButtonHandler = this.radioButtonHandler.bind(this)
     this.handleUsernameChange = this.handleUsernameChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    this.handleFNChange = this.handleFNChange.bind(this)
+    this.handleLNChange = this.handleLNChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
     this.toggleAuthType = this.toggleAuthType.bind(this)
   }
@@ -34,6 +40,21 @@ class Login extends Component {
     console.log(this.state)
   }
 
+  handleFNChange(e) {
+    this.setState({firstName: e.target.value})
+    console.log(this.state)
+  }
+
+  handleLNChange(e) {
+    this.setState({lastName: e.target.value})
+    console.log(this.state)
+  }
+
+  handleEmailChange(e) {
+    this.setState({email: e.target.value})
+    console.log(this.state)
+  }
+
   handleLogin(e) {
     console.log('We are going to fetch',`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`)
     fetch(`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`, {
@@ -46,6 +67,9 @@ class Login extends Component {
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        contactInfo: {email: this.state.email},
       })
     })
     .then( (res) => {
@@ -87,11 +111,11 @@ class Login extends Component {
             >
               <span aria-hidden="true">&times;</span>
             </button>
-            <h5 className="modal-title" id="myModalLabel" onClick={this.toggleAuthType}>
+            <h4 className="modal-title" id="myModalLabel" onClick={this.toggleAuthType}>
               {this.state.isLogin
                 ? <span>Need an account? Click here</span>
                 : <span>Already have an account? Click here</span>}
-            </h5>
+            </h4>
           </div>
           <div className="modal-body">
 
@@ -105,6 +129,12 @@ class Login extends Component {
           </div>
                   <input type="text" className="form-control" placeholder="Username" onChange={this.handleUsernameChange}/>
                   <input type="text" className="form-control" placeholder="Password" onChange={this.handlePasswordChange}/>
+                  {this.state.isLogin ? "" : <div>
+                    <input type="text" className="form-control" placeholder="First Name" onChange={this.handleFNChange}/>
+                    <input type="text" className="form-control" placeholder="Last Name" onChange={this.handleLNChange}/>
+                    <input type="text" className="form-control" placeholder="Email" onChange={this.handleEmailChange}/>
+                  </div>
+                  }
 
           </div>
           <div className="modal-footer">
