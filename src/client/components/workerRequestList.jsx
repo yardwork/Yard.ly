@@ -13,6 +13,7 @@ const WorkerRequestList = (props) =>
 				id={request._id}
 				jobname={request.jobname}
 				date={request.date}
+				dt={request.dt}
 				time={request.time}
 				rate={request.rate}
 				hours={request.hours}

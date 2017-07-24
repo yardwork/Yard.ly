@@ -9,6 +9,7 @@ class RequestMaker extends Component {
 		super(props)
 		this.state = {
 			date: 'Placeholder',
+			dt: [],
 			services: {
 				Mowing: false,
 				TreeTrimming: false,
@@ -145,9 +146,11 @@ class RequestMaker extends Component {
 		}
 
 		var newDate = day + ' ' + month + ' ' + dt + ', ' + year
-		console.log('Date~~~~~~~', newDate)
+		var dateMonth = [dt, month]
+		console.log('Date~~~~~~~', dateMonth)
 		this.setState({
 			date: newDate,
+			dt: dateMonth,
 		})
 	}
 	setTime(time) {
@@ -184,6 +187,7 @@ class RequestMaker extends Component {
 				image:
 					'http://1.bp.blogspot.com/-gzCQGs87A3Y/VYNMq0zff1I/AAAAAAAAmoE/LAVO2uK5Efg/s1600/pinned%2Blawn%2Bmower.JPG',
 				date: this.state.date,
+				dt: this.state.dt,
 				rate: this.props.worker.rate,
 			}),
 		})

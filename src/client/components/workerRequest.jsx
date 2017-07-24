@@ -59,28 +59,26 @@
 // export default WorkerRequest
 
 import React from 'react'
-import {
-  requestsUpdateRoute,
-} from '../../server/routes.js'
+import { requestsUpdateRoute } from '../../server/routes.js'
 
 class WorkerRequest extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-      jobname: props.jobname,
-      date: props.date,
-      time: props.time,
-      rate: props.rate,
-      hours: props.hours,
-      address: props.address,
-      equipment: props.equipment,
-      services: props.services,
-      accepted: this.props.accepted,
-      id: props.id,
-      wid: props.wid,
-      uid: props.uid,
-      request: props.request,
-    }
+			jobname: props.jobname,
+			date: props.date,
+			time: props.time,
+			rate: props.rate,
+			hours: props.hours,
+			address: props.address,
+			equipment: props.equipment,
+			services: props.services,
+			accepted: this.props.accepted,
+			id: props.id,
+			wid: props.wid,
+			uid: props.uid,
+			request: props.request,
+		}
 		this.equipmentItems = Object.keys(props.equipment).map(function(key) {
 			var e
 			if (props.equipment[key] === true) {
@@ -95,41 +93,44 @@ class WorkerRequest extends React.Component {
 			}
 			return <p>{e}</p>
 		})
-    this.acceptRequest = this.acceptRequest.bind(this)
-    this.updateRequest = this.updateRequest.bind(this)
-  }
+		this.acceptRequest = this.acceptRequest.bind(this)
+		this.updateRequest = this.updateRequest.bind(this)
+	}
 
-  updateRequest(requestId, request) {
-    fetch('/api'.concat(requestsUpdateRoute(requestId)), {
-      headers: { 'Content-type': 'application/json' },
-      method: 'PUT',
-      body: JSON.stringify(request),
-    })
-      .then(res => {
-        if (!res.ok) throw Error(res.statusText)
-        return res.json()
-      })
-      .then(request => {
-        console.log('request~~~~~', request)
-        if (request) {
-          this.setState({ request: request, accepted: request.accepted }, () =>
-            console.log('this.state after update', this.state.request),
-          )
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+	updateRequest(requestId, request) {
+		fetch('/api'.concat(requestsUpdateRoute(requestId)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify(request),
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(request => {
+				console.log('request~~~~~', request)
+				if (request) {
+					this.setState({ request: request, accepted: request.accepted }, () =>
+						console.log('this.state after update', this.state.request),
+					)
+				}
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
 
-  acceptRequest(accepted) {
-    var request = this.props.request
-    request.accepted = !accepted
-    this.setState({
-      request: request,
-			accepted
-    }, ()=>this.updateRequest(this.state.id, this.state.request))
-  }
+	acceptRequest(accepted) {
+		var request = this.props.request
+		request.accepted = !accepted
+		this.setState(
+			{
+				request: request,
+				accepted,
+			},
+			() => this.updateRequest(this.state.id, this.state.request),
+		)
+	}
 	render() {
 		return (
 			<div>
@@ -138,23 +139,35 @@ class WorkerRequest extends React.Component {
 				</div>
 				<div className="panel-body">
 					<div className="panel-contact-info">
-            <p>Worker: {this.props.request.workerFirst} Homeowner: {this.props.request.userFirst}</p>
+						<div className="col-md-1">
+							<br />
+							<p className="calendar">
+								{this.props.dt[0]}<em>{this.props.dt[1]}</em>
+							</p>
+						</div>
+						<p>
+							Worker: {this.props.request.workerFirst} Homeowner:{' '}
+							{this.props.request.userFirst}
+						</p>
 						<p>{this.props.date} at {this.props.time}</p>
-						<p>{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}</p>
-            <div><h3>Requested Services: </h3>{this.servicesItems}</div>
+						<p>
+							{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}
+						</p>
+						<div><h3>Requested Services: </h3>{this.servicesItems}</div>
 						<div><h3>Requested Equipment: </h3>{this.equipmentItems}</div>
-            <p>
-              Address: {this.props.address.address} City: {this.props.address.city} State:{this.props.address.state}
-                    Zip: {this.props.address.zipcode}
-            </p>
-            <p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
+						<p>
+							Address: {this.props.address.address} City:{' '}
+							{this.props.address.city} State:{this.props.address.state}
+							Zip: {this.props.address.zipcode}
+						</p>
+						<p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
 					</div>
 				</div>
-				{this.props.type === 'WORKER'?
-				<button onClick={ () => this.acceptRequest(this.state.accepted)}>
-					{this.state.accepted ? 'Decline Job' : 'Accept Job'}
-				</button>
-			: ''}
+				{this.props.type === 'WORKER'
+					? <button onClick={() => this.acceptRequest(this.state.accepted)}>
+							{this.state.accepted ? 'Decline Job' : 'Accept Job'}
+						</button>
+					: ''}
 			</div>
 		)
 	}

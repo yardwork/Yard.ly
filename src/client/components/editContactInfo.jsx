@@ -20,15 +20,6 @@ const EditContactInfo = ({ contactInfo, submitEmail, submitPhone, submitArea, ar
 			/>
       <button type="submit">Submit</button>
 		</form>
-    <form onSubmit={submitArea}>
-      <input
-        id="area"
-        type="text"
-        name="area"
-        placeholder={"Edit area: " + area}
-      />
-      <button type="submit">Submit</button>
-    </form>
 	</div>
 
 export default EditContactInfo

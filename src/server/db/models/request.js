@@ -12,6 +12,7 @@ const RequestSchema = new Schema({
   address: { type: Object, required: false },
   time: { type: String, required: false },
   date: { type: String, required: false },
+  dt: Array,
   image: String,
   hours: Number,
   rate: Number,
