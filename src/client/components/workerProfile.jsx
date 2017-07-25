@@ -317,7 +317,14 @@ class WorkerProfile extends React.Component {
 		this.changeEquipment(e)
 	}
 	changeEquipment(type) {
-		var worker = this.state.worker
+		// var worker = this.state.worker
+		var worker = {
+			...this.state.worker,
+			equipment: {
+				...this.state.worker.equipment,
+				[type]: !this.state.worker.equipment[type]
+			}
+		};
 		worker.equipment[type] = !worker.equipment[type]
 		this.setState(
 			{

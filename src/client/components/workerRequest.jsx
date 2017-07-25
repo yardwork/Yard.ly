@@ -133,43 +133,65 @@ class WorkerRequest extends React.Component {
 	}
 	render() {
 		return (
+			<div className="col-md-4 col-sm-6">
 			<div className="card-container front">
 				<div className="card cover">
 					<div className="content">
-							<div className="panel-contact-info">
-								<div className="col-md-1">
-									<br />
-									<p className="calendar">
-										{this.props.dt[0]}<em>{this.props.dt[1]}</em>
-									</p>
-								</div>
-								<div className="content">
-									<h3>{this.props.jobname}</h3>
-								<p>
-									Worker: {this.props.request.workerFirst} Homeowner:{' '}
-									{this.props.request.userFirst}
-								</p>
-								<p>{this.props.date} at {this.props.time}</p>
-								<p>
-									{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}
+						<div className="panel-contact-info">
+							<div className="col-md-4">
+								<br />
+								<p className="calendar">
+									{this.props.dt[0]}<em>{this.props.dt[1]}</em>
 								</p>
 							</div>
+							<div className="header">
+							<div className="motto">
+								<h5>
+									{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}
+								</h5>
+								<div className="text-center">
+									<h5>
+										{this.props.address.address} {this.props.address.city}, {this.props.address.state} {this.props.address.zipcode}
+									</h5>
+								</div>
+								<p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
+								{this.props.type === 'WORKER'
+									? <button onClick={() => this.acceptRequest(this.state.accepted)}>
+											{this.state.accepted ? 'Decline Job' : 'Accept Job'}
+										</button>
+									: ''}
+							</div>
+							</div>
+							<div className="space-10"></div>
+							<div className="content">
+								<div className="main">
+									<h3 className="text-center">{this.props.jobname}</h3>
+									<div className="worker">
+										<p>
+											Worker: {this.props.request.workerFirst} Homeowner:
+											{this.props.request.userFirst}
+										</p>
+										<p>{this.props.date} at {this.props.time}</p>
+										<div className="items-container">
+											<div className="items">
+												<h4>Services:</h4><p>{this.servicesItems}</p>
+											</div>
+											<div className="items">
+												<h4>Equipment:</h4><p>{this.equipmentItems}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="footer">
+									<div className="social-links">
+
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-						<div><h3>Requested Services: </h3>{this.servicesItems}</div>
-						<div><h3>Requested Equipment: </h3>{this.equipmentItems}</div>
-						<p>
-							Address: {this.props.address.address} City:{' '}
-							{this.props.address.city} State:{this.props.address.state}
-							Zip: {this.props.address.zipcode}
-						</p>
-						<p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
-					</div>
-				{this.props.type === 'WORKER'
-					? <button onClick={() => this.acceptRequest(this.state.accepted)}>
-							{this.state.accepted ? 'Decline Job' : 'Accept Job'}
-						</button>
-					: ''}
+			</div>
 			</div>
 		)
 	}
