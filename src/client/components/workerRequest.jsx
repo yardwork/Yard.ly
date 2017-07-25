@@ -133,26 +133,29 @@ class WorkerRequest extends React.Component {
 	}
 	render() {
 		return (
-			<div>
-				<div className="panel-heading">
-					<h3 className="panel-title">{`${this.props.jobname}`}</h3>
+			<div className="card-container front">
+				<div className="card cover">
+					<div className="content">
+							<div className="panel-contact-info">
+								<div className="col-md-1">
+									<br />
+									<p className="calendar">
+										{this.props.dt[0]}<em>{this.props.dt[1]}</em>
+									</p>
+								</div>
+								<div className="content">
+									<h3>{this.props.jobname}</h3>
+								<p>
+									Worker: {this.props.request.workerFirst} Homeowner:{' '}
+									{this.props.request.userFirst}
+								</p>
+								<p>{this.props.date} at {this.props.time}</p>
+								<p>
+									{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}
+								</p>
+							</div>
+					</div>
 				</div>
-				<div className="panel-body">
-					<div className="panel-contact-info">
-						<div className="col-md-1">
-							<br />
-							<p className="calendar">
-								{this.props.dt[0]}<em>{this.props.dt[1]}</em>
-							</p>
-						</div>
-						<p>
-							Worker: {this.props.request.workerFirst} Homeowner:{' '}
-							{this.props.request.userFirst}
-						</p>
-						<p>{this.props.date} at {this.props.time}</p>
-						<p>
-							{this.props.rate} $/hr for {this.props.hours} hours = ${this.props.hours * this.props.rate}
-						</p>
 						<div><h3>Requested Services: </h3>{this.servicesItems}</div>
 						<div><h3>Requested Equipment: </h3>{this.equipmentItems}</div>
 						<p>
@@ -162,7 +165,6 @@ class WorkerRequest extends React.Component {
 						</p>
 						<p>{this.state.accepted ? 'Accepted' : 'Being Reviewed'}</p>
 					</div>
-				</div>
 				{this.props.type === 'WORKER'
 					? <button onClick={() => this.acceptRequest(this.state.accepted)}>
 							{this.state.accepted ? 'Decline Job' : 'Accept Job'}

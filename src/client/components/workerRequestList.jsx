@@ -2,7 +2,7 @@ import React from 'react'
 import WorkerRequest from './workerRequest.jsx'
 
 const WorkerRequestList = (props) =>
-	<div className="worker-list-container">
+	<div className="worker-list-container container row">
 		{props.requests.map((request, i) =>
 			<WorkerRequest
         type={props.type}
