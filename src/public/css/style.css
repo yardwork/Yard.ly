@@ -366,3 +366,117 @@ box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.16);
     box-shadow: none;
     padding: 10px 20px 20px;
 }
+.card .name {
+		font-family: 'Arima Madurai', cursive;
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+.card h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+.card .worker{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.card .motto{
+		font-family: 'Arima Madurai', cursive;
+    border-bottom: 1px solid #EEEEEE;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.card .items-container{
+	width: 100%;
+	margin-top: 50px;
+}
+.card .items{
+	display: block;
+	float: left;
+	width: 33.333333%;
+	text-align: center;
+}
+
+.card .items:first-child{
+	border-right: 1px solid #EEEEEE;
+}
+.card .items:last-child{
+	border-left: 1px solid #EEEEEE;
+}
+.card .items h4{
+	font-family: 'Arima Madurai', cursive;
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+.card .items p{
+	color: #777777;
+}
+
+.title{
+    color: #506A85;
+    text-align: center;
+    font-weight: 300;
+    font-size: 44px;
+    margin-bottom: 90px;
+    line-height: 90%;
+}
+.title small{
+    font-size: 17px;
+    color: #999;
+    text-transform: uppercase;
+    margin: 0;
+}
+.space-30{
+	height: 30px;
+	display: block;
+}
+.space-10{
+	height: 10px;
+	display: block;
+}
+.space-50{
+    height: 50px;
+    display: block;
+}
+.space-200{
+    height: 200px;
+    display: block;
+}
+.white-board{
+    background-color: #FFFFFF;
+    min-height: 200px;
+    padding: 60px 60px 20px;
+}
+.ct-heart{
+    color: #F74933;
+}
+
+ pre.prettyprint{
+    background-color: #ffffff;
+    border: 1px solid #999;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: left;
+}
+.atv, .str{
+    color: #05AE0E;
+}
+.tag, .pln, .kwd{
+     color: #3472F7;
+}
+.atn{
+  color: #2C93FF;
+}
+.pln{
+   color: #333;
+}
+.com{
+    color: #999;
+}
