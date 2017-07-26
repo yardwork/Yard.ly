@@ -41,9 +41,9 @@ class Search extends React.Component {
     return (
 				<form className="navbar-form navbar-left" role="search">
 				  <div className="form-group">
-				    <input type="text" className="form-control" placeholder="Search" value={this.state.inputValue} onChange={this.handleChange}/>
+				    <input type="text" className="form-control nav-search" placeholder="Search for workers" value={this.state.inputValue} onChange={this.handleChange}/>
 				  </div>
-				  <button type="submit" className="btn btn-default" value="oh god" onClick={this.handleSearch}>Submit</button>
+				  <button type="submit" className="btn btn-inverse" value="oh god" onClick={this.handleSearch}>Submit</button>
 				</form>
 		)
 	}

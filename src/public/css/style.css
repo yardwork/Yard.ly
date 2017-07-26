@@ -17,8 +17,13 @@ body {
   /*text-shadow: 2px 2px 2px white*/
 }
 
+/********** NavBar **********/
 .navbar {
   border-radius: 0;
+}
+
+.nav-search {
+  width: 500px;
 }
 
 /********** Landing Page **********/
