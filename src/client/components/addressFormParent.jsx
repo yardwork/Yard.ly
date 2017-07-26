@@ -15,7 +15,7 @@ import AddressChildList from './addressFormChildList.jsx'
 import WorkerRequestList from './workerRequestList.jsx'
 import EditContactInfo from './editContactInfo.jsx'
 import WorkerInfo from './workerInfo.jsx'
-import EquipmentServicesInfo from './EquipmentServicesInfo.jsx'
+import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import axios from 'axios'
 
 // import { usersUpdateRoute } from '../../shared/routes'
