@@ -611,6 +611,7 @@ class AddressFormParent extends Component {
 						addresses={this.state.user.addresses}
 					/>
 				</div> : '' }
+				<div className="g-signin2" data-onsuccess="onSignIn"></div>
 				{ this.state.type === 'WORKER' ?
 				<div>
 				<h1>Welcome {this.state.user.firstName}</h1>
