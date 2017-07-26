@@ -3,23 +3,16 @@ import React from 'react'
 const AddressChildEntry = props => {
 	return (
 		<div>
-			<div className="addressKey" onClick={() => props.onClickAddress(props.address)}>
-				<div className="panel panel-default">
-					<div className="panel-heading">
-						<div className="panel-title">
-							<h2>Address Entry: {props.number}</h2>
-						</div>
-					</div>
-			<div className="address">
-				<h3 className="panel-title" >{props.address.address} {props.address.city} {props.address.state} {props.address.zipcode}</h3>
-			</div>
+			<h3>Address: {props.number}</h3>
+			<h4>
+				{props.address.address} {props.address.city} {props.address.state}{' '}
+				{props.address.zipcode}
+			</h4>
 			<div className="addressDelete">
 				<button onClick={() => props.onClickDelete(props.number)}>
 					Delete
 				</button>
-				</div>
 			</div>
-		</div>
 		</div>
 	)
 }
