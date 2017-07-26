@@ -2,7 +2,6 @@ import React from 'react'
 
 const AddressFormChild = props => (
   <div>
-    <h1>Enter Your Address Here</h1>
     <form onSubmit={props.click}>
       <input id="address" type="text" name="address" placeholder="Address" />
       <input id="city" type="text" name="city" placeholder="City" />

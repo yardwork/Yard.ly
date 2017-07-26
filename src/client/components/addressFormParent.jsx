@@ -106,6 +106,8 @@ class AddressFormParent extends Component {
 		this.getUserRequests = this.getUserRequests.bind(this)
 		this.getWorkerRequests = this.getWorkerRequests.bind(this)
 		this.getWorker = this.getWorker.bind(this)
+		this.getUser  = this.getUser.bind(this)
+		this.updateUser = this.updateUser.bind(this)
 		this.updateRequest = this.updateRequest.bind(this)
 		this.submitEmail = this.submitEmail.bind(this)
 		this.submitPhone = this.submitPhone.bind(this)
@@ -113,12 +115,70 @@ class AddressFormParent extends Component {
 		this.submitRate = this.submitRate.bind(this)
 		this.submitRadius = this.submitRadius.bind(this)
 		this.submitAddress = this.submitAddress.bind(this)
+		this.submitUserPhone = this.submitUserPhone.bind(this)
+		this.submitUserEmail = this.submitUserEmail.bind(this)
 		this.updateWorker = this.updateWorker.bind(this)
 		this.onEquipmentClick = this.onEquipmentClick.bind(this)
 		this.onServicesClick = this.onServicesClick.bind(this)
 		this.changeService = this.changeService.bind(this)
 		this.changeEquipment = this.changeEquipment.bind(this)
 
+	}
+	submitUserEmail(e) {
+		e.preventDefault()
+		var user = {
+			...this.state.user,
+			contactInfo: {
+				...this.state.user.contactInfo,
+				email: e.target.email.value
+			}
+		}
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
+	}
+
+	submitUserPhone(e) {
+		e.preventDefault()
+		var user = {
+			...this.state.user,
+			contactInfo: {
+				...this.state.user.contactInfo,
+				phoneNumber: e.target.phoneNumber.value
+			}
+		}
+		this.setState(
+			{
+				user: user,
+			},
+			() => this.updateUser(this.state.user._id, this.state.user),
+		)
+	}
+	updateUser(id, user) {
+		fetch('/api'.concat(usersUpdateRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify(user),
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				if (data) {
+					this.setState({ user: data })
+				}
+			})
+			.then(() => {
+				document.getElementById('email').value = ''
+				document.getElementById('phoneNumber').value = ''
+			})
+			.catch(err => {
+				console.log(err)
+			})
 	}
 	updateWorker(id, worker) {
 		fetch('/api'.concat(workersUpdateRoute(id)), {
@@ -525,8 +585,25 @@ class AddressFormParent extends Component {
 					{ this.state.type === 'USER' ?
 					<div>
 					<h1>Welcome {this.state.user.firstName}</h1>
-
-					<h1 onClick={this.submitForm.bind(this)}>Add your address</h1>
+					<h2>{this.state.user.contactInfo.phoneNumber}{this.state.user.contactInfo.email}</h2>
+					<form onSubmit={this.submitUserPhone}>
+						<input
+							id="phoneNumber"
+							type="text"
+							name="phoneNumber"
+							placeholder={"Edit phone number: " + this.state.user.contactInfo.phoneNumber}
+						/>
+						<button type="submit">Submit</button>
+					</form>
+					<form onSubmit={this.submitUserEmail}>
+						<input
+							id="email"
+							type="text"
+							name="email"
+							placeholder={"Edit email: " + this.state.user.contactInfo.email}
+						/>
+						<button type="submit">Submit</button>
+					</form>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList
 						onClickAddress={this.onClickAddress}
