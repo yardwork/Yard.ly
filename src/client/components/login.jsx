@@ -106,7 +106,7 @@ class Login extends Component {
   render() {
     return (
     <div
-      className="modal fade bs-example-modal-sm"
+      className="modal fade modal-inverse"
       id="sign-in-modal"
       tabIndex="-1"
       role="dialog"
