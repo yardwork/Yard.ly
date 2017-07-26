@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Router } from 'react-router'
+import { Router, Redirect } from 'react-router'
 
 import Search from './search.jsx'
 
 
 const NavBar = ( {userType, handleLogout, setWorkers} ) =>
-  (<nav className="navbar navbar-inverse">
+  (<nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -15,7 +15,7 @@ const NavBar = ( {userType, handleLogout, setWorkers} ) =>
           <span className="icon-bar"></span>
           <span className="icon-bar"></span>
         </button>
-        <a className="navbar-brand" href="#">Yard.ly</a>
+        <a className="navbar-brand" href="/">Yard.ly</a>
       </div>
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <Search setWorkers={setWorkers}/>
