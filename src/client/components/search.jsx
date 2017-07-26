@@ -23,6 +23,7 @@ class Search extends React.Component {
 	}
 
 	handleSearch(e) {
+		e.preventDefault()
 		console.log(e, 'hi')
 		fetch(`http://localhost:3000/api/filter/${this.state.inputValue}`, {
 			method: 'GET',
@@ -43,7 +44,7 @@ class Search extends React.Component {
 				  <div className="form-group">
 				    <input type="text" className="form-control nav-search" placeholder="Search for workers" value={this.state.inputValue} onChange={this.handleChange}/>
 				  </div>
-				  <button type="submit" className="btn btn-inverse" value="oh god" onClick={this.handleSearch}>Submit</button>
+				  <button type="submit" className="btn btn-primary" onClick={this.handleSearch}>Submit</button>
 				</form>
 		)
 	}
