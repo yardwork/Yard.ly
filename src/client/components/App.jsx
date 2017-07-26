@@ -32,7 +32,7 @@ class App extends Component {
       //   _id: '5970ae7ae2aa44b1b406fdd6',
       //   addresses: []
       // },
-      userType: undefined,
+      userType: "placeholder",
     }
     this.setUserType = this.setUserType.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -44,8 +44,9 @@ class App extends Component {
   }
 
   handleLogout() {
-    fetch('/api/logout', {
+    axios({
       method: 'GET',
+      url: '/api/logout',
     })
     .then( () => {
       this.setState({userType: undefined})
@@ -61,24 +62,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/workers', {
-      method: 'GET'
-    }).then((response) => {
-      return response.json()
-    }).then((array) => {
-      // console.log('state is', this.state)
-      this.setState({ workers: array })
-      // console.log('state is', this.state)
+    axios({
+			method: 'get',
+			url: '/api/session',
+		}).then((res) => {
+      console.log(res.data.type)
+      this.setUserType(res.data.type)
     })
-    // fetch('/api/users/'.concat(this.state.user._id), {
-    //   method: 'GET'
-    // }).then((response) => {
-    //   return response.json()
-    // }).then((user) => {
-    //   console.log('state is', this.state)
-    //   this.setState({ user: user })
-    //   console.log('state is', this.state)
-    // })
 
   }
 
@@ -87,7 +77,7 @@ class App extends Component {
       <div>
       <BrowserRouter history={browserHistory}>
         <div>
-          <NavBar userType={this.state.userType} handleLogout={this.handleLogout}/>
+          <NavBar userType={this.state.userType} handleLogout={this.handleLogout} workers={this.state.workers} setWorkers={this.setWorkers}/>
           <Switch>
             {/* <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/> */}
             <Route path="/profile/:id" component={WorkerProfile} />
@@ -97,6 +87,7 @@ class App extends Component {
               render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers}/>}
             />
           </Switch>
+          {/* <WorkerList workers={this.props.workers}/> */}
         </div>
       </BrowserRouter>
       <Login setUserType={this.setUserType} userType={this.state.userType}/>
