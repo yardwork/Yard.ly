@@ -77,14 +77,14 @@ class App extends Component {
       <div>
       <BrowserRouter history={browserHistory}>
         <div>
-          <NavBar userType={this.state.userType} handleLogout={this.handleLogout} workers={this.state.workers} setWorkers={this.setWorkers}/>
+          <NavBar userType={this.state.userType} handleLogout={this.handleLogout} setWorkers={this.setWorkers}/>
           <Switch>
             {/* <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/> */}
             <Route path="/profile/:id" component={WorkerProfile} />
             <Route path="/user" render={()=><UserProfile user={this.state.user} />}/>
             <Route
               path="/"
-              render={() => <Search workers={this.state.workers} setWorkers={this.setWorkers}/>}
+              render={() => <WorkerList workers={this.state.workers} setWorkers={this.setWorkers}/>}
             />
           </Switch>
           {/* <WorkerList workers={this.props.workers}/> */}

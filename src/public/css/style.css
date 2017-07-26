@@ -40,11 +40,12 @@ body {
   margin: auto;
   min-width: 50%;
   min-height: 50%;
-  filter: brightness(50%) blur(4px);
+  /*filter: brightness(50%) blur(4px);*/
 }
 
 .home-page-container {
   margin: 25px;
+  margin-top: 100px;
 }
 
 .landing-search {
@@ -53,9 +54,10 @@ body {
 }
 
 .worker-list-container {
+  padding: 0;
   margin: 0 auto;
   margin-top: 25px;
-  width: 75%
+  width: 75%;
 }
 
 
@@ -349,13 +351,13 @@ left:13px
 right:13px
 }
 
-@import url('https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900');
+/*@import url('https://fonts.googleapis.com/css?family=Arima+Madurai:100,200,300,400,500,700,800,900');
 body {
 	margin-top: 60px;
 	font-size: 14px;
 	font-family: 'Arima Madurai', cursive;
 	background-color: #E5E9ED;
-}
+}*/
 .btn:hover,
 .btn:focus,
 .btn:active{
