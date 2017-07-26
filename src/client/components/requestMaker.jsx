@@ -249,7 +249,7 @@ class RequestMaker extends Component {
 					)
 				}
 			})
-			.then(()=> {
+			.then(() => {
 				document.getElementById('requestjobname').value = ''
 				document.getElementById('requesthours').value = ''
 			})
@@ -259,55 +259,42 @@ class RequestMaker extends Component {
 	}
 	changeJobName(e) {
 		e.preventDefault()
+		// console.log(e.target)
 		this.setState({
 			jobname: e.target.value,
 		})
 	}
+
 	render() {
 		return (
 			<div className="panel-body">
-				<h1>Request {this.props.worker.firstName}</h1>
-				<form onChange={this.changeJobName}>
-					<input id="requestjobname" type="text" placeholder="Jobname" />
-				</form>
-				<PickAddress
+				<RequestPreview
 					addresses={this.props.user.addresses}
 					setAddress={this.setAddress}
-				/>
-				<PickaServiceEquipment
+					changeJobName={this.changeJobName}
 					equipment={this.props.worker.equipment}
 					services={this.props.worker.services}
 					onServicesClick={this.onServicesClick}
 					onEquipmentClick={this.onEquipmentClick}
-				/>
-				<PickaDate
 					setDate={this.setDate}
 					setTime={this.setTime}
 					setHours={this.setHours}
+					worker={this.props.worker}
+					user={this.props.user}
+					workerFirst={this.props.worker.firstName}
+					userFirst={this.props.user.firstName}
+					address={this.state.address}
+					date={this.state.date}
+					dt={this.state.dt}
+					services={this.state.services}
+					equipment={this.state.equipment}
+					request={this.state.request}
+					jobname={this.state.jobname}
+					rate={this.props.worker.rate}
+					hours={this.state.hours}
+					time={this.state.time}
+					submitRequest={this.submitRequest}
 				/>
-				<div>
-					<RequestPreview
-						worker={this.props.worker}
-						user={this.props.user}
-						workerFirst={this.props.worker.firstName}
-						userFirst={this.props.user.firstName}
-						address={this.state.address}
-						date={this.state.date}
-						dt={this.state.dt}
-						services={this.state.services}
-						equipment={this.state.equipment}
-						request={this.state.request}
-						jobname={this.state.jobname}
-						rate={this.props.worker.rate}
-						hours={this.state.hours}
-						time={this.state.time}
-					/>
-					<div>
-					<button onClick={() => this.submitRequest()}>
-						Submit
-					</button>
-				</div>
-				</div>
 			</div>
 		)
 	}
