@@ -81,8 +81,8 @@ class Login extends Component {
       $('#sign-in-modal').modal('hide')
 
     }).catch((err) => {
-      console.log(err)
-
+      alert("The username and/or password you submitted was incorrect.")
+      console.log('asfasfasf',err)
     })
   }
 

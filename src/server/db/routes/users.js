@@ -72,6 +72,7 @@ router.post(USERS_LOGIN, (req, res, next) => {
     .then((user) => {
       if (!user) {
         console.log(user, 'no matching user was found!')
+        res.status(500).send('Something broke!')
       } else {
         bcrypt.compare(password, user.password)
           .then((isMatch) => {
