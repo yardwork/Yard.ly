@@ -255,11 +255,11 @@ class WorkerProfile extends React.Component {
 				return res.json()
 			})
 			.then(requests => {
-				console.log('~~~~~~~worker', requests)
+				// console.log('~~~~~~~worker', requests)
 				this.setState({ requests: requests, type: 'WORKER', currId: wid})
 			})
 			.then(() => {
-				console.log('~~~~~~state', this.state)
+				// console.log('~~~~~~state', this.state)
 
 			})
 			.catch(err => {
@@ -277,11 +277,11 @@ class WorkerProfile extends React.Component {
 				return res.json()
 			})
 			.then(requests => {
-				console.log('~~~~~~~requestsUserWorker', requests)
+				// console.log('~~~~~~~requestsUserWorker', requests)
 				this.setState({ requests: requests })
 			})
 			.then(() => {
-				console.log('~~~~~~state', this.state)
+				// console.log('~~~~~~state', this.state)
 			})
 			.catch(err => {
 				console.log(err)

@@ -32,7 +32,7 @@ class App extends Component {
       //   _id: '5970ae7ae2aa44b1b406fdd6',
       //   addresses: []
       // },
-      userType: undefined,
+      userType: "placeholder",
     }
     this.setUserType = this.setUserType.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -44,8 +44,9 @@ class App extends Component {
   }
 
   handleLogout() {
-    fetch('/api/logout', {
+    axios({
       method: 'GET',
+      url: '/api/logout',
     })
     .then( () => {
       this.setState({userType: undefined})
@@ -65,7 +66,8 @@ class App extends Component {
 			method: 'get',
 			url: '/api/session',
 		}).then((res) => {
-      console.log(res.body)
+      console.log(res.data.type)
+      this.setUserType(res.data.type)
     })
 
   }

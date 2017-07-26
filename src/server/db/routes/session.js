@@ -17,7 +17,7 @@ app.get('/api/session', function (req, res) {
 
 app.get('/api/logout', function (req, res) {
   console.log(req.session)
-  req.session.destroy();
+  req.session = undefined;
   console.log('logged out, session: ', req.session);
   res.send('You have loggasfded out')
 });
