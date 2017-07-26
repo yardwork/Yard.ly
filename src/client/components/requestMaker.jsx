@@ -198,10 +198,60 @@ class RequestMaker extends Component {
 			.then(request => {
 				console.log('request~~~~~', request)
 				if (request) {
-					this.setState({ request: request }, () =>
-						this.props.makeRequestClick(this.state.request),
+					this.setState(
+						{
+							request: request,
+							services: {
+								Mowing: false,
+								'Tree Trimming': false,
+								Edging: false,
+								'Weed Eating': false,
+								'Hedge Trimming': false,
+								Fertilizing: false,
+								Aerating: false,
+								Mulching: false,
+								Weeding: false,
+								planting: false,
+								'Grass Seeding': false,
+							},
+							equipment: {
+								'Lawn Mower': false,
+								'Weed Eater': false,
+								'Mulch Truck': false,
+								Edger: false,
+								'Hedge Trimmer': false,
+								Chainsaw: false,
+								'Lawn Aerator': false,
+								Seeder: false,
+							},
+							address: {
+								address: '',
+								city: '',
+								state: '',
+								zipcode: '',
+							},
+							time: '',
+							hours: 2,
+							rate: 21,
+							image: 'http://dummyimage.com/195x227.png/dddddd/000000',
+							__v: 0,
+							jobname: 'Placeholder',
+							time: 'Placeholder',
+							hours: 0,
+							address: {
+								address: '',
+								city: '',
+								state: '',
+								zipcode: '',
+							},
+						},
+						() => this.props.makeRequestClick(this.state.request),
 					)
 				}
+			})
+			.then(()=> {
+				document.getElementById('requestjobname').value = ''
+				document.getElementById('requesthours').value = ''
 			})
 			.catch(err => {
 				console.log(err)
@@ -215,10 +265,10 @@ class RequestMaker extends Component {
 	}
 	render() {
 		return (
-			<div>
-				<h1>Make a request</h1>
+			<div className="panel-body">
+				<h1>Request {this.props.worker.firstName}</h1>
 				<form onChange={this.changeJobName}>
-					<input type="text" placeholder="Jobname" />
+					<input id="requestjobname" type="text" placeholder="Jobname" />
 				</form>
 				<PickAddress
 					addresses={this.props.user.addresses}
@@ -239,8 +289,11 @@ class RequestMaker extends Component {
 					<RequestPreview
 						worker={this.props.worker}
 						user={this.props.user}
+						workerFirst={this.props.worker.firstName}
+						userFirst={this.props.user.firstName}
 						address={this.state.address}
 						date={this.state.date}
+						dt={this.state.dt}
 						services={this.state.services}
 						equipment={this.state.equipment}
 						request={this.state.request}
@@ -249,9 +302,11 @@ class RequestMaker extends Component {
 						hours={this.state.hours}
 						time={this.state.time}
 					/>
+					<div>
 					<button onClick={() => this.submitRequest()}>
 						Submit
 					</button>
+				</div>
 				</div>
 			</div>
 		)

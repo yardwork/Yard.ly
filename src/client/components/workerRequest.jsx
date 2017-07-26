@@ -263,14 +263,14 @@ class WorkerRequest extends React.Component {
 			if (props.equipment[key] === true) {
 				e = key
 			}
-			return <p>{e}</p>
+			return <div>{e}</div>
 		})
 		this.servicesItems = Object.keys(props.services).map(function(key) {
 			var e
 			if (props.services[key] === true) {
 				e = key
 			}
-			return <p>{e}</p>
+			return <div>{e}</div>
 		})
 		this.acceptRequest = this.acceptRequest.bind(this)
 		this.updateRequest = this.updateRequest.bind(this)
@@ -398,13 +398,13 @@ class WorkerRequest extends React.Component {
 								<div className="content">
 									<div className="main">
 										<h4 className="text-center">Equipment</h4>
-										<p className="text-center">
+										<h6 className="text-center">
 											{this.equipmentItems}
-										</p>
+										</h6>
 										<h4 className="text-center">Services</h4>
-										<p className="text-center">
+										<h6 className="text-center">
 											{this.servicesItems}
-										</p>
+										</h6>
 										<div className="stats-container">
 											<div className="stats">
 												<h4>50</h4>
@@ -421,7 +421,7 @@ class WorkerRequest extends React.Component {
 											<div className="stats">
 												<h4>95%</h4>
 												<p>
-													Completion Percentage
+													Satisfied
 												</p>
 											</div>
 										</div>
@@ -437,7 +437,7 @@ class WorkerRequest extends React.Component {
 									>
 										<i className="fa fa-reply" /> Back
 									</button>
-									<div className="social-links text-center">
+									<div className="social-links text-center hidden">
 										<a
 											href="http://deepak646.blogspot.in/"
 											className="facebook"
