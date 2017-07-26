@@ -1,28 +1,70 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Worker = ({ onClick, clicked, username, firstName, lastName, services, equipment, contactInfo, _id }) => (
-  <div className="panel panel-default"
-        onClick={onClick}
-        style={{
-          color: clicked ? 'red' : 'inherit',
-        }}
-  >
-    <div className="panel-heading">
-      <Link to={`/profile/${_id}`}>
-      <h3 className="panel-title">{`${firstName} ${lastName}`}</h3>
-      </Link>
-    </div>
-    <div className="panel-body">
-      <div className="panel-contact-info">
-        <p><span className="glyphicon glyphicon-earphone" aria-hidden="true"></span> {contactInfo ? contactInfo.phoneNumber : 'Contact info not found'}</p>
-        <p><span className="glyphicon glyphicon-envelope" aria-hidden="true"></span> {contactInfo ? contactInfo.email : 'Contact info not found'}</p>
-      </div>
-    </div>
-    <div>
-    {/* photo */}
-    </div>
-  </div>
-)
+const Worker = ({
+	onClick,
+	clicked,
+	username,
+	firstName,
+	lastName,
+	services,
+	equipment,
+	contactInfo,
+	_id,
+}) => {
+	const equipmentItems = Object.keys(equipment).map(function(key) {
+		var e
+		if (equipment[key] === true) {
+			e = key
+			return <small>  {e}  </small>
+		}
+	})
+	const servicesItems = Object.keys(services).map(function(key) {
+		var e
+		if (services[key] === true) {
+			e = key
+			return <small>  {e}  </small>
+		}
+	})
+
+	return (
+		<div
+			className="panel panel-default"
+			onClick={onClick}
+			style={{
+				color: clicked ? 'red' : 'inherit',
+			}}
+		>
+			<div className="panel-heading">
+				<Link to={`/profile/${_id}`}>
+					<h3 className="panel-title">{`${firstName} ${lastName}`}</h3>
+				</Link>
+			</div>
+			<div className="panel-body">
+				<div className="panel-contact-info">
+
+						<span
+							className="glyphicon glyphicon-wrench"
+							aria-hidden="true"
+						/>
+            <div>
+						{equipmentItems}
+					</div>
+          <br />
+						<span
+							className="glyphicon glyphicon-leaf"
+							aria-hidden="true"
+						/>
+            <div>
+						{servicesItems}
+					</div>
+				</div>
+			</div>
+			<div>
+				{/* photo */}
+			</div>
+		</div>
+	)
+}
 
 export default Worker

@@ -28,6 +28,7 @@ const RequestPreview = props => {
 				<div className="panel-contact-info">
 					<div className="col-md-1">
 						<br />
+						<br/>
 						<h1>Request for {props.worker.firstName}</h1>
 						<h3>{"'" + props.jobname + "'"}</h3>
 						<form onChange={props.changeJobName}>
