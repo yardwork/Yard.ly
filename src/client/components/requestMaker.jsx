@@ -145,7 +145,7 @@ class RequestMaker extends Component {
 			month = '0' + month
 		}
 
-		var newDate = day + ' ' + month + ' ' + dt + ', ' + year
+		var newDate = day + ' ' + month + ' ' + dt
 		var dateMonth = [dt, month]
 		console.log('Date~~~~~~~', dateMonth)
 		this.setState({

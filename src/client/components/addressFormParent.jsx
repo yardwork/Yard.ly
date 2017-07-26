@@ -14,6 +14,8 @@ import AddressFormChild from './addressFormChild.jsx'
 import AddressChildList from './addressFormChildList.jsx'
 import WorkerRequestList from './workerRequestList.jsx'
 import EditContactInfo from './editContactInfo.jsx'
+import WorkerInfo from './workerInfo.jsx'
+import EquipmentServicesInfo from './EquipmentServicesInfo.jsx'
 import axios from 'axios'
 
 // import { usersUpdateRoute } from '../../shared/routes'
@@ -22,6 +24,50 @@ class AddressFormParent extends Component {
 		super(props)
 		this.state = {
 			requests: [],
+			worker: {
+				username: '',
+				password: '',
+				services: {
+					Mowing: false,
+					TreeTrimming: false,
+					Edging: false,
+					Weedeating: false,
+					HedgeTrimming: false,
+					Fertilizing: false,
+					Aerating: false,
+					Mulching: false,
+					Weeding: false,
+					Planting: false,
+					GrassSeeding: false,
+				},
+				equipment: {
+					LawnMower: false,
+					Weedeater: false,
+					MulchTruck: false,
+					Edger: false,
+					HedgeTrimmer: true,
+					Chainsaw: false,
+					LawnAerator: false,
+					Seeder: false,
+				},
+				area: '',
+				firstName: '',
+				lastName: '',
+				contactInfo: {
+					phoneNumber: '',
+					email: '',
+				},
+				rate: 0,
+				requests: [],
+				radius: 5,
+				image: '',
+				address: {
+					address: '',
+					city: '',
+					state: '',
+					zipcode: '',
+				},
+			},
 			user: {
 				__v: 0,
 				username: '',
@@ -59,9 +105,175 @@ class AddressFormParent extends Component {
 		this.onClickAddress = this.onClickAddress.bind(this)
 		this.getUserRequests = this.getUserRequests.bind(this)
 		this.getWorkerRequests = this.getWorkerRequests.bind(this)
+		this.getWorker = this.getWorker.bind(this)
 		this.updateRequest = this.updateRequest.bind(this)
+		this.submitEmail = this.submitEmail.bind(this)
+		this.submitPhone = this.submitPhone.bind(this)
+		this.submitArea = this.submitArea.bind(this)
+		this.submitRate = this.submitRate.bind(this)
+		this.submitRadius = this.submitRadius.bind(this)
+		this.submitAddress = this.submitAddress.bind(this)
+		this.updateWorker = this.updateWorker.bind(this)
+		this.onEquipmentClick = this.onEquipmentClick.bind(this)
+		this.onServicesClick = this.onServicesClick.bind(this)
+		this.changeService = this.changeService.bind(this)
+		this.changeEquipment = this.changeEquipment.bind(this)
 
 	}
+	updateWorker(id, worker) {
+		fetch('/api'.concat(workersUpdateRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'PUT',
+			body: JSON.stringify(worker),
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				if (data) {
+					this.setState({ worker: data })
+				}
+			})
+			.then(() => {
+				this.getWorker(id)
+			})
+			.then(() => {
+				document.getElementById('email').value = ''
+				document.getElementById('phoneNumber').value = ''
+				document.getElementById('area').value = ''
+				document.getElementById('image').value = ''
+				document.getElementById('rate').value = ''
+				document.getElementById('radius').value = ''
+
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+	submitEmail(e) {
+		e.preventDefault()
+		var worker = {
+			...this.state.worker,
+			contactInfo: {
+				...this.state.worker.contactInfo,
+				email: e.target.email.value
+			}
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitPhone(e) {
+		e.preventDefault()
+		var worker = {
+			...this.state.worker,
+			contactInfo: {
+				...this.state.worker.contactInfo,
+				phoneNumber: e.target.phoneNumber.value
+			}
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitArea(e) {
+		var worker = {
+			...this.state.worker,
+			area: e.target.area.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitAddress(e) {
+		e.preventDefault()
+		var worker = {
+			...this.state.worker,
+			address: {
+				...this.state.worker.address,
+				address: e.target.address.value,
+				city: e.target.city.value,
+				state: e.target.state.value,
+				zipcode: e.target.zipcode.value,
+			}
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitImage(e) {
+		var worker = {
+			...this.state.worker,
+			image: e.target.image.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitRate(e) {
+		var worker = {
+			...this.state.worker,
+			rate: e.target.rate.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	submitRadius(e) {
+		var worker = {
+			...this.state.worker,
+			radius: e.target.radius.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
+	getWorker(id) {
+		fetch('/api'.concat(workersShowRoute(id)), {
+			headers: { 'Content-type': 'application/json' },
+			method: 'GET',
+		})
+			.then(res => {
+				if (!res.ok) throw Error(res.statusText)
+				return res.json()
+			})
+			.then(data => {
+				this.setState({ worker: data, currId: id })
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+
 	getWorkerRequests(wid) {
 		fetch('/api'.concat(requestsWorkerRoute(wid)), {
 			headers: { 'Content-type': 'application/json' },
@@ -72,11 +284,7 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(requests => {
-				console.log('~~~~~~~worker', requests)
 				this.setState({ requests: requests, type: 'WORKER' })
-			})
-			.then(() => {
-				console.log('~~~~~~state', this.state)
 			})
 			.catch(err => {
 				console.log(err)
@@ -92,11 +300,10 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(requests => {
-				console.log('~~~~~~~worker', requests)
 				this.setState({ requests: requests, type: 'USER' })
 			})
-			.then(() => {
-				console.log('~~~~~~state', this.state)
+			.catch((err) => {
+				console.log(err)
 			})
 	}
 	postAddress(address, id) {
@@ -110,7 +317,6 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				console.log('data', data)
 				if (data) {
 					this.setState({ user: data, addresses: data.addresses })
 				}
@@ -135,7 +341,7 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				this.setState({ user: data, type: 'USER' })
+				this.setState({ user: data, type: 'USER', currId: id })
 			})
 	}
 	submitForm(e) {
@@ -164,7 +370,6 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				console.log('data', data)
 				if (data) {
 					this.setState({ user: data })
 				}
@@ -197,11 +402,8 @@ class AddressFormParent extends Component {
 				return res.json()
 			})
 			.then(data => {
-				console.log('data', data)
 				if (data) {
-					this.setState({ user: data }, () =>
-						console.log('this.state after update', this.state.user),
-					)
+					this.setState({ user: data })
 				}
 			})
 			.then(() => {
@@ -243,29 +445,65 @@ class AddressFormParent extends Component {
 			url: '/api/session',
 		})
 			.then(res => {
-				console.log('Heres the response', res)
 				this.setState(
 					{ currId: res.data.user._id, type: res.data.type },
 					() => {
 						if (this.state.type === 'USER') {
 							this.getUser(this.state.currId)
 							this.getUserRequests(this.state.currId)
-							console.log(
-								this.state,
-								'this is ~~~~~~~~~~~~ state',
-							)
 						} else if (this.state.type === 'WORKER') {
 							this.getWorkerRequests(this.state.currId)
 						}
-						console.log(this.state, 'this.state!!!!!!!!!!!!')
 					},
 				)
 			})
 			.catch(console.log)
 	}
+
+	onEquipmentClick(e) {
+		this.changeEquipment(e)
+	}
+	changeEquipment(type) {
+		var worker = {
+			...this.state.worker,
+			equipment: {
+				...this.state.worker.equipment,
+				[type]: !this.state.worker.equipment[type]
+			}
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+	onServicesClick(e) {
+		this.changeService(e)
+	}
+	makeRequestClick() {
+		this.getUserWorkerRequests(
+			this.state.currId,
+			this.props.location.pathname.slice(9),
+		)
+	}
+	changeService(type) {
+		var worker = {
+			...this.state.worker,
+			services: {
+				...this.state.worker.services,
+				[type]: !this.state.worker.services[type]
+			}
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+
 	componentDidMount() {
-		// console.log(this.state)
-		// this.getUser(this.props.user._id)
 		axios({
 			method: 'get',
 			url: '/api/session',
@@ -274,8 +512,9 @@ class AddressFormParent extends Component {
 			if(res.data.type === 'USER') {
 				this.getUser(res.data.user._id)
 				this.getUserRequests(res.data.user._id)
-			} else if (res.data.type === 'WORKER' && res.data.user._id === this.props.location.pathname.slice(9)) {
-				this.getWorkerRequests(this.props.location.pathname.slice(9))
+			} else if (res.data.type === 'WORKER') {
+				this.getWorker(res.data.user._id)
+				this.getWorkerRequests(res.data.user._id)
 			}
 		})
 
@@ -283,7 +522,6 @@ class AddressFormParent extends Component {
 	render() {
 		return (
 			<div>
-				<div>
 					{ this.state.type === 'USER' ?
 					<div>
 					<h1>Welcome {this.state.user.firstName}</h1>
@@ -296,7 +534,18 @@ class AddressFormParent extends Component {
 						addresses={this.state.user.addresses}
 					/>
 				</div> : '' }
-				</div>
+				{ this.state.type === 'WORKER' ?
+				<div>
+				<h1>Welcome {this.state.user.firstName}</h1>
+				<WorkerInfo worker={this.state.worker} />
+				<EquipmentServicesInfo
+					worker={this.state.worker}
+					onEquipmentClick={this.onEquipmentClick}
+					onServicesClick={this.onServicesClick}
+					currId={this.state.currId}
+				/>
+				<EditContactInfo submitArea={this.submitArea} submitAddress={this.submitAddress} submitEmail={this.submitEmail} submitImage={this.submitImage} submitRate={this.submitRate} submitRadius={this.submitRadius} submitPhone={this.submitPhone} worker={this.state.worker} contactInfo={this.state.worker.contactInfo} area={this.state.worker.area} />
+			</div> : '' }
 				<div>
 					<WorkerRequestList  requests={this.state.requests} type={this.state.type} />
 				</div>

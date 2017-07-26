@@ -45,9 +45,10 @@ router.post(WORKERS_CREATE, (req, res, next) => {
   const { username, password, area, firstName, lastName, contactInfo } = req.body
   const services = { Mowing: false, 'Tree Trimming': false, Edging: false, 'Weed Eating': false, 'Hedge Trimming': false, Fertilizing: false, Aerating: false, Mulching: false, Weeding: false, Planting: false, 'Grass Seeding': false }
   const equipment = { 'Lawn Mower': false, 'Weed Eater': false, 'Mulch Truck': false, Edger: false, 'Hedge Trimmer': true, Chainsaw: false, 'Lawn Aerator': false, Seeder: false}
+  const address = { 'address': '', 'city': '', 'state': '', 'zipcode': ''}
   bcrypt.hash(password)
     .then((hashedPW) => {
-      const user = new Worker({ username, password: hashedPW, services: services, equipment: equipment, area, firstName, lastName, contactInfo })
+      const user = new Worker({ username, password: hashedPW, services: services, equipment: equipment, area, firstName, lastName, contactInfo, address: address, rate: 10, radius: 5 })
       user
         .save()
         .then((newUser) => {
