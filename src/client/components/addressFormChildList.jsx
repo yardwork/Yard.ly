@@ -1,5 +1,5 @@
 import React from 'react'
-import AddressChildEntry from './AddressFormChildEntry.jsx'
+import AddressChildEntry from './addressFormChildEntry.jsx'
 
 const AddressChildList = props => (
   <div>

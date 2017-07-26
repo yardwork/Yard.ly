@@ -2,6 +2,7 @@ import React from 'react'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
 import RequestMaker from './requestMaker.jsx'
+import EditContactInfo from './editContactInfo.jsx'
 
 import {
 	usersShowRoute,
@@ -56,6 +57,7 @@ class WorkerProfile extends React.Component {
 				rate: 0,
 				requests: [],
 				image: '',
+				radius: 5,
 				address: {
 					address: '',
 					city: '',
@@ -89,6 +91,9 @@ class WorkerProfile extends React.Component {
 		this.submitEmail = this.submitEmail.bind(this)
 		this.submitPhone = this.submitPhone.bind(this)
 		this.submitArea = this.submitArea.bind(this)
+		this.submitRate = this.submitRate.bind(this)
+		this.submitRadius = this.submitRadius.bind(this)
+		this.submitAddress = this.submitAddress.bind(this)
 		this.getWorker = this.getWorker.bind(this)
 		this.getUser = this.getUser.bind(this)
 		this.updateWorker = this.updateWorker.bind(this)
@@ -107,10 +112,13 @@ class WorkerProfile extends React.Component {
 	}
 	submitEmail(e) {
 		e.preventDefault()
-		var worker = this.state.worker
-		worker.contactInfo.email = e.target.email.value !== ''
-			? e.target.email.value
-			: worker.contactInfo.email
+		var worker = {
+			...this.state.worker,
+			contactInfo: {
+				...this.state.worker.contactInfo,
+				email: e.target.email.value
+			}
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -118,12 +126,16 @@ class WorkerProfile extends React.Component {
 			() => this.updateWorker(this.state.worker._id, this.state.worker),
 		)
 	}
+
 	submitPhone(e) {
 		e.preventDefault()
-		var worker = this.state.worker
-		worker.contactInfo.phoneNumber = e.target.phoneNumber.value !== ''
-			? e.target.phoneNumber.value
-			: worker.contactInfo.phoneNumber
+		var worker = {
+			...this.state.worker,
+			contactInfo: {
+				...this.state.worker.contactInfo,
+				phoneNumber: e.target.phoneNumber.value
+			}
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -132,9 +144,29 @@ class WorkerProfile extends React.Component {
 		)
 	}
 	submitArea(e) {
+		var worker = {
+			...this.state.worker,
+			area: e.target.area.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+	submitAddress(e) {
 		e.preventDefault()
-		var worker = this.state.worker
-		worker.area = e.target.area.value !== '' ? e.target.area.value : worker.area
+		var worker = {
+			...this.state.worker,
+			address: {
+				...this.state.worker.address,
+				address: e.target.address.value,
+				city: e.target.city.value,
+				state: e.target.state.value,
+				zipcode: e.target.zipcode.value,
+			}
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -143,12 +175,34 @@ class WorkerProfile extends React.Component {
 		)
 	}
 	submitImage(e) {
-		e.preventDefault()
-		var worker = this.state.worker
-		console.log(e.target.image.value)
-		worker.image = e.target.image.value !== ''
-			? e.target.image.value
-			: worker.image
+		var worker = {
+			...this.state.worker,
+			image: e.target.image.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+	submitRate(e) {
+		var worker = {
+			...this.state.worker,
+			rate: e.target.rate.value
+		}
+		this.setState(
+			{
+				worker: worker,
+			},
+			() => this.updateWorker(this.state.worker._id, this.state.worker),
+		)
+	}
+	submitRadius(e) {
+		var worker = {
+			...this.state.worker,
+			radius: e.target.radius.value
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -255,13 +309,16 @@ class WorkerProfile extends React.Component {
 				}
 			})
 			.then(() => {
-				this.getWorker(this.props.worker._id)
+				this.getWorker(id)
 			})
 			.then(() => {
 				document.getElementById('email').value = ''
 				document.getElementById('phoneNumber').value = ''
 				document.getElementById('area').value = ''
 				document.getElementById('image').value = ''
+				document.getElementById('rate').value = ''
+				document.getElementById('radius').value = ''
+
 			})
 			.catch(err => {
 				console.log(err)
@@ -314,18 +371,17 @@ class WorkerProfile extends React.Component {
 			})
 	}
 	onEquipmentClick(e) {
+		console.log(e)
 		this.changeEquipment(e)
 	}
 	changeEquipment(type) {
-		// var worker = this.state.worker
 		var worker = {
 			...this.state.worker,
 			equipment: {
 				...this.state.worker.equipment,
 				[type]: !this.state.worker.equipment[type]
 			}
-		};
-		worker.equipment[type] = !worker.equipment[type]
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -343,8 +399,13 @@ class WorkerProfile extends React.Component {
 		)
 	}
 	changeService(type) {
-		var worker = this.state.worker
-		worker.services[type] = !worker.services[type]
+		var worker = {
+			...this.state.worker,
+			services: {
+				...this.state.worker.services,
+				[type]: !this.state.worker.services[type]
+			}
+		}
 		this.setState(
 			{
 				worker: worker,
@@ -371,13 +432,7 @@ class WorkerProfile extends React.Component {
 		return (
 			<div className="worker-profile-container">
 
-				<WorkerInfo
-					worker={this.state.worker}
-					submitArea={this.submitArea}
-					submitEmail={this.submitEmail}
-					submitPhone={this.submitPhone}
-					currId={this.state.userId}
-				/>
+				<WorkerInfo worker={this.state.worker} />
 				<EquipmentServicesInfo
 					submitImage={this.submitImage}
 					worker={this.state.worker}
@@ -385,6 +440,9 @@ class WorkerProfile extends React.Component {
 					onServicesClick={this.onServicesClick}
 					currId={this.state.currId}
 				/>
+				{this.state.currId === this.props.location.pathname.slice(9) ?
+					<EditContactInfo submitArea={this.submitArea} submitAddress={this.submitAddress} submitEmail={this.submitEmail} submitImage={this.submitImage} submitRate={this.submitRate} submitRadius={this.submitRadius} submitPhone={this.submitPhone} worker={this.state.worker} contactInfo={this.state.worker.contactInfo} area={this.state.worker.area} />
+					: ''}
 				{ this.state.type === 'USER' ?
 					 <RequestMaker
 							updateRequest={this.updateRequest}
