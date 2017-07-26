@@ -20,6 +20,7 @@ class Login extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
     this.toggleAuthType = this.toggleAuthType.bind(this)
+    this.validateEmail = this.validateEmail.bind(this)
   }
 
   radioButtonHandler(e) {
@@ -55,7 +56,17 @@ class Login extends Component {
     console.log(this.state)
   }
 
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
   handleLogin(e) {
+    if (!this.validateEmail(this.state.email)) {
+      alert("The email you entered is invalid. Please enter a valid email address.")
+      return
+    }
+
     console.log('We are going to fetch',`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`)
     fetch(`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`, {
       method: 'POST',
@@ -81,8 +92,8 @@ class Login extends Component {
       $('#sign-in-modal').modal('hide')
 
     }).catch((err) => {
-      console.log(err)
-
+      alert("The username and/or password you submitted was incorrect.")
+      console.log('asfasfasf',err)
     })
   }
 
