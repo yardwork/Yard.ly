@@ -17,9 +17,6 @@ const NavBar = ( {userType, handleLogout, setWorkers} ) =>
         </button>
         <a className="navbar-brand" href="#">Yard.ly</a>
       </div>
-
-      <Search setWorkers={setWorkers}/>
-
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <Search setWorkers={setWorkers}/>
         <ul className="nav navbar-nav navbar-right">
