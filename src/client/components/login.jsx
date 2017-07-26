@@ -62,7 +62,7 @@ class Login extends Component {
   }
 
   handleLogin(e) {
-    if (!this.validateEmail(this.state.email)) {
+    if (!this.validateEmail(this.state.email) && !this.state.isLogin) {
       alert("The email you entered is invalid. Please enter a valid email address.")
       return
     }
