@@ -32,7 +32,7 @@ class PickaDate extends Component {
 	render() {
 		return (
 			<div>
-				<h1>This is a Date picker</h1>
+				<h1>Choose date, time, and number of hours</h1>
 				<div>
 					<SingleDatePicker
 						date={this.state.date} // momentPropTypes.momentObj or null
@@ -52,7 +52,7 @@ class PickaDate extends Component {
 				/>
 				</div>
 				<form onChange={this.onTimeChange}>
-					<input type="text"  placeholder="Hours of Work" />
+					<input id="requesthours" type="text"  placeholder="Hours of Work" />
 				</form>
 			</div>
 		)
