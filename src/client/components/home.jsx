@@ -48,7 +48,7 @@ class HomePage extends React.Component {
 			<div>
 				<div id="bg">
 					<img
-						src="http://hires.photospublic.com/PP13561214-Beautiful-green-Lawn-viewed-from-human-perspective.jpg"
+						src="green-lawn-resampled.jpg"
 						alt=""
 					/>
 				</div>

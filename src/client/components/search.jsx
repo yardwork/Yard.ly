@@ -33,44 +33,18 @@ class Search extends React.Component {
 			})
 			.then(Json => {
 			  this.props.setWorkers(Json)
+				return <Redirect to='/' />
 			})
 	}
 	render() {
 
     return (
-			<div>
-				<div id="bg">
-					<img
-						src="http://hires.photospublic.com/PP13561214-Beautiful-green-Lawn-viewed-from-human-perspective.jpg"
-						alt=""
-					/>
-				</div>
-				<div className="home-page-container">
-					<h1>things</h1>
-					<div className="col-lg-6">
-						<div className="input-group landing-search">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Find workers in your area"
-								value={this.state.inputValue}
-								onChange={this.handleChange}
-							/>
-							<span className="input-group-btn">
-								<button
-									className="btn btn-default"
-									type="button"
-									value="oh god"
-									onClick={this.handleSearch}
-								>
-									Go!
-								</button>
-							</span>
-						</div>
-						<WorkerList workers={this.props.workers}/>
-					</div>
-				</div>
-			</div>
+				<form className="navbar-form navbar-left" role="search">
+				  <div className="form-group">
+				    <input type="text" className="form-control" placeholder="Search" value={this.state.inputValue} onChange={this.handleChange}/>
+				  </div>
+				  <button type="submit" className="btn btn-default" value="oh god" onClick={this.handleSearch}>Submit</button>
+				</form>
 		)
 	}
 }
