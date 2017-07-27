@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const axios = require('axios')
 
 const bcrypt = require('bcrypt-as-promised')
 
@@ -57,6 +58,7 @@ router.post(USERS_CREATE, (req, res, next) => {
       user
         .save()
         .then((newUser) => {
+          console.log(newUser)
           res.status(201).json(newUser)
         })
         .catch(next)
