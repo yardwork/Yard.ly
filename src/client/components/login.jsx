@@ -67,7 +67,6 @@ class Login extends Component {
       return
     }
 
-    console.log('We are going to fetch',`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`)
     fetch(`/api/${this.state.checked}s/${this.state.isLogin ? 'login' : 'signup'}`, {
       method: 'POST',
       credentials: 'same-origin',
@@ -84,12 +83,15 @@ class Login extends Component {
       })
     })
     .then( (res) => {
-      console.log(res)
       return res.json()})
     .then((data) => {
-      console.log('userType', data.type)
       this.props.setUserType(data.type)
-      $('#sign-in-modal').modal('hide')
+      if (this.state.isLogin) {
+        $('#sign-in-modal').modal('hide')
+      } else {
+        alert("Your account has successfully been created.")
+        this.toggleAuthType()
+      }
     }).catch((err) => {
       alert("The username and/or password you submitted was incorrect.")
     })
