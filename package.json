@@ -47,6 +47,7 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "flatpickr": "^3.0.6",
+    "google-map-react": "^0.24.0",
     "mongoose": "^4.11.2",
     "mongoose-seed": "^0.3.2",
     "mongoose-seed-db": "^0.0.7",
