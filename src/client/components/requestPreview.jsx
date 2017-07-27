@@ -32,8 +32,17 @@ const RequestPreview = props => {
 						<h1>Request for {props.worker.firstName}</h1>
 						<h3>{"'" + props.jobname + "'"}</h3>
 						<form onChange={props.changeJobName}>
-							<input id="requestjobname" type="text" placeholder="Jobname" />
+							<div className="input-group">
+							<input type="text" className="form-control" placeholder="Jobname" aria-describedby="basic-addon2" />
+							<span className="input-group-addon" id="sizing-addon1">job</span>
+						</div>
 						</form>
+						<form onChange={props.setHours}>
+						<div className="input-group">
+							<input id="sethours" type="text" className="form-control" placeholder="Working hours" aria-describedby="basic-addon2" />
+							<span className="input-group-addon" id="sizing-addon1">hours</span>
+						</div>
+					</form>
 						<PickaDate
 							setDate={props.setDate}
 							setTime={props.setTime}
@@ -70,7 +79,6 @@ const RequestPreview = props => {
 					addresses={props.user.addresses}
 					setAddress={props.setAddress}
 				/>
-				<p>{props.accepted ? 'Accepted' : 'Being Reviewed'}</p>
 				<button onClick={() => props.submitRequest()}>
 					Submit Request
 				</button>

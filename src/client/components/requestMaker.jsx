@@ -12,25 +12,25 @@ class RequestMaker extends Component {
 			dt: [],
 			services: {
 				Mowing: false,
-				TreeTrimming: false,
+				'Tree Trimming': false,
 				Edging: false,
-				Weedeating: false,
-				HedgeTrimming: false,
+				'Weed Eating': false,
+				'Hedge Trimming': false,
 				Fertilizing: false,
 				Aerating: false,
 				Mulching: false,
 				Weeding: false,
 				Planting: false,
-				GrassSeeding: false,
+				'Grass Seeding': false,
 			},
 			equipment: {
-				LawnMower: false,
-				Weedeater: false,
-				MulchTruck: false,
+				'Lawn Mower': false,
+				'Weed Eater': false,
+				'Mulch Truck': false,
 				Edger: false,
-				HedgeTrimmer: false,
+				'Hedge Trimmer': false,
 				Chainsaw: false,
-				LawnAerator: false,
+				'Lawn Aerator': false,
 				Seeder: false,
 			},
 			request: {
@@ -101,11 +101,14 @@ class RequestMaker extends Component {
 		})
 	}
 	onEquipmentClick(type) {
-		var equipment = this.state.equipment
-		equipment[type] = !equipment[type]
+		console.log(type, '!!!!!!type', this.state.equipment)
+		var equipment = {
+			...this.state.equipment,
+			[type]: !this.state.equipment[type],
+		}
 		this.setState({
 			equipment: equipment,
-		})
+		}, ()=>{console.log('this.state for equip', this.state.equipment)})
 	}
 	setDate(d) {
 		var days = [
@@ -158,10 +161,11 @@ class RequestMaker extends Component {
 			time: time,
 		})
 	}
-	setHours(hours) {
+	setHours(e) {
+		e.preventDefault()
 		this.setState({
-			hours: hours,
-		})
+			hours: e.target.value,
+		}, ()=> {console.log('this,.state.hosuir', this.state.hours)})
 	}
 	setAddress(address) {
 		this.setState({

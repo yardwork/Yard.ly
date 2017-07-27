@@ -32,11 +32,11 @@ const PickaServiceEquipment = ({
 		<div>
 			<div className="dropdown">
 				<button
-					className="btn btn-primary dropdown-toggle"
+					className="btn btn-primary dropdown-toggle equipmentselect"
 					type="button"
 					data-toggle="dropdown"
 				>
-					Add/Remove Neccesary Equipment
+					Equipment
 				</button>
 				<ul className="dropdown-menu">
 					{equipmentItems}
@@ -44,11 +44,11 @@ const PickaServiceEquipment = ({
 			</div>
 			<div className="dropdown">
 				<button
-					className="btn btn-primary dropdown-toggle"
+					className="btn btn-primary dropdown-toggle equipmentselect"
 					type="button"
 					data-toggle="dropdown"
 				>
-					Add/Remove Neccesary Services
+					Services
 				</button>
 				<ul className="dropdown-menu">
 					{servicesItems}
