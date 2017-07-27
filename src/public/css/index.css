@@ -2,6 +2,11 @@
   display: inline-block;
   box-sizing: border-box;
 }
+.input-group-addon {
+  color: #f5f5f5;
+  background-color: #46ab07;
+  border: 1px solid #3D9222;
+}
 .rc-time-picker * {
   box-sizing: border-box;
 }
@@ -12,7 +17,10 @@
   padding: 4px 7px;
   height: 28px;
   cursor: text;
-  font-size: 12px;
+  font-size: 15px;
+  width: 130px;
+  height: 48px;
+  text-align: center;
   line-height: 1.5;
   color: #666;
   background-color: #fff;
@@ -20,6 +28,11 @@
   border: 1px solid #d9d9d9;
   border-radius: 6px;
   transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+#requesthours  {
+  width: 130px;
+  height: 48px;
+  text-align: center;
 }
 .rc-time-picker-panel {
   z-index: 1070;

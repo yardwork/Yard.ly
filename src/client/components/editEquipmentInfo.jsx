@@ -3,7 +3,7 @@ import React from 'react'
 const EditEquipmentInfo = ({ onEquipmentClick }) =>
 	<div>
 		<div className="dropdown">
-		  <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add/Remove Equipment
+		  <button className="btn btn-primary dropdown-toggle equipmentselect" type="button" data-toggle="dropdown">Add/Remove Equipment
 		  <span className="caret"></span></button>
 		  <ul className="dropdown-menu">
 		    <li><a onClick={() => onEquipmentClick('Lawn Mower')}>Lawn mower</a></li>

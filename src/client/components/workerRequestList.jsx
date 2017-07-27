@@ -1,5 +1,6 @@
 import React from 'react'
 import WorkerRequest from './workerRequest.jsx'
+import GoogleMapReact from 'google-map-react'
 
 const WorkerRequestList = props =>
 	<div className="container">
