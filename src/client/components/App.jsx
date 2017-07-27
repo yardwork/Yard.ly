@@ -61,6 +61,11 @@ class App extends Component {
     }, ()=> console.log('Home state!!~~~~', this.state.workers))
   }
 
+  onWorkerClick() {
+    $('#sign-in-modal').modal('show')
+    alert('You need to have an account to view a workers profile')
+  }
+
   componentDidMount() {
     axios({
 			method: 'get',
@@ -84,7 +89,7 @@ class App extends Component {
             <Route path="/user" render={()=><UserProfile user={this.state.user} />}/>
             <Route
               path="/"
-              render={() => <WorkerList workers={this.state.workers} setWorkers={this.setWorkers}/>}
+              render={() => <WorkerList userType={this.state.userType} onWorkerClick={this.onWorkerClick} workers={this.state.workers} setWorkers={this.setWorkers}/>}
             />
           </Switch>
           {/* <WorkerList workers={this.props.workers}/> */}

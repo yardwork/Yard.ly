@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Worker = ({
-	onClick,
+  userType,
+  onClick,
+	onWorkerClick,
 	clicked,
 	username,
 	firstName,
@@ -35,10 +37,9 @@ const Worker = ({
 				color: clicked ? 'red' : 'inherit',
 			}}
 		>
-			<div className="panel-heading">
-				<Link to={`/profile/${_id}`}>
-					<h3 className="panel-title">{`${firstName} ${lastName}`}</h3>
-				</Link>
+
+      <div className="panel-heading">
+        { userType !=='USER' && userType !=='WORKER' ? <h3 className="panel-title" onClick={()=>onWorkerClick}>{`${firstName} ${lastName}`}</h3> : <Link to={`/profile/${_id}`}><h3 className="panel-title">{`${firstName} ${lastName}`}</h3></Link>}
 			</div>
 			<div className="panel-body">
 				<div className="panel-contact-info">
