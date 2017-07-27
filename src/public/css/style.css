@@ -26,6 +26,10 @@ body {
   width: 500px;
 }
 
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+}
+
 /********** Landing Page **********/
 #bg {
   position: fixed;
@@ -75,6 +79,45 @@ body {
   margin: 0 auto;
   text-align: center;
   text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+}
+
+
+/********** Worker Profile **********/
+.worker-profile-container {
+  margin: 50px;
+  /*padding: 25px;*/
+  /*border: 1px solid var(--gray-lightest);*/
+  /*border-radius: 4px;*/
+}
+
+.worker-info-container {
+  margin-bottom: 50px;
+}
+
+.circular--square {
+  border-radius: 50%;
+  border: 1px solid var(--gray-medium);
+}
+
+.profile-photo {
+  float: left;
+}
+
+.worker-info {
+  height: 128px;
+  margin-left: 150px;
+}
+
+.service-entry {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  color: var(--gray-medium);
+  background-color: var(--gray-lightest);
+}
+
+.service-entry.checked {
+  color: inherit;
 }
 
 
@@ -243,45 +286,8 @@ a.text-danger:focus {
 }
 
 
-/********** Worker Profile **********/
-.worker-profile-container {
-  margin: 50px;
-  /*padding: 25px;*/
-  /*border: 1px solid var(--gray-lightest);*/
-  /*border-radius: 4px;*/
-}
 
-.worker-info-container {
-  margin-bottom: 50px;
-}
-
-.circular--square {
-  border-radius: 50%;
-  border: 1px solid var(--gray-medium);
-}
-
-.profile-photo {
-  float: left;
-}
-
-.worker-info {
-  height: 128px;
-  margin-left: 150px;
-}
-
-
-.service-entry {
-  margin: 5px;
-  padding: 5px;
-  border-radius: 4px;
-  color: var(--gray-medium);
-  background-color: var(--gray-lightest);
-}
-
-.service-entry.checked {
-  color: inherit;
-}
-
+/********** Addons **********/
 .calendar {
 margin: 0 Auto;
 padding-top:5px;
