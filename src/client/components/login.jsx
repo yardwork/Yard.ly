@@ -90,10 +90,8 @@ class Login extends Component {
       console.log('userType', data.type)
       this.props.setUserType(data.type)
       $('#sign-in-modal').modal('hide')
-
     }).catch((err) => {
       alert("The username and/or password you submitted was incorrect.")
-      console.log('asfasfasf',err)
     })
   }
 
