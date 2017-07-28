@@ -8,19 +8,19 @@ const ServicesInfo = ( {servicesInfo, currId, worker, onServicesClick} ) => {
     return (
 
       <div
-        className={servicesInfo[key] ? "col-xs-5 col-sm-4 col-md-3 col-lg-2 service-entry checked" : "col-xs-5 col-sm-4 col-md-3 col-lg-2 service-entry"}
+        className={servicesInfo[key] ? "col-xs-6 col-sm-4 col-md-3 col-lg-2 no-padding checked" : "col-xs-6 col-sm-4 col-md-3 col-lg-2 no-padding"}
         key={key}
       >
+      <div className={servicesInfo[key] ? "service-entry checked" : "service-entry"}>
         {servicesInfo[key]
           ? <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
           : <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> }
         {' ' + key}
       </div>
+      </div>
     )
   })
 
-  // console.log(Object.keys(servicesInfo))
-  // console.log(listItems)
   return (
     <div className="panel panel-primary">
       <div className="panel-heading">
@@ -30,8 +30,10 @@ const ServicesInfo = ( {servicesInfo, currId, worker, onServicesClick} ) => {
             : console.log(`${currId} doesn't match ${worker._id}`)}
         </h4>
       </div>
-      <div className="panel-body container-fluid">
+      <div className="panel-body">
+        <div className="container-fluid">
         {listItems}
+        </div>
       </div>
     </div>
   )

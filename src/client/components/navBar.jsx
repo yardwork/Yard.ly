@@ -23,7 +23,7 @@ const NavBar = ( {userType, handleLogout, setWorkers} ) =>
           <li>
             {userType === 'placeholder' || userType === undefined ? "" :
             <Link to='/user'>
-            <p>Profile</p>
+              <a>My Profile</a>
             </Link>}
           </li>
           {userType === 'placeholder' ? "" :
