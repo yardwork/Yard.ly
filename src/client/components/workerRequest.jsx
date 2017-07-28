@@ -339,14 +339,10 @@ class WorkerRequest extends React.Component {
 	}
 	render() {
 		return (
-<<<<<<< 3b3aff2721ba64e7624ebf4d4ecd02b202b9074e
-			<div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-=======
 			<div>
 				<CompletionModal />
 				<div className="col-sm-1" />
 				<div className="col-md-4 col-sm-6">
->>>>>>> completion modal
 					<div
 						className={
 							this.state.hover
@@ -391,7 +387,7 @@ class WorkerRequest extends React.Component {
 												>
 													{this.state.accepted ? 'Decline Job' : 'Accept Job'}
 												</button>
-											: <a href="#" data-toggle="modal" data-target="#completion-modal">Sign In</a>
+											: <a href="#" data-toggle="modal" data-target="#completion-modal">Completed</a>
 										}
 									</div>
 								</div>
@@ -463,6 +459,7 @@ class WorkerRequest extends React.Component {
 						</div>
 					</div>
 				</div>
+			</div>
 		)
 	}
 }
