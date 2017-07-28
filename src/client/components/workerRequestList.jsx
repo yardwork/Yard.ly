@@ -3,10 +3,9 @@ import WorkerRequest from './workerRequest.jsx'
 import GoogleMapReact from 'google-map-react'
 
 const WorkerRequestList = props =>
-	<div className="container">
-		<div className="row">
-			<div className="col-sm-10 col-sm-offset-1">
-				<div className="worker-list-container">
+<div className="requests-container" style={{marginTop: '50px'}}>
+ <h2 className="text-center">Requests</h2>
+				<div className="container-fluid">
 					{props.requests.map((request, i) =>
 						<WorkerRequest
 							type={props.type}
@@ -30,9 +29,6 @@ const WorkerRequestList = props =>
 						/>,
 					)}
 				</div>
-			</div>
-			<div className="space-200" />
-		</div>
-	</div>
+</div>
 
 export default WorkerRequestList
