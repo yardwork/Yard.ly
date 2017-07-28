@@ -12,6 +12,7 @@ import WorkerProfile from './workerProfile.jsx'
 import Login from './login.jsx'
 import Search from './search.jsx'
 import MapList from './mapList.jsx'
+import Modal from './modal.jsx'
 
 const user = {
   __v: 0,
@@ -88,7 +89,7 @@ class App extends Component {
             {/* <Route path="/workers" render={()=><WorkerList workers={this.state.workers}/>}/> */}
             <Route path="/profile/:id" component={WorkerProfile} />
             <Route path="/user" render={()=><UserProfile user={this.state.user} />}/>
-            <Route path="/map" render={()=><MapList />}/>
+            <Route path="/modal" render={()=><Modal />}/>
             <Route
               path="/"
               render={() => <WorkerList userType={this.state.userType} onWorkerClick={this.onWorkerClick} workers={this.state.workers} setWorkers={this.setWorkers}/>}

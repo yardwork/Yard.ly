@@ -276,6 +276,7 @@ class WorkerRequest extends React.Component {
 		this.updateRequest = this.updateRequest.bind(this)
 		this.rotateCard = this.rotateCard.bind(this)
 		this.getWorker = this.getWorker.bind(this)
+		this.getRandomInt = this.getRandomInt.bind(this)
 	}
 
 	updateRequest(requestId, request) {
@@ -300,7 +301,11 @@ class WorkerRequest extends React.Component {
 				console.log(err)
 			})
 	}
-
+	getRandomInt(min, max) {
+   min = Math.ceil(min);
+   max = Math.floor(max);
+   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+ }
 	acceptRequest(accepted) {
 		var request = this.props.request
 		request.accepted = !accepted
@@ -407,19 +412,19 @@ class WorkerRequest extends React.Component {
 										</h6>
 										<div className="stats-container">
 											<div className="stats">
-												<h4>50</h4>
+												<h4>{this.getRandomInt(4, 25)}</h4>
 												<p>
 													Jobs
 												</p>
 											</div>
 											<div className="stats">
-												<h4>9.5</h4>
+												<h4>{this.getRandomInt(40, 100) * .1 }</h4>
 												<p>
 													Rating
 												</p>
 											</div>
 											<div className="stats">
-												<h4>95%</h4>
+												<h4>{this.getRandomInt(50, 95)}%</h4>
 												<p>
 													Satisfied
 												</p>
