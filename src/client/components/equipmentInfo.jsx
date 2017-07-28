@@ -1,6 +1,7 @@
 import React from 'react'
+import EditEquipmentInfo from './editEquipmentInfo.jsx'
 
-const EquipmentInfo = ( {equipment} ) => {
+const EquipmentInfo = ( {equipment, currId, onEquipmentClick, worker} ) => {
 
   const listItems = Object.keys(equipment).map(function (key) {
     // console.log('asfasdf')
@@ -20,7 +21,11 @@ const EquipmentInfo = ( {equipment} ) => {
   return (
     <div className="panel panel-primary">
       <div className="panel-heading">
-        <h4 className="panel-title">Available Equipment</h4>
+        <h4 className="panel-title">Available Equipment
+          { currId === worker._id
+            ? <EditEquipmentInfo onEquipmentClick={onEquipmentClick} />
+            : console.log(`${currId} doesn't match ${worker._id}`)}
+        </h4>
       </div>
       <div className="panel-body container-fluid">
         {listItems}

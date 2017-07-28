@@ -1,11 +1,12 @@
 import React from 'react'
 
 const EditEquipmentInfo = ({ onEquipmentClick }) =>
-	<div>
-		<div className="dropdown">
-		  <button className="btn btn-primary dropdown-toggle equipmentselect" type="button" data-toggle="dropdown">Add/Remove Equipment
-		  <span className="caret"></span></button>
-		  <ul className="dropdown-menu">
+		<div className="dropdown" style={{float: 'right'}}>
+		<div className="dropdown-toggle" data-toggle="dropdown" style={{cursor: 'pointer'}}>
+			<span className="panel-title"><small>EDIT </small></span>
+		  <span className="caret"></span>
+		</div>
+		  <ul className="dropdown-menu dropdown-menu-right">
 		    <li><a onClick={() => onEquipmentClick('Lawn Mower')}>Lawn mower</a></li>
 		    <li><a onClick={() => onEquipmentClick('Weed Eater')}>Weed Eater</a></li>
 				<li><a onClick={() => onEquipmentClick('Mulch Truck')}>Truck for Mulch</a></li>
@@ -16,6 +17,5 @@ const EditEquipmentInfo = ({ onEquipmentClick }) =>
 				<li><a onClick={() => onEquipmentClick('Seeder')}>Seeder</a></li>
 		  </ul>
 		</div>
-	</div>
 
 export default EditEquipmentInfo

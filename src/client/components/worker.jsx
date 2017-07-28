@@ -37,7 +37,7 @@ const Worker = ({
 		>
 			<div className="worker-header">
 			<img className="circular--square worker-list-photo" src={image} width="150px" height="150px" />
-			{ userType !=='USER' && userType !=='WORKER' ? <h3 onClick={()=>onWorkerClick}><strong>{`${firstName} ${lastName}`}</strong></h3> : <Link to={`/profile/${_id}`}><h3><strong>{`${firstName} ${lastName}`}</strong></h3></Link>}
+			{ userType !=='USER' && userType !=='WORKER' ? <h3 onClick={()=>onWorkerClick()}><strong>{`${firstName} ${lastName}`}</strong></h3> : <Link to={`/profile/${_id}`}><h3><strong>{`${firstName} ${lastName}`}</strong></h3></Link>}
 			<div>{area}</div>
 			</div>
 			<div className="panel-body container-fluid worker-services-equipment panel-footer">
@@ -45,7 +45,7 @@ const Worker = ({
 				<strong>Services</strong>
 				<div className="container-fluid serv-eqp-container">
 					{servicesItems}
-				</div><strong>{`${firstName} ${lastName}`}</strong>
+				</div>
 				</div>
 				<div className="worker-equipment col-xs-6">
 				<strong>Equipment</strong>
@@ -53,9 +53,6 @@ const Worker = ({
 					{equipmentItems}
 				</div>
 				</div>
-			</div>
-			<div>
-				{/* photo */}
 			</div>
 		</div>
 	)

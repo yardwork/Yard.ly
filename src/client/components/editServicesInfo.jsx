@@ -1,11 +1,12 @@
 import React from 'react'
 
 const EditServicesInfo = ({ onServicesClick }) =>
-	<div>
-		<div className="dropdown">
-		  <button  className="btn btn-primary dropdown-toggle servicesselect" type="button" data-toggle="dropdown">Add/Remove Services
-		  <span className="caret"></span></button>
-		  <ul className="dropdown-menu">
+		<div className="dropdown" style={{float: 'right'}}>
+		<div className="dropdown-toggle" data-toggle="dropdown" style={{cursor: 'pointer'}}>
+			<span className="panel-title"><small>EDIT </small></span>
+		  <span className="caret"></span>
+		</div>
+		  <ul className="dropdown-menu dropdown-menu-right">
 				<li><a onClick={() => onServicesClick('Mowing')}>Mowing</a></li>
 				<li><a onClick={() => onServicesClick('Tree Trimming')}>Tree Trimming</a></li>
 				<li><a onClick={() => onServicesClick('Edging')}>Edging</a></li>
@@ -19,6 +20,5 @@ const EditServicesInfo = ({ onServicesClick }) =>
 				<li><a onClick={() => onServicesClick('Fertilizing')}>Fertilizing</a></li>
 		  </ul>
 		</div>
-	</div>
 
 export default EditServicesInfo
