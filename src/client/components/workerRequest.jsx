@@ -216,6 +216,7 @@
 
 import React from 'react'
 import { requestsUpdateRoute, workersShowRoute } from '../../server/routes.js'
+import CompletionModal from './completion.jsx'
 
 class WorkerRequest extends React.Component {
 	constructor(props) {
@@ -339,6 +340,7 @@ class WorkerRequest extends React.Component {
 	render() {
 		return (
 			<div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+				<CompletionModal />
 					<div
 						className={
 							this.state.hover
@@ -383,7 +385,16 @@ class WorkerRequest extends React.Component {
 												>
 													{this.state.accepted ? 'Decline Job' : 'Accept Job'}
 												</button>
-											: ''}
+											: <button
+														className="btn btn-simple"
+														rel="tooltip"
+														title="Flip Card"
+														data-toggle="modal"
+														data-target="#completion-modal"
+													>
+														Completed
+													</button>
+										}
 									</div>
 								</div>
 							</div>
@@ -453,7 +464,7 @@ class WorkerRequest extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div>
+			</div>
 		)
 	}
 }
