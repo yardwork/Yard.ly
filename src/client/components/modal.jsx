@@ -8,7 +8,7 @@ class Modal extends Component {
 			id: props.id || '597b762ae14901519e42f5ca',
       rating: 10,
       completion: 100,
-      total: 0,
+      total: props.request.rate * props.request.hours || 0,
 			wid: props.wid || '597b6c9de14901519e42f5c6',
 			worker: props.worker || {
 				_id: '597b6c9de14901519e42f5c6',
@@ -114,6 +114,7 @@ class Modal extends Component {
 		this.deleteRequest = this.deleteRequest.bind(this)
     this.rateWorker = this.rateWorker.bind(this)
     this.formChange = this.formChange.bind(this)
+		this.compChange = this.compChange.bind(this)
 	}
 	deleteRequest(id) {
 		fetch('/api'.concat(requestsDeleteRoute(id)), {
@@ -125,13 +126,14 @@ class Modal extends Component {
 				return res.json()
 			})
 			.then(data => {
-				this.setState({ request: data })
+				this.setState({ request: data }, ()=> $('#completion-modal').modal('hide'))
 			})
 			.catch(err => {
 				console.log(err)
 			})
 	}
 	updateWorker(id, worker) {
+		this.rateWorker()
 		fetch('/api'.concat(workersUpdateRoute(id)), {
 			headers: { 'Content-type': 'application/json' },
 			method: 'PUT',
@@ -154,14 +156,19 @@ class Modal extends Component {
 			})
 	}
   formChange(e){
-    e.preventDefault()
-    console.log(e.target.rating.value);
-    // this.setState({
-    //   rating: e.target.rating.value,
-    //   completion: e.target.completion.value,
-    //   total: this.state.request.rate * this.state.request.hours,
-    // })
+    console.log(e.target.value);
+    this.setState({
+      rating: e.target.value,
+      total: this.state.request.rate * this.state.request.hours,
+    })
   }
+	compChange(e){
+		console.log(e.target.value);
+		this.setState({
+			completion: e.target.value,
+			total: this.state.request.rate * this.state.request.hours,
+		})
+	}
   rateWorker(){
     var worker = {
       ...this.state.worker,
@@ -202,11 +209,12 @@ class Modal extends Component {
 		            Rate your worker!
 		          </h4>
 		        </div>
-		        <div className="modal-body">
-		          <input type="text" className="form-control" placeholder="Rating"/>
-		          <input type="text" className="form-control" placeholder="Completion"/>
+		        <div className="modal-body" >
+		          <input id="Rating" type="text" className="form-control" placeholder="Rating" onChange={this.formChange}/>
+		          <input id="Completion" type="text" className="form-control" placeholder="Completion" onChange={this.compChange}/>
 		        </div>
 		        <div className="modal-footer">
+							<img src="https://cdn4.iconfinder.com/data/icons/online-casinos/512/Paypal-128.png" onClick={()=> alert("You have just paid your worker" + '"' + this.state.total + '"' + " dollars please take the time to rate your worker" )}></img>
 		          <button
 		            type="button"
 		            className="btn btn-default"

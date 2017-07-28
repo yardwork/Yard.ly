@@ -305,7 +305,12 @@ class WorkerRequest extends React.Component {
 	getRandomInt(min, max) {
    min = Math.ceil(min);
    max = Math.floor(max);
-   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+   return (Math.floor(Math.random() * (max - min)) + min).toFixed(0); //The maximum is exclusive and the minimum is inclusive
+ }
+ getRandomIntDec(min, max) {
+	 min = Math.ceil(min);
+	 max = Math.floor(max);
+	 return (Math.floor(Math.random() * (max - min)) + min).toFixed(1); //The maximum is exclusive and the minimum is inclusive
  }
 	acceptRequest(accepted) {
 		var request = this.props.request
@@ -427,7 +432,7 @@ class WorkerRequest extends React.Component {
 												</p>
 											</div>
 											<div className="stats">
-												<h4>{this.getRandomInt(40, 100) * .1 }</h4>
+												<h4>{this.getRandomIntDec(40, 100) * .1 }</h4>
 												<p>
 													Rating
 												</p>
