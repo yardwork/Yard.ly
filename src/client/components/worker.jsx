@@ -13,52 +13,45 @@ const Worker = ({
 	equipment,
 	contactInfo,
 	_id,
+	image,
+	area
 }) => {
 	const equipmentItems = Object.keys(equipment).map(function(key) {
-		var e
 		if (equipment[key] === true) {
-			e = key
-			return <small>  {e}  </small>
+			return <p className="col-xs-6 serv-eqp-entry">{key}</p>
 		}
 	})
 	const servicesItems = Object.keys(services).map(function(key) {
-		var e
 		if (services[key] === true) {
-			e = key
-			return <small>  {e}  </small>
+			return <p className="col-xs-6 serv-eqp-entry">{key}</p>
 		}
 	})
 
 	return (
 		<div
-			className="panel panel-default"
+			className="panel panel-default worker-container"
 			onClick={onClick}
 			style={{
 				color: clicked ? 'red' : 'inherit',
 			}}
 		>
-
-      <div className="panel-heading">
-        { userType !=='USER' && userType !=='WORKER' ? <h3 className="panel-title" onClick={()=>onWorkerClick}>{`${firstName} ${lastName}`}</h3> : <Link to={`/profile/${_id}`}><h3 className="panel-title">{`${firstName} ${lastName}`}</h3></Link>}
+			<div className="worker-header">
+			<img className="circular--square worker-list-photo" src={image} width="150px" height="150px" />
+			{ userType !=='USER' && userType !=='WORKER' ? <h3 onClick={()=>onWorkerClick}><strong>{`${firstName} ${lastName}`}</strong></h3> : <Link to={`/profile/${_id}`}><h3><strong>{`${firstName} ${lastName}`}</strong></h3></Link>}
+			<div>{area}</div>
 			</div>
-			<div className="panel-body">
-				<div className="panel-contact-info">
-
-						<span
-							className="glyphicon glyphicon-wrench"
-							aria-hidden="true"
-						/>
-            <div>
-						{equipmentItems}
-					</div>
-          <br />
-						<span
-							className="glyphicon glyphicon-leaf"
-							aria-hidden="true"
-						/>
-            <div>
-						{servicesItems}
-					</div>
+			<div className="panel-body container-fluid worker-services-equipment panel-footer">
+				<div className="worker-services col-xs-6" style={{borderRight: "1px solid #ddd"}}>
+				<strong>Services</strong>
+				<div className="container-fluid serv-eqp-container">
+					{servicesItems}
+				</div><strong>{`${firstName} ${lastName}`}</strong>
+				</div>
+				<div className="worker-equipment col-xs-6">
+				<strong>Equipment</strong>
+				<div className="container-fluid serv-eqp-container">
+					{equipmentItems}
+				</div>
 				</div>
 			</div>
 			<div>

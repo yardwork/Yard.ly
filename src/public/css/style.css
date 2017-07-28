@@ -81,6 +81,49 @@ body {
   text-shadow: 2px 4px 8px rgba(0,0,0,0.5);
 }
 
+.worker-container {
+  /*border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;*/
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.worker-header {
+  text-align: center;
+}
+
+.worker-list-photo {
+  display: inline-block;
+  margin: 25px;
+  margin-bottom: 0px;
+}
+
+.worker-panel-body {
+  border: 1px solid green;
+}
+
+.worker-services {
+  padding: 0px 15px;
+}
+
+.worker-equipment {
+  padding: 0px 15px;
+}
+
+.worker-services-equipment {
+  padding: 10px 0px;
+  margin-top: 10px;
+}
+
+.serv-eqp-entry {
+  margin: 0px;
+  padding: 0px;
+}
+
+.serv-eqp-container {
+  padding: 0px;
+}
 
 /********** Worker Profile **********/
 .worker-profile-container {
