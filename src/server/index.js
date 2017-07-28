@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongooseConnection = require('mongoose').connection
 const session = require('express-session')
@@ -15,7 +16,8 @@ const app = express()
 app.use(session({
   secret: 'COOKIE_SECRET'
 }))
-app.use('/api', bodyParser.json(), usersRoute, workersRoute, requestsRoute)
+
+app.use('/api',cors(), bodyParser.json(), usersRoute, workersRoute, requestsRoute)
 
 app.use(express.static(path.join(__dirname, '../public')))
 app.get('/api/session', function (req, res) {
