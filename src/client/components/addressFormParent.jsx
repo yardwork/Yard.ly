@@ -16,6 +16,7 @@ import WorkerRequestList from './workerRequestList.jsx'
 import EditContactInfo from './editContactInfo.jsx'
 import WorkerInfo from './workerInfo.jsx'
 import EquipmentServicesInfo from './equipmentServicesInfo.jsx'
+import MapList from './mapList.jsx'
 import axios from 'axios'
 
 // import { usersUpdateRoute } from '../../shared/routes'
@@ -622,6 +623,7 @@ class AddressFormParent extends Component {
 					currId={this.state.currId}
 				/>
 				<EditContactInfo submitArea={this.submitArea} submitAddress={this.submitAddress} submitEmail={this.submitEmail} submitImage={this.submitImage} submitRate={this.submitRate} submitRadius={this.submitRadius} submitPhone={this.submitPhone} worker={this.state.worker} contactInfo={this.state.worker.contactInfo} area={this.state.worker.area} />
+				<MapList requests={this.state.requests} />
 			</div> : '' }
 				<div>
 					<WorkerRequestList  requests={this.state.requests} type={this.state.type} />

@@ -67,6 +67,7 @@ class RequestMaker extends Component {
 					city: '',
 					state: '',
 					zipcode: '',
+					coordinates: {},
 				},
 				time: '',
 				hours: 2,
@@ -92,6 +93,7 @@ class RequestMaker extends Component {
 		this.setTime = this.setTime.bind(this)
 		this.setHours = this.setHours.bind(this)
 		this.setAddress = this.setAddress.bind(this)
+		this.getCoor = this.getCoor.bind(this)
 	}
 	onServicesClick(type) {
 		var services = this.state.services
@@ -172,6 +174,26 @@ class RequestMaker extends Component {
 			address: address,
 		})
 	}
+	getCoor(address) {
+		var add = address.address.split(' ').join('')
+		fetch(
+			`https://maps.googleapis.com/maps/api/geocode/json?address=${add}`,
+			{
+				method: 'GET',
+			},
+		)
+			.then(res => {
+				return res.json()
+			})
+			.then(obj => {
+				console.log(obj)
+				var addy = {
+					...address,
+					coordinates: obj.results[0].geometry.location
+				}
+				this.setState({ address: addy })
+			})
+	}
 	submitRequest() {
 		fetch('/api'.concat(REQUESTS_CREATE), {
 			headers: { 'Content-type': 'application/json' },
@@ -193,7 +215,7 @@ class RequestMaker extends Component {
 				date: this.state.date,
 				dt: this.state.dt,
 				rate: this.props.worker.rate,
-			}),
+			})
 		})
 			.then(res => {
 				if (!res.ok) throw Error(res.statusText)
@@ -202,6 +224,7 @@ class RequestMaker extends Component {
 			.then(request => {
 				console.log('request~~~~~', request)
 				if (request) {
+					this.props.makeRequestClick(request)
 					this.setState(
 						{
 							request: request,
@@ -233,6 +256,7 @@ class RequestMaker extends Component {
 								city: '',
 								state: '',
 								zipcode: '',
+								coordinates: {},
 							},
 							time: '',
 							hours: 2,
@@ -248,8 +272,7 @@ class RequestMaker extends Component {
 								state: '',
 								zipcode: '',
 							},
-						},
-						() => this.props.makeRequestClick(this.state.request),
+						}
 					)
 				}
 			})
@@ -274,7 +297,7 @@ class RequestMaker extends Component {
 			<div className="panel-body">
 				<RequestPreview
 					addresses={this.props.user.addresses}
-					setAddress={this.setAddress}
+					setAddress={this.getCoor}
 					changeJobName={this.changeJobName}
 					equipment={this.props.worker.equipment}
 					services={this.props.worker.services}
