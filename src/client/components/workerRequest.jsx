@@ -216,7 +216,7 @@
 
 import React from 'react'
 import { requestsUpdateRoute, workersShowRoute } from '../../server/routes.js'
-import CompletionModal from './completion.jsx'
+import Modal from './modal.jsx'
 
 class WorkerRequest extends React.Component {
 	constructor(props) {
@@ -345,7 +345,7 @@ class WorkerRequest extends React.Component {
 	render() {
 		return (
 			<div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-				<CompletionModal />
+				<Modal id={this.state.id} wid={this.state.wid} worker={this.state.worker} request={this.props.request} />
 					<div
 						className={
 							this.state.hover

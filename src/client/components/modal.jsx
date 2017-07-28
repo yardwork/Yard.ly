@@ -177,31 +177,50 @@ class Modal extends Component {
     this.updateWorker(this.state.wid, this.state.worker)
   }
 	componentDidMount() {
-		this.deleteRequest(this.state.id)
 	}
 	render() {
 		return (
-			<div className="worker-container">
-				<div>
-					<h1>{this.state.request.jobname}</h1>
-          <form onSubmit={() => this.rateWorker()}>
-            <input
-              id="rating"
-              type="text"
-              name="rating"
-              placeholder="Rate the user: "
-            />
-            <input
-              id="completion"
-              type="text"
-              name="completion"
-              placeholder="Completion Percentage %"
-            />
-            <button type="submit" name="rate">
-            </button>
-          </form>
-				</div>
-			</div>
+			<div
+		    className="modal fade modal-inverse"
+		    id="completion-modal"
+		    tabIndex="-1"
+		    role="dialog"
+		    aria-labelledby="mySmallModalLabel"
+		  >
+		    <div className="modal-dialog modal-sm" role="document">
+		      <div className="modal-content">
+		        <div className="modal-header">
+		          <button
+		            type="button"
+		            className="close"
+		            data-dismiss="modal"
+		            aria-label="Close"
+		          >
+		            <span aria-hidden="true">&times;</span>
+		          </button>
+		          <h4 className="modal-title" id="myModalLabel">
+		            Rate your worker!
+		          </h4>
+		        </div>
+		        <div className="modal-body">
+		          <input type="text" className="form-control" placeholder="Rating"/>
+		          <input type="text" className="form-control" placeholder="Completion"/>
+		        </div>
+		        <div className="modal-footer">
+		          <button
+		            type="button"
+		            className="btn btn-default"
+		            data-dismiss="modal"
+		          >
+		            Close
+		          </button>
+		          <button type="button" className="btn btn-primary" onClick={() => this.deleteRequest(this.state.id)}>
+		            Submit
+		          </button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
 		)
 	}
 }
