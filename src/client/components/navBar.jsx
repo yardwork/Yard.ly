@@ -23,12 +23,14 @@ const NavBar = ( {userType, handleLogout, setWorkers} ) =>
           <li>
             {userType === 'placeholder' || userType === undefined ? "" :
             <Link to='/user'>
-            <a href="#">Profile</a>
-          </Link>}
+            <p>Profile</p>
+            </Link>}
           </li>
           {userType === 'placeholder' ? "" :
           userType
-          ? <li><a href="#" onClick={handleLogout}>Log Out</a></li>
+          ? <li><Link to='/'>
+          <a onClick={handleLogout}>Log Out</a>
+        </Link></li>
           : <li><a href="#" data-toggle="modal" data-target="#sign-in-modal">Sign In</a></li>
           }
         </ul>
