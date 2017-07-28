@@ -17,6 +17,17 @@ body {
 	/*text-shadow: 2px 2px 2px white*/
 }
 
+.text-gray {
+  color: var(--gray-medium);
+}
+
+.vert-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
 /********** NavBar **********/
 .navbar {
 	border-radius: 0;
@@ -84,19 +95,20 @@ body {
 .worker-container {
 	/*border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;*/
-	width: 500px;
+	width: 600px;
 	margin: 0 auto;
 	margin-bottom: 50px;
 }
 
 .worker-header {
 	text-align: center;
+  min-height: 275px;
 }
 
 .worker-list-photo {
 	display: inline-block;
-	margin: 25px;
-	margin-bottom: 0px;
+	margin: 0 auto;
+  margin-top: 25px;
 }
 
 .worker-panel-body {
@@ -111,9 +123,21 @@ body {
 	padding: 0px 15px;
 }
 
+.worker-right {
+  position: relative;
+  min-height: 280px;
+}
+
+.worker-top-right {
+  height: 100px;
+}
+
 .worker-services-equipment {
-	padding: 10px 0px;
+	/*padding: 10px 0px;*/
 	margin-top: 10px;
+  bottom: 0;
+  position: absolute;
+  min-height: 175px;
 }
 
 .serv-eqp-entry {
@@ -154,6 +178,10 @@ body {
 
 .no-padding {
   padding: 0px;
+}
+
+.no-margin {
+  margin: 0px;
 }
 
 .service-entry {
@@ -748,12 +776,6 @@ pre.prettyprint {
 .marker img {
   width: 2px,
   height: 2px,
-}
-
-.container {
-	max-width: 1024px;
-	width: 100%;
-	margin: 0 auto;
 }
 
 .listing-pic {
