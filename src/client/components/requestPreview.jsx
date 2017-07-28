@@ -26,7 +26,7 @@ const RequestPreview = props => {
 					{props.dt[0]}<em>{props.dt[1]}</em>
 				</p>
 				<div className="panel-contact-info">
-					<div className="col-md-1">
+					<div>
 						<br />
 						<br/>
 						<h1>Request for {props.worker.firstName}</h1>

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 import {getMarkerHolderStyle, getMarkerStyle, getMarkerTextStyle} from './markerStyle.js'
 
-const AnyReactComponent = ({ text, accepted }) => <div className="marker">{accepted ? <img src="http://ardupilot.org/copter/_static/favicon_copter.ico"></img> : <img src="https://www.fastline.com/images/eq_icon_color.png"></img>}{text}</div>
+const AnyReactComponent = ({ text, accepted }) => <div className="marker">{ !accepted ? <img src="http://ardupilot.org/copter/_static/favicon_copter.ico"></img> : <img src="https://www.fastline.com/images/eq_icon_color.png"></img>}{text}</div>
 
 class MapList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			requests: [        {
+			requests: props.requests || [        {
 			          _id: '596ea14dfc15ae7f50000871',
 			          jobname: 'first job',
 			          userId: '5967cae93f9ebb1cc30f37a3',
@@ -42,8 +42,10 @@ class MapList extends Component {
 			            state: 'Texas',
 			            city: 'Georgetown',
 			            address: '124 Great Frontier dr',
-									lat: 30.7144741,
-									lng: -97.7286564,
+									coordinates: {
+										lat: 30.7144741,
+										lng: -97.7286564,
+										},
 			          },
 			          time: '1:21 pm',
 			          hours: 4,
@@ -86,8 +88,10 @@ class MapList extends Component {
 			            state: 'Texas',
 			            city: 'Austin',
 			            address: '4702 Hilldale dr',
-									lat: 30.2873603,
-									lng: -97.6742261,
+									coordinates: {
+										lat: 30.2873603,
+										lng: -97.6742261,
+									},
 			          },
 			          time: '1:21 pm',
 			          hours: 4,
@@ -140,14 +144,15 @@ class MapList extends Component {
 	render() {
 		return (
 			<div className="worker-container">
+				<div><h4>   Key: Accepted Jobs: <img src="http://ardupilot.org/copter/_static/favicon_copter.ico"></img>Declined Jobs: <img src="https://www.fastline.com/images/eq_icon_color.png"></img></h4></div>
 				<div className="listing-pic">
 					<GoogleMapReact center={this.state.coordinates} defaultZoom={9}>
 						{this.state.requests.map((request, i)=>{
 						return <AnyReactComponent
 							key={i}
 							accepted={request.accepted}
-							lat={request.address.lat}
-							lng={request.address.lng}
+							lat={request.address.coordinates.lat}
+							lng={request.address.coordinates.lng}
 							text={request.jobname}
 						/>
 					})}

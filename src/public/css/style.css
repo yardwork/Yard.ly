@@ -750,12 +750,6 @@ pre.prettyprint {
   height: 2px,
 }
 
-.card {
-	margin: auto;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	overflow: auto;
-}
 .container {
 	max-width: 1024px;
 	width: 100%;
