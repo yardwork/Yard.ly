@@ -20,11 +20,16 @@ const NavBar = ( {userType, handleLogout, setWorkers} ) =>
       <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <Search setWorkers={setWorkers}/>
         <ul className="nav navbar-nav navbar-right">
+          <li>
+            {userType === 'placeholder' || userType === undefined ? "" :
+            <Link to='/user'>
+            <a href="#">Profile</a>
+          </Link>}
+          </li>
           {userType === 'placeholder' ? "" :
           userType
           ? <li><a href="#" onClick={handleLogout}>Log Out</a></li>
           : <li><a href="#" data-toggle="modal" data-target="#sign-in-modal">Sign In</a></li>
-
           }
         </ul>
       </div>

@@ -581,7 +581,7 @@ class AddressFormParent extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div className="worker-profile-container">
 					{ this.state.type === 'USER' ?
 					<div>
 					<h1>Welcome {this.state.user.firstName}</h1>

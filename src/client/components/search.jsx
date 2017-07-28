@@ -23,6 +23,7 @@ class Search extends React.Component {
 	}
 
 	handleSearch(e) {
+		console.log('oh god hello world')
 		e.preventDefault()
 		console.log(e, 'hi')
 		fetch(`http://localhost:3000/api/filter/${this.state.inputValue}`, {
@@ -34,17 +35,17 @@ class Search extends React.Component {
 			})
 			.then(Json => {
 			  this.props.setWorkers(Json)
-				return <Redirect to='/' />
 			})
 	}
 	render() {
-
     return (
 				<form className="navbar-form navbar-left" role="search">
 				  <div className="form-group">
 				    <input type="text" className="form-control nav-search" placeholder="Search for workers" value={this.state.inputValue} onChange={this.handleChange}/>
 				  </div>
-				  <button type="submit" className="btn btn-primary" onClick={this.handleSearch}>Submit</button>
+					<Link to={'/'}>
+				  	<button className="btn btn-primary" onClick={this.handleSearch}>Submit</button>
+					</Link>
 				</form>
 		)
 	}
