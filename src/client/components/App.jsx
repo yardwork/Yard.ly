@@ -52,7 +52,7 @@ class App extends Component {
     .then( () => {
       this.setState({userType: undefined})
       console.log('LOGOUT',this.state)
-    })
+    }).then( () => browserHistory.push('/'))
   }
 
   setWorkers(workers) {

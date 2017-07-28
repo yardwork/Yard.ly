@@ -128,7 +128,8 @@ body {
 /********** Worker Profile **********/
 .worker-profile-container {
   margin: 50px;
-  padding: 0px 100px;
+  padding: 0px 50px;
+  /*padding: 25px;*/
   /*border: 1px solid var(--gray-lightest);*/
   /*border-radius: 4px;*/
 }
@@ -151,6 +152,10 @@ body {
 	margin-left: 150px;
 }
 
+.no-padding {
+  padding: 0px;
+}
+
 .service-entry {
 	margin: 5px;
 	padding: 5px;
@@ -160,7 +165,7 @@ body {
 }
 
 .service-entry.checked {
-	color: inherit;
+	color: var(--gray-dark);
 }
 
 /********** Colors **********/
