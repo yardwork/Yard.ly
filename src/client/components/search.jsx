@@ -43,9 +43,7 @@ class Search extends React.Component {
 				  <div className="form-group">
 				    <input type="text" className="form-control nav-search" placeholder="Search for workers" value={this.state.inputValue} onChange={this.handleChange}/>
 				  </div>
-					<Link to={'/'}>
 				  	<button className="btn btn-primary" onClick={this.handleSearch}>Submit</button>
-					</Link>
 				</form>
 		)
 	}
