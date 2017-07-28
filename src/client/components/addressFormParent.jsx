@@ -585,24 +585,29 @@ class AddressFormParent extends Component {
 					{ this.state.type === 'USER' ?
 					<div>
 					<h1>Welcome {this.state.user.firstName}</h1>
-					<h2>{this.state.user.contactInfo.phoneNumber}{this.state.user.contactInfo.email}</h2>
+					<p>
+		        <span className="glyphicon glyphicon-earphone" aria-hidden="true"></span> {this.state.user.contactInfo ? this.state.user.contactInfo.phoneNumber : 'Contact info not found'}<br/>
+		        <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span> {this.state.user.contactInfo ? this.state.user.contactInfo.email : 'Contact info not found'}
+		      </p>
 					<form onSubmit={this.submitUserPhone}>
 						<input
 							id="phoneNumber"
 							type="text"
 							name="phoneNumber"
-							placeholder={"Edit phone number: " + this.state.user.contactInfo.phoneNumber}
+							placeholder={"Edit phone number"}
+							className="form-control"
 						/>
-						<button type="submit">Submit</button>
+						<button type="submit" className="btn btn-primary" style={{marginTop: 5 + 'px', marginBottom: 15 + 'px'}}>Submit</button>
 					</form>
 					<form onSubmit={this.submitUserEmail}>
 						<input
 							id="email"
 							type="text"
 							name="email"
-							placeholder={"Edit email: " + this.state.user.contactInfo.email}
+							placeholder={"Edit email"}
+							className="form-control"
 						/>
-						<button type="submit">Submit</button>
+						<button type="submit" className="btn btn-primary" style={{marginTop: 5 + 'px', marginBottom: 15 + 'px'}}>Submit</button>
 					</form>
 					<AddressFormChild click={this.submitForm.bind(this)} />
 					<AddressChildList

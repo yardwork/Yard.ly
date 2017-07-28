@@ -127,17 +127,10 @@ body {
 
 /********** Worker Profile **********/
 .worker-profile-container {
-<<<<<<< 290b82984850462ba20d75da13e3c78df6d34049
-	margin: 50px;
-	/*padding: 25px;*/
-	/*border: 1px solid var(--gray-lightest);*/
-	/*border-radius: 4px;*/
-=======
   margin: 50px;
   padding: 0px 100px;
   /*border: 1px solid var(--gray-lightest);*/
   /*border-radius: 4px;*/
->>>>>>> styling of users
 }
 
 .worker-info-container {

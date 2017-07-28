@@ -3,7 +3,7 @@ import React from 'react'
 const AddressFormChild = props => (
   <div>
     <form onSubmit={props.click}>
-      <div className="form-group">
+      <div className="form-group" id="user-address">
       <small className="form-text text-muted">We'll never share your address with anyone else.</small><br/>
       <label htmlFor="address">Street Address</label>
       <input id="address" type="text" name="address" placeholder="Address" className="form-control"/>
